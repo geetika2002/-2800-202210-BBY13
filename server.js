@@ -220,6 +220,45 @@ app.get("/logout", function (req, res) {
 //     console.log(myResults, "null");
 // });
 
+async function init() {
+
+    // we'll go over promises in COMP 2537, for now know that it allows us
+    // to execute some code in a synchronous manner
+    const mysql = require("mysql2/promise");
+    const connection = await mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "",
+        multipleStatements: true
+    });
+    const createDBAndTables = `CREATE DATABASE IF NOT EXISTS test;
+        use test;
+        CREATE TABLE IF NOT EXISTS user (
+        ID int NOT NULL AUTO_INCREMENT,
+        name varchar(30),
+        email varchar(30),
+        password varchar(30),
+        PRIMARY KEY (ID));`;
+    await connection.query(createDBAndTables);
+
+    // await allows for us to wait for this line to execute ... synchronously
+    // also ... destructuring. There's that term again!
+    const [rows, fields] = await connection.query("SELECT * FROM user");
+    // no records? Let's add a couple - for testing purposes
+    if (rows.length == 0) {
+        // no records, so let's add a couple
+        // let userRecords = "insert into user (name, email, password) values ?";
+        // let recordValues = [
+        //     ["Arron", "arron_ferguson@bcit.ca", "abc123"],
+        //     ["Amarra", "ahong@bcit.ca", "abc123"],
+        //     ["Donna", "donna_turner@bcit.ca", "abc123"]
+        // ];
+        await connection.query(userRecords, [recordValues]);
+    }
+    connection.end();
+    console.log("Listening on port " + port + "!");
+}
+
 
 // RUN SERVER
 let port = 8000;
