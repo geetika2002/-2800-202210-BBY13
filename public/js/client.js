@@ -32,7 +32,7 @@ ready(function () {
                 const jsondata = JSON.parse(data)
                 console.log(jsondata.status)
                 if (jsondata.status === "success") {
-                    window.location.replace("/profile");
+                    window.location.replace("/home");
                 } else {
                     document.getElementById("errorMsg").innerHTML = dataParsed.msg;
                 }
