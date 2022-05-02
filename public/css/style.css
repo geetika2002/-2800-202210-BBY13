@@ -11,6 +11,107 @@ body {
     overflow-x: hidden;
 }
 
+@media screen and (max-width: 2000px) {
+#container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-areas:
+        "nav nav nav nav"
+        "options options options options"
+        "banner banner banner banner"
+        "welcome welcome welcome welcome"
+        "feature1 feature2 feature3 feature4"
+        "footer footer footer footer";
+}
+
+#nav {
+    grid-area: nav;
+    display: flex;
+}
+
+#comp_name {
+    margin-left: 35%;
+}
+#menu {
+    display: flex;
+    justify-content: left;
+}
+
+#profile_icon {
+    margin-left: 3000%;
+}
+
+#shopping {
+    margin-left: 2500%;
+}
+
+
+#options{
+    grid-area: options;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+a {
+    text-decoration: none;
+}
+
+#banner {
+    grid-area: banner;
+}
+
+#home_image {
+    grid-area: banner;
+    width: 100vw;
+}
+
+#welcome {
+    grid-area: welcome;
+    text-align: center;
+}
+
+#feature1 {
+    grid-area: feature1;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    padding-left: 8%;
+    margin-top: 15%;
+}
+
+#feature2 {
+    grid-area: feature2;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    padding-left: 8%;
+    margin-top: 15%;
+    margin-right: 10%;
+}
+
+#saferchoice {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+
+#green_seal {
+    display: flex;
+    justify-content: center;
+    width: 90%
+
+}
+
+#footer {
+    grid-area: footer;
+}
+
+}
+
 
 @media screen and (max-width: 700px) {
     #container {
