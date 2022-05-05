@@ -5,11 +5,10 @@ const fs = require("fs");
 const {
     JSDOM
 } = require("jsdom");
-const mysql = require('mysql');
-const { response } = require("express");
-var isAdmin = false;
-
-
+const mysql = require("mysql");
+const {
+    response
+} = require("express");
 
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
@@ -18,6 +17,7 @@ app.use("/fonts", express.static("./public/fonts"));
 app.use("/html", express.static("./public/html"));
 app.use("/media", express.static("./public/media"));
 
+var admin = false;
 app.use(
     session({
         secret: "secrets",
@@ -29,199 +29,165 @@ app.use(
 );
 
 app.get("/", function (req, res) {
-    console.log("1" + isAdmin);
-
     if (req.session.loggedIn) {
-        if (isAdmin === false) {
-//            res.redirect("/users");
+        if (admin === false) {
             res.redirect("/home");
         } else {
+            admin === true;
             res.redirect("/admin");
         }
-
     } else {
         let doc = fs.readFileSync("./app/index.html", "utf8");
         res.send(doc);
     }
 });
 
-app.get("/admin", async (req, res) => {
-    if (req.session.loggedIn && isAdmin === true) {
-        let profile = fs.readFileSync("./app/admin.html", "utf-8");
-        let profileDOM = new JSDOM(profile);
 
-        res.set("Server", "candy");
-        res.set("X-Powered-By", "candy");
-        res.send(profileDOM.serialize());
-    } else {
-        res.redirect("/");
-    }
+
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: ""
 });
 
-// app.get("/", function (req, res) {
-//     if (req.session.loggedIn) {
-//         res.redirect("/profile");
-//     } else {
-//         let doc = fs.readFileSync("./app/index.html", "utf8");
-
-//         res.set("Server", "candy");
-//         res.set("X-Powered-By", "candy");
-//         res.send(doc);
-//     }
-// });
-
-app.get("/home", async (req, res) => {
-    if (req.session.loggedIn && isAdmin === false) {
-        let profile = fs.readFileSync("./app/home.html", "utf-8");
-        let profileDOM = new JSDOM(profile);
-
-        res.set("Server", "candy");
-        res.set("X-Powered-By", "candy");
-        res.send(profileDOM.serialize());
-    } else {
-        res.redirect("/");
-    }
-});
-
-app.use(express.json());
-app.use(express.urlencoded({
-    extended: true
-}));
-
-app.post("/login", function (req, res) {
-    res.setHeader("Content-Type", "application/json");
-
-    let usr = req.body.user_name;
-    let pwd = req.body.password;
-    let myResults = [];
-
-    const mysql = require("mysql2");
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "2800"
-    });
-
-    connection.connect(function (err) {
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+    con.query("CREATE DATABASE IF NOT EXISTS mm_2800", function (err, result) {
         if (err) throw err;
-        console.log('Database is connected successfully !');
+        console.log("Database created");
     });
-
-    connection.execute(
-        "SELECT * FROM user WHERE user.user_name = ? AND user.password = ?", [usr, pwd],
-        function (error, results, fields) {
-            myResults = results;
-            console.log("results:", myResults);
-
-            if (req.body.user_name == myResults[0].user_name && req.body.password == myResults[0].password) {
-                if (myResults[0].admin_user === 'y') {
-                    isAdmin = true;
-                }
-                req.session.loggedIn = true;
-                req.session.user_name = myResults[0].user_name;
-                req.session.password = myResults[0].password;
-                req.session.name = myResults[0].first_name;
-                req.session.save(function (err) {});
-                res.send({
-                    status: "success",
-                    msg: "Logged in."
-                });
-            } else {
-                res.send({
-                    status: "fail",
-                    msg: "User account not found."
-                });
-            }
-            if (error) {
-                console.log(error);
-            }
-            connection.end();
-        }
-    )
 });
-app.get("/get-users", function (req, res) {
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "2800"
+
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "mm_2800",
+    table: "mm_users"
+});
+
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+    var sql = "CREATE TABLE IF NOT EXISTS mm_users (ID_NUMBER int NOT NULL AUTO_INCREMENT, username VARCHAR(50), firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50), administrator VARCHAR(1), delete_user VARCHAR(1), password VARCHAR(50), PRIMARY KEY (ID_NUMBER))"
+
+    let userRecords =
+        "insert into mm_users (username, firstname, lastname, email, administrator, delete_user, password) values ?";
+    let recordValues = [
+        ["ahong", "Amarra", "Hong", "ahong@bcit.ca", "y", "n", "12345"],
+        ["gvarma", "Geetika", "Varma", "gvarma@bcit.ca", "n", "n", "12345"],
+        ["sbae", "Sam", "Bae", "sbae@bcit.ca", "y", "n", "12345"],
+        ["joh", "Jason", "Oh", "joh@bcit.ca", "y", "n", "12345"],
+    ];
+    con.query(userRecords, [recordValues]);
+
+
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Table created");
     });
-    connection.connect();
-    connection.query(
-        "SELECT user.USER_ID, user.email_address, user.first_name, user.last_name  FROM user WHERE user_removed = 'n'",
-        function (error, results) {
-            if (error) {
-                console.log(error);
-            }
-            console.log('Rows returned are: ', results);
-            res.send({ status: "success", rows: results });
+
+    app.get("/home", async (req, res) => {
+        if (req.session.loggedIn && admin === false) {
+            let profile = fs.readFileSync("./app/home.html", "utf-8");
+            let profileDOM = new JSDOM(profile);
+
+            res.set("Server", "candy");
+            res.set("X-Powered-By", "candy");
+            res.send(profileDOM.serialize());
+        } else {
+            res.redirect("/");
         }
+    });
+    app.use(express.json());
+    app.use(
+        express.urlencoded({
+            extended: true,
+        })
     );
-});
 
-app.get("/logout", function (req, res) {
+    app.get("/admin", async (req, res) => {
+        if (req.session.loggedIn && admin === true) {
+            let profile = fs.readFileSync("./app/admin.html", "utf-8");
+            let profileDOM = new JSDOM(profile);
 
-    if (req.session) {
-        req.session.destroy(function (error) {
-            if (error) {
-                res.status(400).send("Unable to log out")
-            } else {
-                isAdmin = false;
-                let doc = fs.readFileSync("./app/index.html", "utf8");
-                res.send(doc);
-            }
+            res.set("Server", "candy");
+            res.set("X-Powered-By", "candy");
+            res.send(profileDOM.serialize());
+        } else {
+            res.redirect("/");
+        }
+    });
+    app.use(express.json());
+    app.use(
+        express.urlencoded({
+            extended: true,
+        })
+    );
+
+    app.post("/login", async function (req, res) {
+        res.setHeader("Content-Type", "application/json");
+
+        console.log("What was sent", req.body.username, req.body.password);
+
+        const mysql = require("mysql2/promise");
+        const connection = await mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "",
+            database: "mm_2800",
         });
-    }
-});
+        connection.connect();
 
-app.post("/user-update", function (req, res) {
-    let adminUsers = [];
-    const userId = req.params['userId'];
-    console.log(userId);
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "2800"
+        const [rows, fields] = await connection.execute(
+            `SELECT * FROM mm_users WHERE username = "${req.body.username}" AND password = "${req.body.password}" AND administrator = "?" `
+        );
+
+        if (`SELECT * FROM mm_users WHERE administrator = "y" `) {
+            admin = true;
+        } else {
+            admin = false;
+        }
+
+        if (req.session.loggedIn = true) {
+
+            req.session.username = `${req.body.username}`;
+            req.session.password = `${req.body.password}`;
+            req.session.save(function (err) {});
+
+            console.log("success, logged in");
+            res.send({
+                status: "success",
+                msg: "Logged in."
+            });
+        } else {
+            console.log("error, user not found");
+            res.send({
+                status: "fail",
+                msg: "User account not found."
+            });
+        }
     });
 
-    connection.connect();
-    console.log(req.body.id + "ID");
-    connection.execute(
-        "SELECT * FROM user WHERE admin_user = 'y' AND user_removed = 'n'",
-        function (error, results, fields) {
-            adminUsers = results;
-            let send = {status: "fail", msg: "Recorded updated."};
-            connection.query("UPDATE user SET user_removed = ? WHERE USER_ID = ? AND admin_user = ?", ['y', req.body.id, 'n'], (err, rows) => {
-                if (err) {
-                    console.log(err);
+    app.get("/logout", function (req, res) {
+        if (req.session) {
+            req.session.destroy(function (error) {
+                if (error) {
+                    res.status(400).send("Unable to log out");
+                } else {
+                    isAdmin = false;
+                    let doc = fs.readFileSync("./app/index.html", "utf8");
+                    res.send(doc);
                 }
-                send.status = "success";
             });
-            if (adminUsers.length > 1) {
-                connection.query("UPDATE user SET user_removed = ? WHERE USER_ID = ? AND admin_user = ?", ['y', req.body.id, 'y'], (err, rows) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                    send.status = "success";
-                });
-            } else {
-                send.status = "fail";
-            }
-            res.send(send);
-            if (error) {
-                console.log(error);
-            }
-            connection.end();
         }
-    );
-
-});
+    });
 
 
-//starts the server
-let port = 8000;
-app.listen(port, function () {
-    console.log("Server started on " + port + "!");
+    //starts the server
+    let port = 8000;
+    app.listen(port, function () {
+        console.log("Server started on " + port + "!");
+    })
 });

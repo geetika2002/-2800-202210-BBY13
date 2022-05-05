@@ -1,0 +1,28 @@
+{
+  "name": "comp2800",
+  "version": "1.0.0",
+  "description": "intial comment for dev",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geetika2002/comp2800.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geetika2002/comp2800/issues"
+  },
+  "homepage": "https://github.com/geetika2002/comp2800#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-session": "^1.17.2",
+    "jsdom": "^19.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "node": "^17.7.2"
+  }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Account</title>
+    <link href="/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="panel">
+        <form id="new_acc_form" method="post" action="/login">
+            <p id="formTitle">Let's create your account!</p>
+            <input id="user_name" type="user_name" required placeholder="username" value="" />
+            <input id="password" type="password" required placeholder="password" value="" />
+            <input id="first_name" type="first_name" required placeholder="first name" value="" />
+            <input id="last_name" type="last_name" required placeholder="last name" value="" />
+
+            <input id="submit" type="button" value="Create" />
+            <p><span id="serverMsg"></span></p>
+            <p id="errorMsg">&nbsp;</p>
+        </form>
+
+    </div>
+
+    <script src="js/client.js"></script>
+
+</body>
+
+
+
+</html>
