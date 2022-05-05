@@ -40,7 +40,7 @@ function ajaxPOST(url, callback, data) {
         }, 
 
         {
-            user_name: document.getElementById("username").value,
+            username: document.getElementById("username").value,
             password: document.getElementById("password").value,
         }
         );
