@@ -1,3 +1,4 @@
+"use strict"; 
 const express = require("express");
 const session = require("express-session");
 const app = express();
@@ -51,7 +52,6 @@ app.get("/home", async (req, res) => {
       password: "",
       database: "COMP2800",
     });
-
     connection.connect;
 
     profileDOM.window.document.getElementById("first_name").innerHTML =
@@ -94,8 +94,7 @@ app.post("/login", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
   console.log("What was sent", req.body.username, req.body.password);
-  let email = req.body.email;
-  let password = req.body.password;
+
 
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
@@ -140,7 +139,7 @@ app.get("/logout", function (req, res) {
       if (error) {
         res.status(400).send("Unable to log out");
       } else {
-        isAdmin = false;
+        admin = false;
         let doc = fs.readFileSync("./app/index.html", "utf8");
         res.send(doc);
       }
