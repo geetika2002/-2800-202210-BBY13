@@ -88,3 +88,7 @@ body {
   transform: translateY(3px);
   box-shadow: 0 5px rgb(119, 119, 119);
 }
+
+#errorMsg {
+  color: red;
+}

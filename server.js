@@ -54,6 +54,11 @@ app.get("/home", async (req, res) => {
 
     connection.connect;
 
+    console.log(req.session.firstname);
+
+    profileDOM.window.document.getElementById("first_name").innerHTML =
+      "Pleased to see you, " + req.session.name;
+
     res.set("Server", "candy");
     res.set("X-Powered-By", "candy");
     res.send(profileDOM.serialize());
@@ -110,6 +115,7 @@ app.post("/login", async function (req, res) {
     req.session.loggedIn = true;
     req.session.username = `${req.body.username}`;
     req.session.password = `${req.body.password}`;
+    req.session.name = rows[0].firstname;
     req.session.save(function (err) {});
     console.log("success, logged in");
     res.send({
