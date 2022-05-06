@@ -54,8 +54,6 @@ app.get("/home", async (req, res) => {
 
     connection.connect;
 
-    console.log(req.session.firstname);
-
     profileDOM.window.document.getElementById("first_name").innerHTML =
       "Pleased to see you, " + req.session.name;
 
