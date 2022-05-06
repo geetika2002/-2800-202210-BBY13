@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
 <!-- Geetika: this is a comment, can be deleted later-->
+
 <head>
     <title>Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
-    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/admin.css" rel="stylesheet" />
 </head>
 
 <body>
+    <div id="banner">
+        <h2>Welcome Admin</h2>
+        <form id="logout" action="/logout" method="get">
+            <input type="submit" value="Logout" />
+        </form>
 
-    <form action="/logout" method="get">
-        <input type="submit" value="Logout" />
-    </form>
-    
+    </div>
+
+
     <table id="userTable"></table>
-    Admin success
+
 
     <footer id="footer">
 
@@ -25,4 +30,5 @@
     <script src="js/client.js"></script>
     <script src="/js/admin.js"></script>
 </body>
+
 </html>
