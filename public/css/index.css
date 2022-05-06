@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Nunito+Sans:wght@300&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+  background: url("/imgs/login_image.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+  margin: 0;
+}
+
+#formPanel {
+  grid-row: 2 / span 3;
+  grid-column: 2 / span 3;
+
+  margin: 0;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+#loginForm {
+  color: black;
+  text-align: center;
+  margin-top: 5%;
+  margin-right: 4%;
+  margin-left: 4%;
+  padding-top: 10%;
+  grid-row: 1 / span 5;
+  grid-column: 1 / span 5;
+}
+
+#formTitle {
+  font-size: 1.2em;
+  margin-bottom: 10%;
+}
+
+#loginForm > input {
+  font-size: 0.9em;
+  display: block;
+  margin: 0 auto;
+  margin-top: 1em;
+  outline: none;
+  border: none;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  padding: 2% 5% 2% 5%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#password {
+  width: 70%;
+}
+
+#username {
+  width: 70%;
+}
+
+#loginForm > input[type="button"] {
+  cursor: pointer;
+  box-shadow: 0 6px rgb(149, 149, 149);
+  display: inline-block;
+  position: relative;
+  transition: 0.3s;
+  margin-bottom: 3%;
+  color: black;
+  margin-top: 10%;
+}
+
+#loginForm > input[type="button"]:hover {
+  outline: none;
+  padding: 2% 10% 2% 10%;
+}
+
+#loginForm > input[type="button"]:active {
+  transform: translateY(3px);
+  box-shadow: 0 5px rgb(119, 119, 119);
+}
