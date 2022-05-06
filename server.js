@@ -95,8 +95,6 @@ app.post("/login", async function (req, res) {
     res.setHeader("Content-Type", "application/json");
 
     console.log("What was sent", req.body.username, req.body.password);
-    let email = req.body.email;
-    let password = req.body.password;
 
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
@@ -110,11 +108,7 @@ app.post("/login", async function (req, res) {
         `SELECT * FROM BBY_13_mm_users WHERE username = "${req.body.username}" AND password = "${req.body.password}"`
     );
 
-    if (rows[0].administrator == "y") {
-        admin = true;
-    } else {
-        admin = false;
-    }
+    
 
     if (rows.length > 0) {
         req.session.loggedIn = true;
@@ -126,6 +120,13 @@ app.post("/login", async function (req, res) {
             status: "success",
             msg: "Logged in.",
         });
+
+        if (rows[0].administrator == "y") {
+            admin = true;
+        } else {
+            admin = false;
+        } 
+
     } else {
         console.log("error, user not found");
         res.send({
@@ -141,7 +142,7 @@ app.get("/logout", function (req, res) {
             if (error) {
                 res.status(400).send("Unable to log out");
             } else {
-                isAdmin = false;
+                admin = false;
                 let doc = fs.readFileSync("./app/index.html", "utf8");
                 res.send(doc);
             }
