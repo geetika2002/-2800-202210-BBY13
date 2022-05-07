@@ -8,7 +8,7 @@ function ajaxPOST(url, callback, data) {
             return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
           })
           .join("&");
-  console.log("params in ajaxPOST", params);
+
 
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -27,15 +27,15 @@ function ajaxPOST(url, callback, data) {
 const sub = document.getElementById("submit");
 if (sub) {
   sub.addEventListener("click", (event) => {
-    console.log("button clicked");
+
     event.preventDefault();
-    console.log("before ajax");
+
     ajaxPOST(
       "/login",
       (data) => {
         if (data) {
           const jsondata = JSON.parse(data);
-          console.log(jsondata.status);
+
           if (jsondata.status === "success") {
             window.location.replace("/home");
           } else {

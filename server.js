@@ -93,7 +93,6 @@ app.use(
 app.post("/login", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  console.log("What was sent", req.body.username, req.body.password);
 
 
   const mysql = require("mysql2/promise");
@@ -114,7 +113,7 @@ app.post("/login", async function (req, res) {
     req.session.password = `${req.body.password}`;
     req.session.name = rows[0].firstname;
     req.session.save(function (err) {});
-    console.log("success, logged in");
+
     res.send({
       status: "success",
       msg: "Logged in.",
