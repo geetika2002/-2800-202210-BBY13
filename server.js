@@ -50,7 +50,7 @@ app.get("/home", async (req, res) => {
       host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       user: "uxrgx7qnx0izne7m",
       password: "xuty202yrdryrweg",
-      database: "3306/yw48avcu2w48bl98",
+      database: "yw48avcu2w48bl98",
     });
     connection.connect;
 
@@ -100,7 +100,7 @@ app.post("/login", async function (req, res) {
     host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     user: "uxrgx7qnx0izne7m",
     password: "xuty202yrdryrweg",
-    database: "3306/yw48avcu2w48bl98",
+    database: "yw48avcu2w48bl98",
   });
   connection.connect();
   const [rows, fields] = await connection.execute(
