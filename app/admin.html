@@ -1,31 +1,93 @@
 <!DOCTYPE html>
-<html lang = "en">
-
+<html lang="en">
 
 <head>
-    <title>Admin</title>
+    <title>Home page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
-    <link href="/css/admin.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/730ad0d560.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div id="banner">
-        <h2>Welcome Admin</h2>
-        <form id="logout" action="/logout" method="get">
-            <input type="submit" value="Logout" />
-        </form>
+
+    <div id="container">
+
+        <div id="nav">
+            <a id="comp_name" href="/admin">Mindful Matter</a>
+            <a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a>
+            <a href="#"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+
+        <div id="options">
+            <a href="/all">Shop All</a>
+            <a href="/best">Best Sellers</a>
+            <a href="/floor">Flooring</a>
+            <a href="/paint">Paint</a>
+            <a href="/tile">Tile</a>
+        </div>
+
+        <div id="banner">
+            <img id="home_image"
+                src="https://www.thespruce.com/thmb/SHzWr50JmPKnLSWev6sSEY-5-ss=/2152x1210/smart/filters:no_upscale()/Buildingdesigns-GettyImages-912482942-db55b3af711044a3a42ad1040c6711a9.jpg"
+                alt="banner">
+        </div>
+
+        <div id="welcome">
+            <h1 id="first_name">Administrator</h1>
+            <h3>Explore our collection of certified sustainable and eco friendly building materials.</h3>
+            <button>Shop All</button>
+        </div>
+
+        <div id="feature1">
+            <img id="saferchoice"
+                src="https://www.homedepot.ca/content/dam/homedepot/images/corporate-affairs/our-community/safer-choice.jpg.imgtransform.82.1280.jpg"
+                alt="safer">
+            <p></p>
+            <h4>What is the Safer Choice Certification?</h4>
+            <p>Products with the Safer Choice label help consumers and commercial buyers identify products with safer
+                ingredients, without sacrificing quality or performance. It also means that every ingredient in the
+                product has been carefully evaluated by EPA scientists for safety and performance.</p>
+        </div>
+
+        <div id="feature2">
+            <img id="green_seal" src="https://greenseal.org/wp-content/uploads/green-seal-logo.png" alt="green_seal">
+            <h4>What is the Green Seal Certification?</h4>
+            <p>Green Seal certification is a process that ensures that a product or service meets the rigorous
+                performance, health, and environmental criteria in Green Seal's environmental leadership standards.</p>
+        </div>
+
+        <div class="menu-wrap">
+            <input type="checkbox" class="toggler">
+            <div class="hamburger">
+                <div></div>
+            </div>
+            <div class="menu">
+                <div>
+                    <div>
+                        <ul>
+                            <li><a href="/admin">Home</a></li>
+                            <li><a href="/profile">My Profile</a></li>
+                            <li><a href="/orders">My Orders</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                            <li><a href="/admin-dash">Administrator</a></li>
+                            <form id="logoutForm" action="/logout" method="get">
+                                <input type="submit" value="Logout" />
+                            </form>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="footer">
+
+        </div>
 
     </div>
-
-
-    <table id="userTable"></table>
-
-
-    <footer id="footer">
-
-    </footer>
 
     <script src="js/client.js"></script>
 </body>

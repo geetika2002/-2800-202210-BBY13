@@ -12,6 +12,11 @@ body {
     overflow-x: hidden;
 }
 
+h3 {
+  margin-top: 5%;
+  text-align: center;
+}
+
 #logoutForm>input[type="submit"] {
     cursor: pointer;
     background-color: white;
@@ -290,13 +295,12 @@ body {
         width: 100vw;
         height: 100vh;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr;
+        grid-template-rows: 2fr 2fr 2fr 2fr 2fr;
         grid-template-areas:
             "nav nav nav nav"
-            "options options options options"
-            "banner banner banner banner"
-            "welcome welcome welcome welcome"
-            "feature1 feature2 feature3 feature4"
+            "users users users users"
+            "orders orders orders orders"
+            "stats stats stats stats"
             "footer footer footer footer";
     }
 
@@ -316,72 +320,9 @@ body {
         justify-content: left;
     }
 
-    #profile_icon {
-        margin-left: 3500%;
-    }
-
-    #shopping {
-        margin-left: 3300%;
-    }
-
-    #options {
-        grid-area: options;
-        text-align: center;
-        display: flex;
-        justify-content: space-evenly;
-    }
 
     a {
         text-decoration: none;
-    }
-
-    #banner {
-        grid-area: banner;
-    }
-
-    #home_image {
-        grid-area: banner;
-        width: 100vw;
-    }
-
-    #welcome {
-        grid-area: welcome;
-        text-align: center;
-    }
-
-    #feature1 {
-        grid-area: feature1;
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 15px;
-        padding-left: 8%;
-        margin-top: 15%;
-        margin-left: 10%;
-    }
-
-    #feature2 {
-        grid-area: feature2;
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 15px;
-        padding-left: 3%;
-        padding-right: 3%;
-        margin-top: 15%;
-        margin-right: 10%;
-        margin-left: 10%;
-    }
-
-    #saferchoice {
-        display: flex;
-        justify-content: center;
-        width: 90%;
-    }
-
-    #green_seal {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 18%;
-        width: 90%;
     }
 
     #footer {
@@ -395,13 +336,12 @@ body {
         width: 100vw;
         height: 100vh;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr;
+        grid-template-rows: 2fr 2fr 2fr 2fr 2fr;
         grid-template-areas:
             "nav nav"
-            "options options"
-            "banner banner"
-            "welcome welcome"
-            "feature1 feature2"
+            "users users"
+            "orders orders"
+            "stats stats"
             "footer footer";
     }
 
@@ -421,71 +361,8 @@ body {
         justify-content: left;
     }
 
-    #profile_icon {
-        margin-left: 800%;
-    }
-
-    #shopping {
-        margin-left: 800%;
-    }
-
-    #options {
-        grid-area: options;
-        text-align: center;
-        display: flex;
-        justify-content: space-evenly;
-    }
-
     a {
         text-decoration: none;
-    }
-
-    #banner {
-        grid-area: banner;
-    }
-
-    #home_image {
-        grid-area: banner;
-        width: 100vw;
-    }
-
-    #welcome {
-        grid-area: welcome;
-        text-align: center;
-    }
-
-    #feature1 {
-        grid-area: feature1;
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 15px;
-        padding-left: 8%;
-        margin-top: 15%;
-        margin-left: 10%;
-        margin-right: 1%;
-    }
-
-    #feature2 {
-        grid-area: feature2;
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 15px;
-        padding-left: 8%;
-        margin-top: 15%;
-        margin-left: 1%;
-        margin-right: 10%;
-    }
-
-    #saferchoice {
-        display: flex;
-        justify-content: center;
-        width: 90%;
-    }
-
-    #green_seal {
-        display: flex;
-        justify-content: center;
-        width: 90%;
     }
 
     #footer {
