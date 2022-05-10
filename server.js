@@ -157,7 +157,7 @@ async function init() {
   });
 
   const createDBAndTables = `CREATE DATABASE IF NOT EXISTS yw48avcu2w48bl98;
-                            use COMP2800;
+                            use yw48avcu2w48bl98;
                             CREATE TABLE IF NOT EXISTS BBY_13_mm_users (
                                 ID_NUMBER int NOT NULL AUTO_INCREMENT,
                                 username VARCHAR(50),
