@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 const express = require("express");
 const session = require("express-session");
 const app = express();
@@ -6,12 +6,14 @@ const fs = require("fs");
 const { JSDOM } = require("jsdom");
 const mysql = require("mysql");
 const { response } = require("express");
+const { createConnection } = require("net");
+const { connect } = require("http2");
 
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
 app.use("/imgs", express.static("./public/imgs"));
 app.use("/fonts", express.static("./public/fonts"));
-app.use("/html", express.static("./public/html"));
+app.use("/html", express.static("./app/html"));
 app.use("/media", express.static("./public/media"));
 
 var admin = false;
@@ -93,8 +95,6 @@ app.use(
 app.post("/login", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-
-
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
     host: "localhost",
@@ -144,6 +144,53 @@ app.get("/logout", function (req, res) {
       }
     });
   }
+});
+
+app.get("/profile", function (req, res) {
+  if (req.session) {
+    let profile = fs.readFileSync("./app/profile.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    res.set("Server", "candy");
+    res.set("X-Powered-By", "candy");
+    res.send(profileDOM.serialize());
+  }
+});
+
+app.get("/change_pw", async function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/change_pw.html", "utf8");
+    let profileDOM = new JSDOM(doc);
+
+    res.set("Server", "candy");
+    res.set("X-Powered-By", "candy");
+    res.send(profileDOM.serialize());
+  }
+});
+
+app.post("/new_password", async function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+  const mysql = require("mysql2/promise");
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+  });
+  connection.connect();
+
+  const [rows, fields] = await connection.execute(
+    `SELECT * FROM BBY_13_mm_users`
+  );
+
+  if (rows.length > 0) {
+    req.session.password = `${req.body.new_password}`;
+  }
+  console.log(req.session.password);
+  let sql = `UPDATE BBY_13_mm_users
+           SET password = ?
+           WHERE username = 'gvarma'`;
+  connection.query(sql, req.session.password);
 });
 
 async function init() {
