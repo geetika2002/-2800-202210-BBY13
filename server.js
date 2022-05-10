@@ -97,10 +97,10 @@ app.post("/login", async function (req, res) {
 
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
+    host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "uxrgx7qnx0izne7m",
+    password: "xuty202yrdryrweg",
+    database: "3306/yw48avcu2w48bl98",
   });
   connection.connect();
   const [rows, fields] = await connection.execute(
