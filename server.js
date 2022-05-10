@@ -202,7 +202,7 @@ http.createServer((req,res) => {
   });
 
   res.end(`Hello ${q.query['name']}`); 
-}).listen(process.env.PORT || 8000); 
+})
 
-// let port = 8000;
-// app.listen(port, init);
+let port = 8000;
+app.listen(port, init);
