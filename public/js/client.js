@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 function ajaxPOST(url, callback, data) {
   let params =
     typeof data == "string"
@@ -8,7 +8,6 @@ function ajaxPOST(url, callback, data) {
             return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
           })
           .join("&");
-
 
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -27,7 +26,6 @@ function ajaxPOST(url, callback, data) {
 const sub = document.getElementById("submit");
 if (sub) {
   sub.addEventListener("click", (event) => {
-
     event.preventDefault();
 
     ajaxPOST(
@@ -60,4 +58,27 @@ if (sub) {
       console.log("Listener was invoked");
     }
   }
+}
+
+const pw_sub = document.getElementById("submit_password");
+if (pw_sub) {
+  pw_sub.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    ajaxPOST(
+      "/new_password",
+      (data) => {
+        if (data) {
+          const jsondata = JSON.parse(data);
+
+          if (jsondata.status === "success") {
+            window.location.replace("/");
+          }
+        }
+      },
+      {
+        new_password: document.getElementById("new_password").value,
+      }
+    );
+  });
 }
