@@ -149,9 +149,10 @@ app.get("/logout", function (req, res) {
 async function init() {
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
+    host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "uxrgx7qnx0izne7m",
+    password: "xuty202yrdryrweg",
+    database: "yw48avcu2w48bl98",
     multipleStatements: true,
   });
 
