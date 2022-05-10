@@ -156,7 +156,7 @@ async function init() {
     multipleStatements: true,
   });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS yw48avcu2w48bl98;
                             use COMP2800;
                             CREATE TABLE IF NOT EXISTS BBY_13_mm_users (
                                 ID_NUMBER int NOT NULL AUTO_INCREMENT,
