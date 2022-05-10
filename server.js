@@ -188,5 +188,21 @@ async function init() {
   console.log("Listening on port " + port + "!");
 }
 
-let port = 8000;
-app.listen(port, init);
+let http = require('http'); 
+let url = require('url'); 
+const res = require("express/lib/response");
+
+http.createServer((req,res) => {
+  let q = url.parse(req.url, ture); 
+  console.log(q.query);
+
+  res.writeHead(200, {
+    "Content-Type": "text/html", 
+    "Access-Control-Allow-Origin": "*"
+  });
+
+  res.end(`Hello ${q.query['name']}`); 
+}).listen(process.env.PORT || 8000); 
+
+// let port = 8000;
+// app.listen(port, init);
