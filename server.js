@@ -134,152 +134,152 @@ app.post("/login", async function (req, res) {
             msg: "Logged in.",
         });
 
-    if (req.session.admin == "y") {
-      admin = true;
+        if (req.session.admin == "y") {
+            admin = true;
+        } else {
+            admin = false;
+        }
     } else {
-      admin = false;
+        res.send({
+            status: "fail",
+            msg: "User account not found.",
+        });
     }
-  } else {
-    res.send({
-      status: "fail",
-      msg: "User account not found.",
-    });
-  }
 });
 
 app.get("/logout", function (req, res) {
-  if (req.session) {
-    req.session.destroy(function (error) {
-      if (error) {
-        res.status(400).send("Unable to log out");
-      } else {
-        admin = false;
-        let doc = fs.readFileSync("./app/index.html", "utf8");
-        res.send(doc);
-      }
-    });
-  }
+    if (req.session) {
+        req.session.destroy(function (error) {
+            if (error) {
+                res.status(400).send("Unable to log out");
+            } else {
+                admin = false;
+                let doc = fs.readFileSync("./app/index.html", "utf8");
+                res.send(doc);
+            }
+        });
+    }
 });
 
 //ALL PAGE REDIRECTS GO HERE
 app.get("/admin-dash", function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/admin-dash.html", "utf8");
-    res.send(doc);
-  }
+    if (req.session) {
+        let doc = fs.readFileSync("./app/admin-dash.html", "utf8");
+        res.send(doc);
+    }
 });
 
 app.get("/user-profiles", function (req, res) {
-  if (req.session) {
-    let profile = fs.readFileSync("./app/user-profiles.html", "utf8");
-    let profileDOM = new JSDOM(profile);
+    if (req.session) {
+        let profile = fs.readFileSync("./app/user-profiles.html", "utf8");
+        let profileDOM = new JSDOM(profile);
 
-    const mysql = require("mysql2");
+        const mysql = require("mysql2");
 
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
+        const connection = mysql.createConnection({
+            host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+            user: "uxrgx7qnx0izne7m",
+            password: "xuty202yrdryrweg",
+            database: "yw48avcu2w48bl98",
+        });
+        connection.connect();
 
-    connection.query(
-      "SELECT * FROM BBY_13_mm_users",
-      function (error, userresults, fields) {
-        if (error) {
-          console.log(error);
-        }
+        connection.query(
+            "SELECT * FROM BBY_13_mm_users",
+            function (error, userresults, fields) {
+                if (error) {
+                    console.log(error);
+                }
 
-        const allUsers = profileDOM.window.document.createElement("table");
-        let users;
+                const allUsers = profileDOM.window.document.createElement("table");
+                let users;
 
-        allUsers.innerHTML =
-          "<tr>" +
-          "<th>" +
-          "ID" +
-          "</th>" +
-          "<th>" +
-          "Username" +
-          "</th>" +
-          "<th>" +
-          "First Name" +
-          "</th>" +
-          "<th>" +
-          "Last Name" +
-          "</th>" +
-          "<th>" +
-          "E-mail" +
-          "</th>" +
-          "<th>" +
-          "Administrator" +
-          "</th>" +
-          // "<th>" +
-          // ""
-          // "</th>"+
-          "</tr>";
-        for (let i = 0; i < userresults.length; i++) {
-          users =
-            "<td>" +
-            userresults[i].ID_NUMBER +
-            "</td>" +
-            "<td>" +
-            userresults[i].username +
-            "</td>" +
-            "<td>" +
-            userresults[i].firstname +
-            "</td>" +
-            "<td>" +
-            userresults[i].lastname +
-            "</td>" +
-            "<td>" +
-            userresults[i].email +
-            "</td>" +
-            "<td>" +
-            userresults[i].administrator +
-            "</td>";
+                allUsers.innerHTML =
+                    "<tr>" +
+                    "<th>" +
+                    "ID" +
+                    "</th>" +
+                    "<th>" +
+                    "Username" +
+                    "</th>" +
+                    "<th>" +
+                    "First Name" +
+                    "</th>" +
+                    "<th>" +
+                    "Last Name" +
+                    "</th>" +
+                    "<th>" +
+                    "E-mail" +
+                    "</th>" +
+                    "<th>" +
+                    "Administrator" +
+                    "</th>" +
+                    // "<th>" +
+                    // ""
+                    // "</th>"+
+                    "</tr>";
+                for (let i = 0; i < userresults.length; i++) {
+                    users =
+                        "<td>" +
+                        userresults[i].ID_NUMBER +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].username +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].firstname +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].lastname +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].email +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].administrator +
+                        "</td>";
 
-          allUsers.innerHTML += users;
-        }
+                    allUsers.innerHTML += users;
+                }
 
-        profileDOM.window.document
-          .getElementById("user_table")
-          .appendChild(allUsers);
+                profileDOM.window.document
+                    .getElementById("user_table")
+                    .appendChild(allUsers);
 
-        res.set("Server", "candy");
-        res.set("X-Powered-By", "candy");
-        res.send(profileDOM.serialize());
-      }
-    );
-  }
+                res.set("Server", "candy");
+                res.set("X-Powered-By", "candy");
+                res.send(profileDOM.serialize());
+            }
+        );
+    }
 });
 
 app.get("/home", function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/home.html", "utf8");
-    res.send(doc);
-  }
+    if (req.session) {
+        let doc = fs.readFileSync("./app/home.html", "utf8");
+        res.send(doc);
+    }
 });
 
 app.get("/profile", function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/profile.html", "utf8");
-    res.send(doc);
-  }
+    if (req.session) {
+        let doc = fs.readFileSync("./app/profile.html", "utf8");
+        res.send(doc);
+    }
 });
 
 app.get("/profile-admin", function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/profile-admin.html", "utf8");
-    res.send(doc);
-  }
+    if (req.session) {
+        let doc = fs.readFileSync("./app/profile-admin.html", "utf8");
+        res.send(doc);
+    }
 });
 
 app.get("/admin", function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/admin.html", "utf8");
-    res.send(doc);
-  }
+    if (req.session) {
+        let doc = fs.readFileSync("./app/admin.html", "utf8");
+        res.send(doc);
+    }
 });
 
 app.get("/paint", function (req, res) {
@@ -292,63 +292,64 @@ app.get("/paint", function (req, res) {
 //ALL PAGE REDIRECTS END HERE
 
 app.get("/profile", function (req, res) {
-  if (req.session) {
-    let profile = fs.readFileSync("./app/profile.html", "utf8");
-    let profileDOM = new JSDOM(profile);
+    if (req.session) {
+        let profile = fs.readFileSync("./app/profile.html", "utf8");
+        let profileDOM = new JSDOM(profile);
 
-    res.set("Server", "candy");
-    res.set("X-Powered-By", "candy");
-    res.send(profileDOM.serialize());
-  }
+        res.set("Server", "candy");
+        res.set("X-Powered-By", "candy");
+        res.send(profileDOM.serialize());
+    }
 });
 
 app.get("/change_pw", async function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/change_pw.html", "utf8");
-    let profileDOM = new JSDOM(doc);
+    if (req.session) {
+        let doc = fs.readFileSync("./app/change_pw.html", "utf8");
+        let profileDOM = new JSDOM(doc);
 
-    res.set("Server", "candy");
-    res.set("X-Powered-By", "candy");
-    res.send(profileDOM.serialize());
-  }
+        res.set("Server", "candy");
+        res.set("X-Powered-By", "candy");
+        res.send(profileDOM.serialize());
+    }
 });
 
 app.post("/new_password", async function (req, res) {
-  res.setHeader("Content-Type", "application/json");
-  const mysql = require("mysql2/promise");
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
-  });
-  connection.connect();
+    res.setHeader("Content-Type", "application/json");
+    const mysql = require("mysql2/promise");
+    const connection = await mysql.createConnection({
+        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        user: "uxrgx7qnx0izne7m",
+        password: "xuty202yrdryrweg",
+        database: "yw48avcu2w48bl98",
+    });
+    connection.connect();
 
-  const [rows, fields] = await connection.execute(
-    `SELECT * FROM BBY_13_mm_users`
-  );
+    const [rows, fields] = await connection.execute(
+        `SELECT * FROM BBY_13_mm_users`
+    );
 
-  if (rows.length > 0) {
-    req.session.password = `${ req.body.new_password } `;
-  }
-  console.log(req.session.password);
-  let sql = `UPDATE BBY_13_mm_users
+    if (rows.length > 0) {
+        req.session.password = `${req.body.new_password} `;
+    }
+    console.log(req.session.password);
+    let sql = `UPDATE BBY_13_mm_users
            SET password = ?
                 WHERE username = '${req.session.username}'`;
-  connection.query(sql, req.session.password);
+    connection.query(sql, req.session.password);
 });
 
 async function init() {
-  const mysql = require("mysql2/promise");
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    multipleStatements: true,
-  });
+    const mysql = require("mysql2/promise");
+    const connection = await mysql.createConnection({
+        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        user: "uxrgx7qnx0izne7m",
+        password: "xuty202yrdryrweg",
+        database: "yw48avcu2w48bl98",
+        multipleStatements: true,
+    });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
-                            use COMP2800;
+    const createDBAndTables = `CREATE DATABASE IF NOT EXISTS yw48avcu2w48bl98;
+                            use yw48avcu2w48bl98;
                             CREATE TABLE IF NOT EXISTS BBY_13_mm_users(
                     ID_NUMBER int NOT NULL AUTO_INCREMENT,
                     username VARCHAR(50),
@@ -360,42 +361,42 @@ async function init() {
                     password VARCHAR(50),
                     PRIMARY KEY(ID_NUMBER)); `;
 
-        await connection.query(createDBAndTables);
+    await connection.query(createDBAndTables);
 
-        const [userRows, userFields] = await connection.query(
-            "SELECT * FROM BBY_13_mm_users"
-        );
+    const [userRows, userFields] = await connection.query(
+        "SELECT * FROM BBY_13_mm_users"
+    );
 
-        if (userRows.length == 0) {
-            let userRecord =
-                "insert into BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values ?";
-            let userValue = [
-                ["ahong", "Amarra", "Hong", "ahong@bcit.ca", "y", "n", "12345"],
-                ["gvarma", "Geetika", "Varma", "gvarma@bcit.ca", "n", "n", "12345"],
-                ["sbae", "Sam", "Bae", "sbae@bcit.ca", "y", "n", "12345"],
-                ["joh", "Jason", "Oh", "joh@bcit.ca", "y", "n", "12345"],
-            ];
-            await connection.query(userRecord, [userValue]);
-        }
-        console.log("Listening on port " + port + "!");
+    if (userRows.length == 0) {
+        let userRecord =
+            "insert into BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values ?";
+        let userValue = [
+            ["ahong", "Amarra", "Hong", "ahong@bcit.ca", "y", "n", "12345"],
+            ["gvarma", "Geetika", "Varma", "gvarma@bcit.ca", "n", "n", "12345"],
+            ["sbae", "Sam", "Bae", "sbae@bcit.ca", "y", "n", "12345"],
+            ["joh", "Jason", "Oh", "joh@bcit.ca", "y", "n", "12345"],
+        ];
+        await connection.query(userRecord, [userValue]);
     }
+    console.log("Listening on port " + port + "!");
+}
 
-    let http = require('http');
-    let url = require('url');
-    // const res = require("express/lib/response");
+let http = require('http');
+let url = require('url');
+// const res = require("express/lib/response");
 
-    http.createServer((req, res) => {
-        let q = url.parse(req.url, ture);
-        console.log(q.query);
+http.createServer((req, res) => {
+    let q = url.parse(req.url, ture);
+    console.log(q.query);
 
-        res.writeHead(200, {
-            "Content-Type": "text/html",
-            "Access-Control-Allow-Origin": "*"
-        });
+    res.writeHead(200, {
+        "Content-Type": "text/html",
+        "Access-Control-Allow-Origin": "*"
+    });
 
-        res.end(`Hello ${ q.query['name'] } `);
-    })
+    res.end(`Hello ${q.query['name']} `);
+})
 
-    let port = 8000;
-    // app.listen(port, init);
-    app.listen(process.env.PORT || 8000, init);
+let port = 8000;
+// app.listen(port, init);
+app.listen(process.env.PORT || 8000, init);
