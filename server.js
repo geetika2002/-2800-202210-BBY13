@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 const express = require("express");
 const session = require("express-session");
 const app = express();
@@ -112,7 +112,7 @@ app.post("/login", async function (req, res) {
     req.session.username = `${req.body.username}`;
     req.session.password = `${req.body.password}`;
     req.session.name = rows[0].firstname;
-    req.session.save(function (err) {});
+    req.session.save(function (err) { });
 
     res.send({
       status: "success",
@@ -189,20 +189,20 @@ async function init() {
   console.log("Listening on port " + port + "!");
 }
 
-let http = require('http'); 
-let url = require('url'); 
+let http = require('http');
+let url = require('url');
 const res = require("express/lib/response");
 
-http.createServer((req,res) => {
-  let q = url.parse(req.url, ture); 
+http.createServer((req, res) => {
+  let q = url.parse(req.url, ture);
   console.log(q.query);
 
   res.writeHead(200, {
-    "Content-Type": "text/html", 
+    "Content-Type": "text/html",
     "Access-Control-Allow-Origin": "*"
   });
 
-  res.end(`Hello ${q.query['name']}`); 
+  res.end(`Hello ${q.query['name']}`);
 })
 
 let port = 8000;
