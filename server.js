@@ -327,7 +327,7 @@ app.post("/login", async function (req, res) {
 
     let http = require('http');
     let url = require('url');
-    //const res = require("express/lib/response");
+    // const res = require("express/lib/response");
 
     http.createServer((req, res) => {
         let q = url.parse(req.url, ture);
@@ -343,5 +343,5 @@ app.post("/login", async function (req, res) {
 
     let port = 8000;
     // app.listen(port, init);
-    app.listen(process.env.PORT || 8000)
+    app.listen(process.env.PORT || 8000, init)
 });
