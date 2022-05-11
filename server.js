@@ -14,7 +14,7 @@ app.use("/fonts", express.static("./public/fonts"));
 app.use("/html", express.static("./app/html"));
 app.use("/media", express.static("./public/media"));
 
-var admin = false;
+var admin = false; 
 
 app.use(
     session({
