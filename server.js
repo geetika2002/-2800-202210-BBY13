@@ -274,6 +274,13 @@ app.get("/admin", function (req, res) {
   }
 });
 
+app.get("/paint", function (req, res) {
+    if (req.session) {
+        let doc = fs.readFileSync("./app/paint.html", "utf8");
+        res.send(doc);
+    }
+});
+
 //ALL PAGE REDIRECTS END HERE
 
 app.get("/profile", function (req, res) {
