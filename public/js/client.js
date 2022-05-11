@@ -83,9 +83,61 @@ if (pw_sub) {
     });
 }
 
-var down = document.getElementById("form");
+var down = document.getElementById("form-user");
 
 function createForm() {
+
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "submit");
+
+
+    var FN = document.createElement("input");
+    FN.setAttribute("type", "First Name");
+    FN.setAttribute("name", "First Name");
+    FN.setAttribute("placeholder", "First Name");
+
+    var LN = document.createElement("input");
+    LN.setAttribute("type", "Last Name");
+    LN.setAttribute("name", "Last Name");
+    LN.setAttribute("placeholder", "Last Name");
+
+    var UN = document.createElement("input");
+    UN.setAttribute("type", "Username");
+    UN.setAttribute("name", "Username");
+    UN.setAttribute("placeholder", "Username");
+
+    var ID = document.createElement("input");
+    ID.setAttribute("type", "text");
+    ID.setAttribute("name", "email");
+    ID.setAttribute("placeholder", "email");
+
+
+    var PWD = document.createElement("input");
+    PWD.setAttribute("type", "password");
+    PWD.setAttribute("name", "password");
+    PWD.setAttribute("placeholder", "Password");
+
+
+    var s = document.createElement("input");
+    s.setAttribute("type", "submit");
+    s.setAttribute("value", "Submit");
+
+
+    form.append(FN);
+    form.append(LN);
+    form.append(UN);
+    form.append(ID);
+    form.append(PWD);
+    form.append(s);
+
+    document.getElementsByTagName("body")[0]
+        .appendChild(form);
+}
+
+var down = document.getElementById("form-admin");
+
+function createFormAdmin() {
 
     var form = document.createElement("form");
     form.setAttribute("method", "post");
