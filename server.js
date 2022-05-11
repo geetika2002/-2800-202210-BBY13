@@ -103,7 +103,7 @@ app.post("/login", async function (req, res) {
   });
   connection.connect();
   const [rows, fields] = await connection.execute(
-    `SELECT * FROM BBY_13_mm_users`
+    `SELECT * FROM BBY_13_mm_users WHERE username = "${req.body.username}" AND password = "${req.body.password}"`
   );
 
   if (rows.length > 0) {
@@ -116,6 +116,9 @@ app.post("/login", async function (req, res) {
     req.session.email = rows[0].email;
     req.session.admin = rows[0].administrator;
 
+    console.log(req.session.fname);
+    console.log(req.session.password);
+
     req.session.save(function (err) {});
 
     res.send({
@@ -123,7 +126,7 @@ app.post("/login", async function (req, res) {
       msg: "Logged in.",
     });
 
-    if (rows[0].administrator == "y") {
+    if (req.session.admin == "y") {
       admin = true;
     } else {
       admin = false;
