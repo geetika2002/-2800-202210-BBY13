@@ -56,7 +56,7 @@ app.get("/home", async (req, res) => {
     connection.connect;
 
     profileDOM.window.document.getElementById("first_name").innerHTML =
-      "Pleased to see you, " + req.session.name;
+      "Pleased to see you, " + req.session.fname;
 
     res.set("Server", "candy");
     res.set("X-Powered-By", "candy");
@@ -103,14 +103,19 @@ app.post("/login", async function (req, res) {
   });
   connection.connect();
   const [rows, fields] = await connection.execute(
-    `SELECT * FROM BBY_13_mm_users WHERE username = "${req.body.username}" AND password = "${req.body.password}"`
+    `SELECT * FROM BBY_13_mm_users`
   );
 
   if (rows.length > 0) {
     req.session.loggedIn = true;
-    req.session.username = `${req.body.username}`;
-    req.session.password = `${req.body.password}`;
-    req.session.name = rows[0].firstname;
+    req.session.username = rows[0].username;
+    req.session.password = rows[0].password;
+    req.session.idnum = rows[0].ID_NUMBER;
+    req.session.fname = rows[0].firstname;
+    req.session.lname = rows[0].lastName;
+    req.session.email = rows[0].email;
+    req.session.admin = rows[0].administrator;
+
     req.session.save(function (err) {});
 
     res.send({
@@ -154,8 +159,86 @@ app.get("/admin-dash", function (req, res) {
 
 app.get("/user-profiles", function (req, res) {
   if (req.session) {
-    let doc = fs.readFileSync("./app/user-profiles.html", "utf8");
-    res.send(doc);
+    let profile = fs.readFileSync("./app/user-profiles.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    const mysql = require("mysql2");
+
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
+    });
+    connection.connect();
+
+    connection.query(
+      "SELECT * FROM BBY_13_mm_users",
+      function (error, userresults, fields) {
+        if (error) {
+          console.log(error);
+        }
+
+        const allUsers = profileDOM.window.document.createElement("table");
+        let users;
+
+        allUsers.innerHTML =
+          "<tr>" +
+          "<th>" +
+          "ID" +
+          "</th>" +
+          "<th>" +
+          "Username" +
+          "</th>" +
+          "<th>" +
+          "First Name" +
+          "</th>" +
+          "<th>" +
+          "Last Name" +
+          "</th>" +
+          "<th>" +
+          "E-mail" +
+          "</th>" +
+          "<th>" +
+          "Administrator" +
+          "</th>" +
+          // "<th>" +
+          // ""
+          // "</th>"+
+          "</tr>";
+        for (let i = 0; i < userresults.length; i++) {
+          users =
+            "<td>" +
+            userresults[i].ID_NUMBER +
+            "</td>" +
+            "<td>" +
+            userresults[i].username +
+            "</td>" +
+            "<td>" +
+            userresults[i].firstname +
+            "</td>" +
+            "<td>" +
+            userresults[i].lastname +
+            "</td>" +
+            "<td>" +
+            userresults[i].email +
+            "</td>" +
+            "<td>" +
+            userresults[i].administrator +
+            "</td>";
+
+          allUsers.innerHTML += users;
+        }
+
+        profileDOM.window.document
+          .getElementById("user_table")
+          .appendChild(allUsers);
+
+        res.set("Server", "candy");
+        res.set("X-Powered-By", "candy");
+        res.send(profileDOM.serialize());
+      }
+    );
   }
 });
 
@@ -225,7 +308,7 @@ app.post("/new_password", async function (req, res) {
   console.log(req.session.password);
   let sql = `UPDATE BBY_13_mm_users
            SET password = ?
-           WHERE username = 'gvarma'`;
+           WHERE username = '${req.session.username}'`;
   connection.query(sql, req.session.password);
 });
 

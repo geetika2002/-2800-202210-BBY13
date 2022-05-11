@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Administrator Dashboard</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
-        <link href="/css/user-profile.css" rel="stylesheet" />
-    </head>
 
-    <body>
+<head>
+    <title>Administrator Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="/css/user-profile.css" rel="stylesheet" />
+</head>
+
+<body>
 
     <div id="nav">
-            <a id="comp_name" href="#">Mindful Matter</a>
+        <a id="comp_name" href="#">Mindful Matter</a>
     </div>
 
     <div class="menu-wrap">
@@ -24,26 +25,33 @@
                 <div>
                     <ul>
                         <li><a href="#">Home</a></li>
-                            <li><a href="/profile">My Profile</a></li>
-                            <li><a href="/orders">My Orders</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/faq">FAQ</a></li>
-                            <li><a href="/admin-dash">Administrator</a></li>
-                            <form id="logoutForm" action="/logout" method="get">
-                                <input type="submit" value="Logout" />
-                            </form>
+                        <li><a href="/profile">My Profile</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/admin-dash">Administrator</a></li>
+                        <form id="logoutForm" action="/logout" method="get">
+                            <input type="submit" value="Logout" />
+                        </form>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-<!-- PAGE CONTENT BEGINS HERE -->
+
+
+
+    </div>
+
+    <!-- PAGE CONTENT BEGINS HERE -->
     <div id="page">
         <h3>
             User Profiles
         </h3>
     </div>
-    
+    <div id="user_table"></div>
+
 </body>
+
 </html>
