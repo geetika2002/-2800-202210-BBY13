@@ -143,7 +143,6 @@ function createFormAdmin() {
     form.setAttribute("method", "post");
     form.setAttribute("action", "submit");
 
-
     var FN = document.createElement("input");
     FN.setAttribute("type", "First Name");
     FN.setAttribute("name", "First Name");
@@ -164,17 +163,14 @@ function createFormAdmin() {
     ID.setAttribute("name", "email");
     ID.setAttribute("placeholder", "email");
 
-
     var PWD = document.createElement("input");
     PWD.setAttribute("type", "password");
     PWD.setAttribute("name", "password");
     PWD.setAttribute("placeholder", "Password");
 
-
     var s = document.createElement("input");
     s.setAttribute("type", "submit");
     s.setAttribute("value", "Submit");
-
 
     form.append(FN);
     form.append(LN);

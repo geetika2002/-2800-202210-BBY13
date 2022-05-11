@@ -488,6 +488,7 @@ app.post("/new_password", async function (req, res) {
     connection.query(sql, req.session.password);
 });
 
+
 async function init() {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
