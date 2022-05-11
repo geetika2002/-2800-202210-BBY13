@@ -56,10 +56,10 @@ app.get("/home", async (req, res) => {
         connection.connect;
 
         // const connection = mysql.createConnection({
-        //     host: "localhost",
-        //     user: "root",
-        //     password: "",
-        //     database: "COMP2800",
+            // host: "localhost",
+            // user: "root",
+            // password: "",
+            // database: "COMP2800",
         // });
         // connection.connect;
 
@@ -104,7 +104,7 @@ app.post("/login", async function (req, res) {
 
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.useast1.rds.amazonaws.com",
         user: "uxrgx7qnx0izne7m",
         password: "xuty202yrdryrweg",
         database: "yw48avcu2w48bl98",
@@ -177,7 +177,7 @@ app.get("/user-profiles", function (req, res) {
         const mysql = require("mysql2");
 
         const connection = mysql.createConnection({
-            host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+            host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.useast1.rds.amazonaws.com",
             user: "uxrgx7qnx0izne7m",
             password: "xuty202yrdryrweg",
             database: "yw48avcu2w48bl98",
@@ -317,7 +317,7 @@ app.post("/new_password", async function (req, res) {
     res.setHeader("Content-Type", "application/json");
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.useast1.rds.amazonaws.com",
         user: "uxrgx7qnx0izne7m",
         password: "xuty202yrdryrweg",
         database: "yw48avcu2w48bl98",
@@ -341,7 +341,7 @@ app.post("/new_password", async function (req, res) {
 async function init() {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.useast1.rds.amazonaws.com",
         user: "uxrgx7qnx0izne7m",
         password: "xuty202yrdryrweg",
         database: "yw48avcu2w48bl98",
