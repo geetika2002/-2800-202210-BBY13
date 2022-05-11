@@ -48,10 +48,10 @@ app.get("/home", async (req, res) => {
         const mysql = require("mysql2");
 
         const connection = mysql.createConnection({
-            host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-            user: "uxrgx7qnx0izne7m",
-            password: "xuty202yrdryrweg",
-            database: "yw48avcu2w48bl98",
+            host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+            user: "wa7yho6zr0dr39mi",
+            password: "p1u0ul08jaedrrbv",
+            database: "mzebqa1shsculbco",
         });
         connection.connect;
 
@@ -104,10 +104,10 @@ app.post("/login", async function (req, res) {
 
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.useast1.rds.amazonaws.com",
-        user: "uxrgx7qnx0izne7m",
-        password: "xuty202yrdryrweg",
-        database: "yw48avcu2w48bl98",
+        host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        user: "wa7yho6zr0dr39mi",
+        password: "p1u0ul08jaedrrbv",
+        database: "mzebqa1shsculbco",
     });
     connection.connect();
     const [rows, fields] = await connection.execute(
@@ -177,10 +177,10 @@ app.get("/user-profiles", function (req, res) {
         const mysql = require("mysql2");
 
         const connection = mysql.createConnection({
-            host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.useast1.rds.amazonaws.com",
-            user: "uxrgx7qnx0izne7m",
-            password: "xuty202yrdryrweg",
-            database: "yw48avcu2w48bl98",
+            host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+            user: "wa7yho6zr0dr39mi",
+            password: "p1u0ul08jaedrrbv",
+            database: "mzebqa1shsculbco",
         });
         connection.connect();
 
@@ -317,10 +317,10 @@ app.post("/new_password", async function (req, res) {
     res.setHeader("Content-Type", "application/json");
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.useast1.rds.amazonaws.com",
-        user: "uxrgx7qnx0izne7m",
-        password: "xuty202yrdryrweg",
-        database: "yw48avcu2w48bl98",
+        host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        user: "wa7yho6zr0dr39mi",
+        password: "p1u0ul08jaedrrbv",
+        database: "mzebqa1shsculbco",
     });
     connection.connect();
 
@@ -341,15 +341,15 @@ app.post("/new_password", async function (req, res) {
 async function init() {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.useast1.rds.amazonaws.com",
-        user: "uxrgx7qnx0izne7m",
-        password: "xuty202yrdryrweg",
-        database: "yw48avcu2w48bl98",
+        host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        user: "wa7yho6zr0dr39mi",
+        password: "p1u0ul08jaedrrbv",
+        database: "mzebqa1shsculbco",
         multipleStatements: true,
     });
 
-    const createDBAndTables = `CREATE DATABASE IF NOT EXISTS yw48avcu2w48bl98;
-                            use yw48avcu2w48bl98;
+    const createDBAndTables = `CREATE DATABASE IF NOT EXISTS mzebqa1shsculbco;
+                            use mzebqa1shsculbco;
                             CREATE TABLE IF NOT EXISTS BBY_13_mm_users(
                     ID_NUMBER int NOT NULL AUTO_INCREMENT,
                     username VARCHAR(50),
