@@ -500,7 +500,7 @@ async function init() {
                                 password VARCHAR(50),
                                 PRIMARY KEY (ID_NUMBER));`;
 
-    await database.query(createDBAndTables1);
+    // await database.query(createDBAndTables1);
 
     const createDBAndTables2 = `CREATE DATABASE IF NOT EXISTS yw48avcu2w48bl98 ;
                             use yw48avcu2w48bl98;  
@@ -515,13 +515,13 @@ async function init() {
                                 password VARCHAR(50),
                                 PRIMARY KEY (ID_NUMBER));`;
 
-    await database.query(createDBAndTables2);
+    // await database.query(createDBAndTables2);
 
     if (is_heroku) {
-        var tables = database.query(createDBAndTables2); 
+        var tables = await database.query(createDBAndTables2); 
     }
     else {
-        var tables = database.query(createDBAndTables1);
+        var tables = await database.query(createDBAndTables1);
     }
 
     database.query(tables); 
