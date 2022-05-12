@@ -294,6 +294,13 @@ body {
 #userpic {
   max-width: 50%;
   display: inline-block;
+  margin: auto;
+}
+
+#userpic img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 50%;
 }
 
 #profile h2 {
@@ -327,7 +334,7 @@ body {
   display: inline-block;
 }
 
-#edit_pw > input[type="button"] {
+#submit_info {
   font-size: 0.9em;
   display: block;
   outline: none;
@@ -348,12 +355,12 @@ body {
   margin-top: 1%;
 }
 
-#edit_pw > input[type="button"]:hover {
+#submit_info:hover {
   outline: none;
   padding: 1% 7% 1% 7%;
 }
 
-#edit_pw > input[type="button"]:active {
+#submit_info:active {
   transform: translateY(3px);
   box-shadow: 0 5px rgb(119, 119, 119);
 }

@@ -276,57 +276,40 @@ app.get("/profile", function (req, res) {
           console.log(error);
         }
 
-        const thisProfile = profDOM.window.document.createElement("table");
-        let user;
+        const thisAD = profDOM.window.document.getElementById("Id_num");
+        let id =
+          "<input type=text id=ID disabled value=" + req.session.idnum + ">";
+        thisAD.innerHTML += id;
 
-        thisProfile.innerHTML =
-          "<tr>" +
-          "<th>" +
-          "ID" +
-          "</th>" +
-          "<th>" +
-          "Username" +
-          "</th>" +
-          "<th>" +
-          "First Name" +
-          "</th>" +
-          "<th>" +
-          "Last Name" +
-          "</th>" +
-          "<th>" +
-          "E-mail" +
-          "</th>" +
-          "<th>" +
-          "Password" +
-          "</th>";
-        ("</tr>");
-        for (let i = 0; i < results.length; i++) {
-          user =
-            "<td>" +
-            results[i].ID_NUMBER +
-            "</td>" +
-            "<td>" +
-            results[i].username +
-            "</td>" +
-            "<td>" +
-            results[i].firstname +
-            "</td>" +
-            "<td>" +
-            results[i].lastname +
-            "</td>" +
-            "<td>" +
-            results[i].email +
-            "</td>" +
-            "<td>" +
-            results[i].password +
-            "</td>";
+        const thisUserName =
+          profDOM.window.document.getElementById("user_name");
+        let uName =
+          "<input type=text id=username disabled value=" +
+          req.session.username +
+          ">";
+        thisUserName.innerHTML += uName;
 
-          thisProfile.innerHTML += user;
-        }
+        const thisFName = profDOM.window.document.getElementById("first_name");
+        let fName =
+          "<input type=text id=fname value=" + req.session.fname + ">";
+        thisFName.innerHTML += fName;
 
-        profDOM.window.document
-          .getElementById("profile_table")
-          .appendChild(thisProfile);
+        const thisLName = profDOM.window.document.getElementById("last_name");
+        let lName =
+          "<input type=text id=lname value=" + req.session.lname + ">";
+        thisLName.innerHTML += lName;
+
+        const thisMail = profDOM.window.document.getElementById("mail");
+        let mail =
+          "<input type=email id=email value=" + req.session.email + ">";
+        thisMail.innerHTML += mail;
+
+        const thisPWD = profDOM.window.document.getElementById("pwd");
+        let pwd =
+          "<input type=password id=password value=" +
+          req.session.password +
+          ">";
+        thisPWD.innerHTML += pwd;
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -439,7 +422,7 @@ app.get("/change_pw", async function (req, res) {
   }
 });
 
-app.post("/new_password", async function (req, res) {
+app.post("/new_info", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
@@ -447,6 +430,7 @@ app.post("/new_password", async function (req, res) {
     user: "root",
     password: "",
     database: "COMP2800",
+    multipleStatements: true,
   });
   connection.connect();
 
@@ -455,13 +439,19 @@ app.post("/new_password", async function (req, res) {
   );
 
   if (rows.length > 0) {
+    req.session.fname = `${req.body.new_fname}`;
+    req.session.lname = `${req.body.new_lname}`;
+    req.session.email = `${req.body.new_email}`;
     req.session.password = `${req.body.new_password}`;
   }
-  console.log(req.session.password);
-  let sql = `UPDATE BBY_13_mm_users
-           SET password = ?
-           WHERE username = '${req.session.username}'`;
-  connection.query(sql, req.session.password);
+
+  let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.username}'`;
+  connection.query(sql, [
+    req.session.fname,
+    req.session.lname,
+    req.session.email,
+    req.session.password,
+  ]);
 });
 
 async function init() {

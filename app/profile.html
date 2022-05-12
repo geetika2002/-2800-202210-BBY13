@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Administrator Dashboard</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
-        <link href="/css/user-profile.css" rel="stylesheet" />
-    </head>
 
-    <body>
+<head>
+    <title>Administrator Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="/css/user-profile.css" rel="stylesheet" />
+</head>
+
+<body>
 
     <div id="nav">
-            <a id="comp_name" href="/home">Mindful Matter</a>
+        <a id="comp_name" href="/home">Mindful Matter</a>
     </div>
 
     <div class="menu-wrap">
@@ -24,40 +25,56 @@
                 <div>
                     <ul>
                         <li><a href="/home">Home</a></li>
-                            <li><a href="/profile">My Profile</a></li>
-                            <li><a href="/orders">My Orders</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/faq">FAQ</a></li>
-                            <form id="logoutForm" action="/logout" method="get">
-                                <input type="submit" value="Logout" />
-                            </form>
+                        <li><a href="/profile">My Profile</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <form id="logoutForm" action="/logout" method="get">
+                            <input type="submit" value="Logout" />
+                        </form>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-<!-- PAGE CONTENT BEGINS HERE -->
-    <div id="page">
-        <h3>
-            My Profile
-        </h3>
-    </div>
-    <div id="profile_table"></div>
-</body>
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
+    <!-- PAGE CONTENT BEGINS HERE -->
     <div id="profile">
-        <a href="/change_pw"><input id="edit_pw" type="button" value="Edit Password" /></a>
-    </div>
 
+        <h2>
+            My Profile
+        </h2>
+        <div id="userpic"><img src="https://dummyimage.com/300x300/000/fff" /></div>
+        <form id="info">
+            <div id="Id_num">
+                <label for="ID">ID Number</label>
+
+            </div>
+            <div id="user_name">
+                <label for="username">Username</label>
+
+            </div>
+            <div id="first_name">
+                <label for="fname">First Name</label>
+
+            </div>
+            <div id="last_name">
+                <label for="lname">Last Name</label>
+            </div>
+            <div id="mail">
+                <label for="email">E-mail</label>
+            </div>
+            <div id="pwd">
+                <label for="password">Password</label>
+            </div>
+        </form>
+
+        <div>
+            <input id="submit_info" type="button" value="Submit Info" />
+
+        </div>
+
+    </div>
 
     <script src="js/client.js"></script>
 </body>
