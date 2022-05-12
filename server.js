@@ -17,10 +17,10 @@ const dbConfigLocal = {
     multipleStatements: true
 };
 const dbConfigHeroku = {
-    host: "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "uxrgx7qnx0izne7m",
-    password: "xuty202yrdryrweg",
-    database: "yw48avcu2w48bl98",
+    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "z596t5v95ron6fzg",
+    password: "lh6fsygbhuhgi3i7",
+    database: "rz2y3uh9vljkf5dz",
     multipleStatements: true
 };
 
@@ -544,21 +544,21 @@ async function init() {
     console.log("Listening on port " + port + "!");
 }
 
-let http = require('http');
-let url = require('url');
-// const res = require("express/lib/response");
+// let http = require('http');
+// let url = require('url');
+// // const res = require("express/lib/response");
 
-http.createServer((req, res) => {
-    let q = url.parse(req.url, ture);
-    console.log(q.query);
+// http.createServer((req, res) => {
+//     let q = url.parse(req.url, ture);
+//     console.log(q.query);
 
-    res.writeHead(200, {
-        "Content-Type": "text/html",
-        "Access-Control-Allow-Origin": "*"
-    });
+//     res.writeHead(200, {
+//         "Content-Type": "text/html",
+//         "Access-Control-Allow-Origin": "*"
+//     });
 
-    res.end(`Hello ${q.query['name']} `);
-})
+//     res.end(`Hello ${q.query['name']} `);
+// })
 
 let port = 8000;
 // app.listen(port, init);
