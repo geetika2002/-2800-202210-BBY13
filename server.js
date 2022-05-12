@@ -3,9 +3,14 @@ const express = require("express");
 const session = require("express-session");
 const app = express();
 const fs = require("fs");
-const { JSDOM } = require("jsdom");
+const {
+    JSDOM
+} = require("jsdom");
 const mysql = require("mysql");
-const { response } = require("express");
+const {
+    response
+} = require("express");
+const req = require("express/lib/request");
 
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
@@ -48,23 +53,15 @@ app.get("/home", async (req, res) => {
         const mysql = require("mysql2");
 
         const connection = mysql.createConnection({
-            host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-            user: "wa7yho6zr0dr39mi",
-            password: "p1u0ul08jaedrrbv",
-            database: "mzebqa1shsculbco",
+            host: "localhost",
+            user: "root",
+            password: "",
+            database: "COMP2800",
         });
         connection.connect;
 
-        // const connection = mysql.createConnection({
-            // host: "localhost",
-            // user: "root",
-            // password: "",
-            // database: "COMP2800",
-        // });
-        // connection.connect;
-
         profileDOM.window.document.getElementById("first_name").innerHTML =
-            "Pleased to see you, " + req.session.name;
+            "Pleased to see you, " + req.session.fname;
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -104,10 +101,10 @@ app.post("/login", async function (req, res) {
 
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        user: "wa7yho6zr0dr39mi",
-        password: "p1u0ul08jaedrrbv",
-        database: "mzebqa1shsculbco",
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "COMP2800",
     });
     connection.connect();
     const [rows, fields] = await connection.execute(
@@ -127,7 +124,7 @@ app.post("/login", async function (req, res) {
         console.log(req.session.fname);
         console.log(req.session.password);
 
-        req.session.save(function (err) { });
+        req.session.save(function (err) {});
 
         res.send({
             status: "success",
@@ -177,10 +174,10 @@ app.get("/user-profiles", function (req, res) {
         const mysql = require("mysql2");
 
         const connection = mysql.createConnection({
-            host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-            user: "wa7yho6zr0dr39mi",
-            password: "p1u0ul08jaedrrbv",
-            database: "mzebqa1shsculbco",
+            host: "localhost",
+            user: "root",
+            password: "",
+            database: "COMP2800",
         });
         connection.connect();
 
@@ -214,9 +211,9 @@ app.get("/user-profiles", function (req, res) {
                     "<th>" +
                     "Administrator" +
                     "</th>" +
-                    // "<th>" +
-                    // ""
-                    // "</th>"+
+                    "<th>" +
+                    "Edit User"
+                    "</th>"+
                     "</tr>";
                 for (let i = 0; i < userresults.length; i++) {
                     users =
@@ -237,8 +234,9 @@ app.get("/user-profiles", function (req, res) {
                         "</td>" +
                         "<td>" +
                         userresults[i].administrator +
-                        "</td>";
-
+                        "</td>" +
+                        "<td><button id='view'>View</button></td>" +
+                        "<td><button id='delete'>Delete</button></td>";
                     allUsers.innerHTML += users;
                 }
 
@@ -263,15 +261,165 @@ app.get("/home", function (req, res) {
 
 app.get("/profile", function (req, res) {
     if (req.session) {
-        let doc = fs.readFileSync("./app/profile.html", "utf8");
-        res.send(doc);
+        let prof = fs.readFileSync("./app/profile.html", "utf8");
+        let profDOM = new JSDOM(prof);
+
+        const mysql = require("mysql2");
+
+        const connection = mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "",
+            database: "COMP2800",
+        });
+        connection.connect();
+
+        connection.query(
+            `SELECT * FROM BBY_13_mm_users WHERE username = "${req.session.username}" AND password = "${req.session.password}"`,
+            function (error, results, fields) {
+                if (error) {
+                    console.log(error);
+                }
+
+                const thisProfile = profDOM.window.document.createElement("table");
+                let user;
+
+                thisProfile.innerHTML =
+                    "<tr>" +
+                    "<th>" +
+                    "ID" +
+                    "</th>" +
+                    "<th>" +
+                    "Username" +
+                    "</th>" +
+                    "<th>" +
+                    "First Name" +
+                    "</th>" +
+                    "<th>" +
+                    "Last Name" +
+                    "</th>" +
+                    "<th>" +
+                    "E-mail" +
+                    "</th>" +
+                    "<th>" +
+                    "Password" +
+                    "</th>";
+                ("</tr>");
+                for (let i = 0; i < results.length; i++) {
+                    user =
+                        "<td>" +
+                        results[i].ID_NUMBER +
+                        "</td>" +
+                        "<td>" +
+                        results[i].username +
+                        "</td>" +
+                        "<td>" +
+                        results[i].firstname +
+                        "</td>" +
+                        "<td>" +
+                        results[i].lastname +
+                        "</td>" +
+                        "<td>" +
+                        results[i].email +
+                        "</td>" +
+                        "<td>" +
+                        results[i].password +
+                        "</td>";
+
+                    thisProfile.innerHTML += user;
+                }
+
+                profDOM.window.document
+                    .getElementById("profile_table")
+                    .appendChild(thisProfile);
+
+                res.set("Server", "candy");
+                res.set("X-Powered-By", "candy");
+                res.send(profDOM.serialize());
+            }
+        );
     }
 });
 
 app.get("/profile-admin", function (req, res) {
     if (req.session) {
-        let doc = fs.readFileSync("./app/profile-admin.html", "utf8");
-        res.send(doc);
+        let prof = fs.readFileSync("./app/profile-admin.html", "utf8");
+        let profDOM = new JSDOM(prof);
+
+        const mysql = require("mysql2");
+
+        const connection = mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "",
+            database: "COMP2800",
+        });
+        connection.connect();
+
+        connection.query(
+            `SELECT * FROM BBY_13_mm_users WHERE username = "${req.session.username}" AND password = "${req.session.password}"`,
+            function (error, results, fields) {
+                if (error) {
+                    console.log(error);
+                }
+
+                const thisAdmin = profDOM.window.document.createElement("table");
+                let user;
+
+                thisAdmin.innerHTML =
+                    "<tr>" +
+                    "<th>" +
+                    "ID" +
+                    "</th>" +
+                    "<th>" +
+                    "Username" +
+                    "</th>" +
+                    "<th>" +
+                    "First Name" +
+                    "</th>" +
+                    "<th>" +
+                    "Last Name" +
+                    "</th>" +
+                    "<th>" +
+                    "E-mail" +
+                    "</th>" +
+                    "<th>" +
+                    "Password" +
+                    "</th>" +
+                    "</tr>";
+                for (let i = 0; i < results.length; i++) {
+                    user =
+                        "<td>" +
+                        results[i].ID_NUMBER +
+                        "</td>" +
+                        "<td>" +
+                        results[i].username +
+                        "</td>" +
+                        "<td>" +
+                        results[i].firstname +
+                        "</td>" +
+                        "<td>" +
+                        results[i].lastname +
+                        "</td>" +
+                        "<td>" +
+                        results[i].email +
+                        "</td>" +
+                        "<td>" +
+                        results[i].password +
+                        "</td>";
+
+                    thisAdmin.innerHTML += user;
+                }
+
+                profDOM.window.document
+                    .getElementById("admin_table")
+                    .appendChild(thisAdmin);
+
+                res.set("Server", "candy");
+                res.set("X-Powered-By", "candy");
+                res.send(profDOM.serialize());
+            }
+        );
     }
 });
 
@@ -290,6 +438,8 @@ app.get("/paint", function (req, res) {
 });
 
 //ALL PAGE REDIRECTS END HERE
+
+
 
 app.get("/profile", function (req, res) {
     if (req.session) {
@@ -317,10 +467,10 @@ app.post("/new_password", async function (req, res) {
     res.setHeader("Content-Type", "application/json");
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        user: "wa7yho6zr0dr39mi",
-        password: "p1u0ul08jaedrrbv",
-        database: "mzebqa1shsculbco",
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "COMP2800",
     });
     connection.connect();
 
@@ -329,37 +479,37 @@ app.post("/new_password", async function (req, res) {
     );
 
     if (rows.length > 0) {
-        req.session.password = `${req.body.new_password} `;
+        req.session.password = `${req.body.new_password}`;
     }
     console.log(req.session.password);
     let sql = `UPDATE BBY_13_mm_users
            SET password = ?
-                WHERE username = '${req.session.username}'`;
+           WHERE username = '${req.session.username}'`;
     connection.query(sql, req.session.password);
 });
+
 
 async function init() {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
-        host: "vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        user: "wa7yho6zr0dr39mi",
-        password: "p1u0ul08jaedrrbv",
-        database: "mzebqa1shsculbco",
+        host: "localhost",
+        user: "root",
+        password: "",
         multipleStatements: true,
     });
 
-    const createDBAndTables = `CREATE DATABASE IF NOT EXISTS mzebqa1shsculbco;
-                            use mzebqa1shsculbco;
-                            CREATE TABLE IF NOT EXISTS BBY_13_mm_users(
-                    ID_NUMBER int NOT NULL AUTO_INCREMENT,
-                    username VARCHAR(50),
-                    firstname VARCHAR(50),
-                    lastname VARCHAR(50),
-                    email VARCHAR(50),
-                    administrator VARCHAR(1),
-                    delete_user VARCHAR(1),
-                    password VARCHAR(50),
-                    PRIMARY KEY(ID_NUMBER)); `;
+    const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
+                            use COMP2800;
+                            CREATE TABLE IF NOT EXISTS BBY_13_mm_users (
+                                ID_NUMBER int NOT NULL AUTO_INCREMENT,
+                                username VARCHAR(50),
+                                firstname VARCHAR(50),
+                                lastname VARCHAR(50),
+                                email VARCHAR(50),
+                                administrator VARCHAR(1),
+                                delete_user VARCHAR(1),
+                                password VARCHAR(50),
+                                PRIMARY KEY (ID_NUMBER));`;
 
     await connection.query(createDBAndTables);
 
