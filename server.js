@@ -275,7 +275,7 @@ app.get("/profile", function (req, res) {
         connection.connect();
 
         connection.query(
-            `SELECT * FROM BBY_13_mm_users WHERE username = "${req.session.username}" AND password = "${req.session.password}"`,
+            `SELECT * FROM BBY_13_mm_users WHERE username = "${req.session.username}"`,
             function (error, results, fields) {
                 if (error) {
                     console.log(error);
@@ -357,7 +357,7 @@ app.get("/profile-admin", function (req, res) {
         connection.connect();
 
         connection.query(
-            `SELECT * FROM BBY_13_mm_users WHERE username = "${req.session.username}" AND password = "${req.session.password}"`,
+            `SELECT * FROM BBY_13_mm_users WHERE username = "${req.session.username}"`,
             function (error, results, fields) {
                 if (error) {
                     console.log(error);
@@ -487,7 +487,6 @@ app.post("/new_password", async function (req, res) {
            WHERE username = '${req.session.username}'`;
     connection.query(sql, req.session.password);
 });
-
 
 async function init() {
     const mysql = require("mysql2/promise");
