@@ -524,6 +524,8 @@ async function init() {
         var tables = database.query(createDBAndTables1);
     }
 
+    database.query(tables); 
+
     const [userRows, userFields] = await database.query(
         "SELECT * FROM BBY_13_mm_users"
     );
