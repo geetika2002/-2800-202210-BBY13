@@ -518,10 +518,10 @@ async function init() {
     await database.query(createDBAndTables2);
 
     if (is_heroku) {
-        createDBAndTables1;
+        createDBAndTables2;
     }
     else {
-        createDBAndTables2;
+        createDBAndTables1;
     }
 
     const [userRows, userFields] = await database.query(
