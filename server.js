@@ -61,6 +61,8 @@ app.get("/home", async (req, res) => {
     profileDOM.window.document.getElementById("first_name").innerHTML =
       "Pleased to see you, " + req.session.fname;
 
+    connection.end();
+
     res.set("Server", "candy");
     res.set("X-Powered-By", "candy");
     res.send(profileDOM.serialize());
@@ -177,6 +179,37 @@ app.post("/user-info", async function (req, res) {
   });
 });
 
+app.post("/delete-user", async function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  const mysql = require("mysql2/promise");
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+    multipleStatements: true,
+  });
+  connection.connect();
+
+  const [rows, fields] = await connection.execute(
+    `SELECT * FROM BBY_13_mm_users`
+  );
+
+  req.session.to_delete = `${req.body.to_delete}`;
+
+  req.session.save(function (err) {});
+
+  let sql = `DELETE FROM BBY_13_mm_users WHERE username=?`;
+  connection.query(sql, req.session.to_delete, function (err, result) {
+    if (err) throw err;
+  });
+
+  res.send({
+    msg: "data in.",
+  });
+});
+
 app.get("/user-profiles", function (req, res) {
   if (req.session) {
     let profile = fs.readFileSync("./app/user-profiles.html", "utf8");
@@ -252,7 +285,7 @@ app.get("/user-profiles", function (req, res) {
             " onclick='info_change(this.id) '> Edit </button></a></td>" +
             "<td><button class='delete' id=" +
             userresults[i].username +
-            " onclick='delete_user(this.id)'> Delete </button></td>";
+            " onclick='delete_user(this.id); confirmDelete();'> Delete </button></td>";
           allUsers.innerHTML += users;
         }
 
@@ -476,6 +509,80 @@ app.get("/paint", function (req, res) {
     let doc = fs.readFileSync("./app/paint.html", "utf8");
     res.send(doc);
   }
+});
+
+app.get("/new_acc", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/new_acc.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.post("/add-new-user", function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  console.log("user name: ", req.body.username);
+  console.log("first name: ", req.body.first);
+  console.log("last name: ", req.body.last);
+  console.log("email: ", req.body.email);
+
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+  });
+
+  connection.connect();
+
+  connection.query(
+    "INSERT INTO BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values (?, ?, ?, ?, 'n', 'n', ?)",
+    [
+      req.body.username,
+      req.body.first,
+      req.body.last,
+      req.body.email,
+      req.body.password,
+    ]
+  );
+  connection.end();
+});
+
+app.get("/new_admin", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/new_admin.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.post("/add-new-admin", function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  console.log("user name: ", req.body.usernameA);
+  console.log("first name: ", req.body.firstA);
+  console.log("last name: ", req.body.lastA);
+  console.log("email: ", req.body.emailA);
+
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+  });
+
+  connection.connect();
+
+  connection.query(
+    "INSERT INTO BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values (?, ?, ?, ?, 'y', 'n', ?)",
+    [
+      req.body.usernameA,
+      req.body.firstA,
+      req.body.lastA,
+      req.body.emailA,
+      req.body.passwordA,
+    ]
+  );
+  connection.end();
 });
 
 //ALL PAGE REDIRECTS END HERE
