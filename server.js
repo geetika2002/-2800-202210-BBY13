@@ -556,6 +556,20 @@ app.get("/new_admin", function (req, res) {
   }
 });
 
+app.get("/new_user", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/new_user.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/index", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/index.html", "utf8");
+    res.send(doc);
+  }
+});
+
 app.post("/add-new-admin", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
