@@ -122,10 +122,9 @@ app.post("/login", async function (req, res) {
     req.session.email = rows[0].email;
     req.session.admin = rows[0].administrator;
 
-    console.log(req.session.fname);
-    console.log(req.session.password);
+    req.session.save(function (err) {});
 
-    req.session.save(function (err) { });
+    connection.end();
 
     res.send({
       status: "success",
@@ -204,6 +203,8 @@ app.post("/delete-user", async function (req, res) {
   connection.query(sql, req.session.to_delete, function (err, result) {
     if (err) throw err;
   });
+
+  connection.end();
 
   res.send({
     msg: "data in.",
@@ -292,6 +293,7 @@ app.get("/user-profiles", function (req, res) {
         profileDOM.window.document
           .getElementById("user_table")
           .appendChild(allUsers);
+        connection.end();
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -350,6 +352,7 @@ app.get("/edit-by-admin", function (req, res) {
             pwd.innerHTML += password;
           }
         }
+        connection.end();
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
         res.send(profDOM.serialize());
@@ -423,6 +426,8 @@ app.get("/profile", function (req, res) {
           ">";
         thisPWD.innerHTML += pwd;
 
+        connection.end();
+
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
         res.send(profDOM.serialize());
@@ -488,6 +493,8 @@ app.get("/profile-admin", function (req, res) {
           req.session.password +
           ">";
         thisPWD.innerHTML += pwd;
+
+        connection.end();
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -640,6 +647,8 @@ app.post("/new_info", async function (req, res) {
     req.session.email,
     req.session.password,
   ]);
+
+  connection.end();
 });
 
 app.post("/new_info_admin", async function (req, res) {
@@ -673,6 +682,8 @@ app.post("/new_info_admin", async function (req, res) {
     req.session.email,
     req.session.password,
   ]);
+
+  connection.end();
 });
 
 async function init() {
@@ -715,6 +726,7 @@ async function init() {
     ];
     await connection.query(userRecord, [userValue]);
   }
+
   console.log("Listening on port " + port + "!");
 }
 
