@@ -10,13 +10,40 @@
 </head>
 
 <body>
+    <div id="nav">
+        <a id="comp_name" href="/home">Mindful Matter</a>
+</div>
+
+<div class="menu-wrap">
+    <input type="checkbox" class="toggler">
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                        <li><a href="/profile">My Profile</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <form id="logoutForm" action="/logout" method="get">
+                            <input type="submit" value="Logout" />
+                        </form>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
     <form id="new_user">
-        <input type="text" id="username" required="required" placeholder="Username" pattern="[A-Za-z]{4,15}"/>
-        <input type="text" id="first" required="required" placeholder="First Name" pattern="[A-Za-z]{4,20}"/>
-        <input type="text" id="last" required="required" placeholder="Last Name" pattern="[A-Za-z]{4,20}"/>
-        <input type="text" id="email" required="required" placeholder="Email" pattern="[A-Za-z0-9]{4,20}"/>
-        <input id="password" required="required" type="password" placeholder="Password"  pattern="[A-Za-z0-9]{4,20}"/>
+
+        <input type="text" id="username" required="required" placeholder="Username"/>
+        <input type="text" id="first" required="required" placeholder="First Name"/>
+        <input type="text" id="last" required="required" placeholder="Last Name"/>
+        <input type="text" id="email" required="required" placeholder="Email"/>
+        <input id="password" required="required" type="password" placeholder="Password"/>
         <input type="button" id="create" value="Create" type="post">
         
         <p><span id="serverMsg"></span></p>
