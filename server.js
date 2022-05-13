@@ -60,6 +60,8 @@ app.get("/home", async (req, res) => {
     profileDOM.window.document.getElementById("first_name").innerHTML =
       "Pleased to see you, " + req.session.fname;
 
+    connection.end();
+
     res.set("Server", "candy");
     res.set("X-Powered-By", "candy");
     res.send(profileDOM.serialize());
@@ -175,6 +177,37 @@ app.post("/user-info", async function (req, res) {
   });
 });
 
+app.post("/delete-user", async function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  const mysql = require("mysql2/promise");
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+    multipleStatements: true,
+  });
+  connection.connect();
+
+  const [rows, fields] = await connection.execute(
+    `SELECT * FROM BBY_13_mm_users`
+  );
+
+  req.session.to_delete = `${req.body.to_delete}`;
+
+  req.session.save(function (err) {});
+
+  let sql = `DELETE FROM BBY_13_mm_users WHERE username=?`;
+  connection.query(sql, req.session.to_delete, function (err, result) {
+    if (err) throw err;
+  });
+
+  res.send({
+    msg: "data in.",
+  });
+});
+
 app.get("/user-profiles", function (req, res) {
   if (req.session) {
     let profile = fs.readFileSync("./app/user-profiles.html", "utf8");
@@ -249,7 +282,7 @@ app.get("/user-profiles", function (req, res) {
             " onclick='info_change(this.id) '> Edit </button></a></td>" +
             "<td><button class='delete' id=" +
             userresults[i].username +
-            ">Delete</button></td>";
+            " onclick='delete_user(this.id); confirmDelete();'> Delete </button></td>";
           allUsers.innerHTML += users;
         }
 
