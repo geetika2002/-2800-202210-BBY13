@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Admin</title>
-    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/user-profile.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -38,7 +38,9 @@
     </div>
 </div>
 
+<div class="formcontainer">
     <form id="new_admin">
+        <h3>Create new administrator</h3>
         <input type="text" id="usernameA" required="required" placeholder="Username"/>
         <input type="text" id="firstA" required="required" placeholder="First Name"/>
         <input type="text" id="lastA" required="required" placeholder="Last Name"/>
@@ -49,8 +51,116 @@
         <p><span id="serverMsg"></span></p>
         <p id="errorMsg">&nbsp;</p>
     </form>
-
+</div>
     <script src="js/client.js"></script>
 
 </body>
 </html>
+
+<style>
+    * {
+        text-align: center;
+    }
+
+    #file {
+        margin-left: 15%;
+        margin-top: 3%;
+    }
+
+    img {
+        box-sizing: border-box;
+        width: 40%;
+        height: 70%;
+        border-radius: 50%;
+        margin: 0;
+        border: 5px solid #dbdbdb;
+        padding: 3px;
+        background-color: white;
+        overflow: hidden;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10%;
+    }
+
+    #usernameA {
+        margin-top: 6%;
+    }
+
+    #emailA {
+        margin-top: 6%;
+    }
+
+    #firstA {
+        margin-top: 6%;
+    }
+
+    #lastA {
+        margin-top: 6%;
+    }
+
+    #passwordA {
+        margin-top: 6%;
+        margin-bottom: 6%;
+    }
+
+  #createA {
+  font-size: 0.9em;
+  display: block;
+  outline: none;
+  border: none;
+  text-align: center;
+  padding: 0.5% 2% 0.5% 2%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  box-shadow: 0 6px rgb(149, 149, 149);
+  display: inline-block;
+  position: relative;
+  transition: 0.3s;
+  margin-bottom: 3%;
+  margin-top: 1%;
+  }
+
+  #createA {
+  font-size: 0.9em;
+  display: block;
+  outline: none;
+  border: none;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  padding: 1% 5% 1% 5%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  box-shadow: 0 6px rgb(149, 149, 149);
+  display: inline-block;
+  position: relative;
+  transition: 0.3s;
+  margin-bottom: 3%;
+  margin-top: 1%;
+}
+
+#createA:hover {
+  outline: none;
+  padding: 1% 9% 1% 9%;
+}
+
+#createA:active {
+  transform: translateY(3px);
+  box-shadow: 0 5px rgb(119, 119, 119);
+}
+
+#new_admin {
+  box-shadow: 0 4px 80px 0 rgba(0, 0, 0, 0.2);
+  padding-top: 20%;
+  width: 50vw;
+  height: 50vh;
+  text-align: center;
+  border-radius: 20px;
+}
+</style>
