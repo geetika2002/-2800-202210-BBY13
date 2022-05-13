@@ -50,7 +50,6 @@ app.get("/home", async (req, res) => {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-
       host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       user: "z596t5v95ron6fzg",
       password: "lh6fsygbhuhgi3i7",
@@ -101,7 +100,6 @@ app.post("/login", async function (req, res) {
 
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-
     host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     user: "z596t5v95ron6fzg",
     password: "lh6fsygbhuhgi3i7",
@@ -171,7 +169,7 @@ app.post("/user-info", async function (req, res) {
 
   req.session.user_edit = `${req.body.user_edit}`;
 
-  req.session.save(function (err) { });
+  req.session.save(function (err) {});
 
   res.send({
     msg: "data in.",
@@ -183,10 +181,10 @@ app.post("/delete-user", async function (req, res) {
 
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
+    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "z596t5v95ron6fzg",
+    password: "lh6fsygbhuhgi3i7",
+    database: "rz2y3uh9vljkf5dz",
     multipleStatements: true,
   });
   connection.connect();
@@ -219,7 +217,6 @@ app.get("/user-profiles", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-
       host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       user: "z596t5v95ron6fzg",
       password: "lh6fsygbhuhgi3i7",
@@ -311,7 +308,6 @@ app.get("/edit-by-admin", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-
       host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       user: "z596t5v95ron6fzg",
       password: "lh6fsygbhuhgi3i7",
@@ -376,7 +372,6 @@ app.get("/profile", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-
       host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       user: "z596t5v95ron6fzg",
       password: "lh6fsygbhuhgi3i7",
@@ -444,7 +439,6 @@ app.get("/profile-admin", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-
       host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       user: "z596t5v95ron6fzg",
       password: "lh6fsygbhuhgi3i7",
@@ -534,10 +528,10 @@ app.post("/add-new-user", function (req, res) {
   console.log("email: ", req.body.email);
 
   const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
+    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "z596t5v95ron6fzg",
+    password: "lh6fsygbhuhgi3i7",
+    database: "rz2y3uh9vljkf5dz",
   });
 
   connection.connect();
@@ -571,10 +565,10 @@ app.post("/add-new-admin", function (req, res) {
   console.log("email: ", req.body.emailA);
 
   const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
+    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      user: "z596t5v95ron6fzg",
+      password: "lh6fsygbhuhgi3i7",
+      database: "rz2y3uh9vljkf5dz",
   });
 
   connection.connect();
@@ -620,7 +614,6 @@ app.post("/new_info", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-
     host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     user: "z596t5v95ron6fzg",
     password: "lh6fsygbhuhgi3i7",
@@ -655,11 +648,10 @@ app.post("/new_info_admin", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-
     host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "z596t5v95ron6fzg",
-    password: "lh6fsygbhuhgi3i7",
-    database: "rz2y3uh9vljkf5dz",
+      user: "z596t5v95ron6fzg",
+      password: "lh6fsygbhuhgi3i7",
+      database: "rz2y3uh9vljkf5dz",
     multipleStatements: true,
   });
   connection.connect();
@@ -689,10 +681,10 @@ app.post("/new_info_admin", async function (req, res) {
 async function init() {
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-
     host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     user: "z596t5v95ron6fzg",
     password: "lh6fsygbhuhgi3i7",
+    database: "rz2y3uh9vljkf5dz",
     multipleStatements: true,
   });
 
@@ -730,6 +722,7 @@ async function init() {
   console.log("Listening on port " + port + "!");
 }
 
+
 let http = require('http');
 let url = require('url');
 // const res = require("express/lib/response");
@@ -749,3 +742,4 @@ http.createServer((req, res) => {
 let port = 8000;
 // app.listen(port, init);
 app.listen(process.env.PORT || 8000, init);
+
