@@ -50,10 +50,11 @@ app.get("/home", async (req, res) => {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
+
+      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      user: "z596t5v95ron6fzg",
+      password: "lh6fsygbhuhgi3i7",
+      database: "rz2y3uh9vljkf5dz",
     });
     connection.connect;
 
@@ -98,10 +99,11 @@ app.post("/login", async function (req, res) {
 
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
+
+    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "z596t5v95ron6fzg",
+    password: "lh6fsygbhuhgi3i7",
+    database: "rz2y3uh9vljkf5dz",
   });
   connection.connect();
   const [rows, fields] = await connection.execute(
@@ -121,7 +123,7 @@ app.post("/login", async function (req, res) {
     console.log(req.session.fname);
     console.log(req.session.password);
 
-    req.session.save(function (err) {});
+    req.session.save(function (err) { });
 
     res.send({
       status: "success",
@@ -168,7 +170,7 @@ app.post("/user-info", async function (req, res) {
 
   req.session.user_edit = `${req.body.user_edit}`;
 
-  req.session.save(function (err) {});
+  req.session.save(function (err) { });
 
   res.send({
     msg: "data in.",
@@ -183,10 +185,11 @@ app.get("/user-profiles", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
+
+      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      user: "z596t5v95ron6fzg",
+      password: "lh6fsygbhuhgi3i7",
+      database: "rz2y3uh9vljkf5dz",
     });
     connection.connect();
 
@@ -273,10 +276,11 @@ app.get("/edit-by-admin", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
+
+      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      user: "z596t5v95ron6fzg",
+      password: "lh6fsygbhuhgi3i7",
+      database: "rz2y3uh9vljkf5dz",
     });
     connection.connect();
 
@@ -336,10 +340,11 @@ app.get("/profile", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
+
+      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      user: "z596t5v95ron6fzg",
+      password: "lh6fsygbhuhgi3i7",
+      database: "rz2y3uh9vljkf5dz",
     });
     connection.connect();
 
@@ -401,10 +406,11 @@ app.get("/profile-admin", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
+
+      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      user: "z596t5v95ron6fzg",
+      password: "lh6fsygbhuhgi3i7",
+      database: "rz2y3uh9vljkf5dz",
     });
     connection.connect();
 
@@ -500,10 +506,11 @@ app.post("/new_info", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
+
+    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "z596t5v95ron6fzg",
+    password: "lh6fsygbhuhgi3i7",
+    database: "rz2y3uh9vljkf5dz",
     multipleStatements: true,
   });
   connection.connect();
@@ -532,10 +539,11 @@ app.post("/new_info_admin", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
+
+    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "z596t5v95ron6fzg",
+    password: "lh6fsygbhuhgi3i7",
+    database: "rz2y3uh9vljkf5dz",
     multipleStatements: true,
   });
   connection.connect();
@@ -563,14 +571,15 @@ app.post("/new_info_admin", async function (req, res) {
 async function init() {
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
+
+    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "z596t5v95ron6fzg",
+    password: "lh6fsygbhuhgi3i7",
     multipleStatements: true,
   });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
-                            use COMP2800;
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS rz2y3uh9vljkf5dz;
+                            use rz2y3uh9vljkf5dz;
                             CREATE TABLE IF NOT EXISTS BBY_13_mm_users (
                                 ID_NUMBER int NOT NULL AUTO_INCREMENT,
                                 username VARCHAR(50),
@@ -602,5 +611,22 @@ async function init() {
   console.log("Listening on port " + port + "!");
 }
 
+let http = require('http');
+let url = require('url');
+// const res = require("express/lib/response");
+
+http.createServer((req, res) => {
+  let q = url.parse(req.url, ture);
+  console.log(q.query);
+
+  res.writeHead(200, {
+    "Content-Type": "text/html",
+    "Access-Control-Allow-Origin": "*"
+  });
+
+  res.end(`Hello ${q.query['name']} `);
+})
+
 let port = 8000;
-app.listen(port, init);
+// app.listen(port, init);
+app.listen(process.env.PORT || 8000, init);
