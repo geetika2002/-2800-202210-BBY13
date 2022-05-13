@@ -505,6 +505,80 @@ app.get("/paint", function (req, res) {
   }
 });
 
+app.get("/new_acc", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/new_acc.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.post("/add-new-user", function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  console.log("user name: ", req.body.username);
+  console.log("first name: ", req.body.first);
+  console.log("last name: ", req.body.last);
+  console.log("email: ", req.body.email);
+
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+  });
+
+  connection.connect();
+
+  connection.query(
+    "INSERT INTO BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values (?, ?, ?, ?, 'n', 'n', ?)",
+    [
+      req.body.username,
+      req.body.first,
+      req.body.last,
+      req.body.email,
+      req.body.password,
+    ]
+  );
+  connection.end();
+});
+
+app.get("/new_admin", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/new_admin.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.post("/add-new-admin", function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  console.log("user name: ", req.body.usernameA);
+  console.log("first name: ", req.body.firstA);
+  console.log("last name: ", req.body.lastA);
+  console.log("email: ", req.body.emailA);
+
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+  });
+
+  connection.connect();
+
+  connection.query(
+    "INSERT INTO BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values (?, ?, ?, ?, 'y', 'n', ?)",
+    [
+      req.body.usernameA,
+      req.body.firstA,
+      req.body.lastA,
+      req.body.emailA,
+      req.body.passwordA,
+    ]
+  );
+  connection.end();
+});
+
 //ALL PAGE REDIRECTS END HERE
 
 app.get("/profile", function (req, res) {
