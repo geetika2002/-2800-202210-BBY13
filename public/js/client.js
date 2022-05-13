@@ -87,6 +87,53 @@ if (pw_sub) {
   });
 }
 
+const admin_change = document.getElementById("admin_change");
+if (admin_change) {
+  admin_change.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    ajaxPOST(
+      "/new_info_admin",
+      (data) => {
+        if (data) {
+          const jsondata = JSON.parse(data);
+
+          if (jsondata.status === "success") {
+            window.location.replace("/");
+          }
+        }
+      },
+      {
+        new_fname: document.getElementById("fname").value,
+        new_lname: document.getElementById("lname").value,
+        new_email: document.getElementById("email").value,
+        new_password: document.getElementById("password").value,
+      }
+    );
+  });
+}
+
+function info_change(clicked_id) {
+  ajaxPOST(
+    "/user-info",
+    (data) => {
+      if (data) {
+        const jsondata = JSON.parse(data);
+
+        if (jsondata.status === "success") {
+          window.location.replace("/");
+        }
+      }
+    },
+    {
+      user_edit: clicked_id,
+    }
+  );
+}
+
+function closeForm() {
+  document.getElementById("form").style.display = "none";
+}
 var down = document.getElementById("form-user");
 
 function createForm() {

@@ -7,6 +7,7 @@ const { JSDOM } = require("jsdom");
 const mysql = require("mysql");
 const { response } = require("express");
 const req = require("express/lib/request");
+const { ReadableStreamBYOBRequest } = require("stream/web");
 
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
@@ -162,6 +163,18 @@ app.get("/admin-dash", function (req, res) {
   }
 });
 
+app.post("/user-info", async function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+
+  req.session.user_edit = `${req.body.user_edit}`;
+
+  req.session.save(function (err) {});
+
+  res.send({
+    msg: "data in.",
+  });
+});
+
 app.get("/user-profiles", function (req, res) {
   if (req.session) {
     let profile = fs.readFileSync("./app/user-profiles.html", "utf8");
@@ -185,6 +198,7 @@ app.get("/user-profiles", function (req, res) {
         }
 
         const allUsers = profileDOM.window.document.createElement("table");
+
         let users;
 
         allUsers.innerHTML =
@@ -230,8 +244,12 @@ app.get("/user-profiles", function (req, res) {
             "<td>" +
             userresults[i].administrator +
             "</td>" +
-            "<td><button id='view'>View</button></td>" +
-            "<td><button id='delete'>Delete</button></td>";
+            "<td><a href='/edit-by-admin'><button class='edit' id=" +
+            userresults[i].username +
+            " onclick='info_change(this.id) '> Edit </button></a></td>" +
+            "<td><button class='delete' id=" +
+            userresults[i].username +
+            ">Delete</button></td>";
           allUsers.innerHTML += users;
         }
 
@@ -242,6 +260,62 @@ app.get("/user-profiles", function (req, res) {
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
         res.send(profileDOM.serialize());
+      }
+    );
+  }
+});
+
+app.get("/edit-by-admin", function (req, res) {
+  if (req.session) {
+    let prof = fs.readFileSync("./app/edit-by-admin.html", "utf8");
+    let profDOM = new JSDOM(prof);
+
+    const mysql = require("mysql2");
+
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
+    });
+    connection.connect();
+
+    connection.query(
+      // `SELECT * FROM BBY_13_mm_users WHERE username ="${req.session.user_edit}"`,
+      `SELECT * FROM BBY_13_mm_users WHERE username="${req.session.user_edit}"`,
+      function (error, results, fields) {
+        if (error) {
+          console.log(error);
+        }
+
+        for (let i = 0; i < results.length; i++) {
+          if (req.session.user_edit == results[i].username) {
+            let firstname =
+              profDOM.window.document.getElementById("first_name");
+            let fName =
+              "<input type=text id=fname value=" + results[i].firstname + ">";
+            firstname.innerHTML += fName;
+
+            const lastname =
+              profDOM.window.document.getElementById("last_name");
+            let lName =
+              "<input type=text id=lname value=" + results[i].lastname + ">";
+            lastname.innerHTML += lName;
+
+            const email = profDOM.window.document.getElementById("mail");
+            let mail =
+              "<input type=text id=email value=" + results[i].email + ">";
+            email.innerHTML += mail;
+
+            const pwd = profDOM.window.document.getElementById("pwd");
+            let password =
+              "<input type=text id=password value=" + results[i].password + ">";
+            pwd.innerHTML += password;
+          }
+        }
+        res.set("Server", "candy");
+        res.set("X-Powered-By", "candy");
+        res.send(profDOM.serialize());
       }
     );
   }
@@ -446,6 +520,38 @@ app.post("/new_info", async function (req, res) {
   }
 
   let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.username}'`;
+  connection.query(sql, [
+    req.session.fname,
+    req.session.lname,
+    req.session.email,
+    req.session.password,
+  ]);
+});
+
+app.post("/new_info_admin", async function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+  const mysql = require("mysql2/promise");
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+    multipleStatements: true,
+  });
+  connection.connect();
+
+  const [rows, fields] = await connection.execute(
+    `SELECT * FROM BBY_13_mm_users`
+  );
+
+  if (rows.length > 0) {
+    req.session.fname = `${req.body.new_fname}`;
+    req.session.lname = `${req.body.new_lname}`;
+    req.session.email = `${req.body.new_email}`;
+    req.session.password = `${req.body.new_password}`;
+  }
+
+  let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.user_edit}'`;
   connection.query(sql, [
     req.session.fname,
     req.session.lname,

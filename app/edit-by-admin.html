@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/user-profile.css" rel="stylesheet" />
+    <title>Mindful Matter</title>
+</head>
+
+<body>
+    <!-- ALL NAV -->
+    <div id="nav">
+        <a id="comp_name" href="/home">Mindful Matter</a>
+        <a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a>
+        <a href="#"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+
+    <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger">
+            <div></div>
+        </div>
+        <div class="menu">
+            <div>
+                <div>
+                    <ul>
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/profile">My Profile</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <form id="logoutForm" action="/logout" method="get">
+                            <input type="submit" value="Logout" />
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- NAV END -->
+    <div class="form_popup" id="form">
+        <form class="formcontainer">
+            <h1>Edit User</h1>
+            <div id="first_name">
+                <label for="fname">First Name</label>
+
+            </div>
+            <div id="last_name">
+                <label for="lname">Last Name</label>
+
+            </div>
+            <div id="mail">
+                <label for="email">E-mail</label>
+
+            </div>
+            <div id="pwd">
+                <label for="password">Password</label>
+
+            </div>
+
+            <input id="admin_change" type="button" value="Submit Info" />
+        </form>
+    </div>
+
+
+    <script src="js/client.js"></script>
+</body>
+
+</html>
