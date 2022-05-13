@@ -199,7 +199,58 @@ app.get("/user-profiles", function (req, res) {
 
         const allUsers = profileDOM.window.document.createElement("table");
 
+<<<<<<< HEAD
         let users;
+=======
+                allUsers.innerHTML =
+                    "<tr>" +
+                    "<th>" +
+                    "ID" +
+                    "</th>" +
+                    "<th>" +
+                    "Username" +
+                    "</th>" +
+                    "<th>" +
+                    "First Name" +
+                    "</th>" +
+                    "<th>" +
+                    "Last Name" +
+                    "</th>" +
+                    "<th>" +
+                    "E-mail" +
+                    "</th>" +
+                    "<th>" +
+                    "Administrator" +
+                    "</th>" +
+                    "<th>" +
+                    "Edit User"
+                    "</th>"+
+                    "</tr>";
+                for (let i = 0; i < userresults.length; i++) {
+                    users =
+                        "<td>" +
+                        userresults[i].ID_NUMBER +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].username +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].firstname +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].lastname +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].email +
+                        "</td>" +
+                        "<td>" +
+                        userresults[i].administrator +
+                        "</td>" +
+                        "<td><button id='view' >View</button></td>" +
+                        "<td><button class='btnDelete'>Delete</button></td>";
+                    allUsers.innerHTML += users;
+                }
+>>>>>>> Amarra_Hong_adminDash
 
         allUsers.innerHTML =
           "<tr>" +
@@ -471,6 +522,81 @@ app.get("/paint", function (req, res) {
     res.send(doc);
   }
 });
+
+app.get("/new_acc", function (req, res) {
+    if (req.session) {
+        let doc = fs.readFileSync("./app/new_acc.html", "utf8");
+        res.send(doc);
+    }
+});
+
+app.post("/add-new-user", function (req, res) {
+    res.setHeader("Content-Type", "application/json");
+  
+    console.log("user name: ", req.body.username);
+    console.log("first name: ", req.body.first);
+    console.log("last name: ", req.body.last);
+    console.log("email: ", req.body.email);
+  
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
+    });
+  
+    connection.connect();
+  
+    connection.query(
+      "INSERT INTO BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values (?, ?, ?, ?, 'n', 'n', ?)",
+      [
+        req.body.username,
+        req.body.first,
+        req.body.last,
+        req.body.email,
+        req.body.password,
+      ],
+    );
+    connection.end();
+});
+
+app.get("/new_admin", function (req, res) {
+    if (req.session) {
+        let doc = fs.readFileSync("./app/new_admin.html", "utf8");
+        res.send(doc);
+    }
+});
+
+app.post("/add-new-admin", function (req, res) {
+    res.setHeader("Content-Type", "application/json");
+  
+    console.log("user name: ", req.body.usernameA);
+    console.log("first name: ", req.body.firstA);
+    console.log("last name: ", req.body.lastA);
+    console.log("email: ", req.body.emailA);
+  
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
+    });
+  
+    connection.connect();
+  
+    connection.query(
+      "INSERT INTO BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values (?, ?, ?, ?, 'y', 'n', ?)",
+      [
+        req.body.usernameA,
+        req.body.firstA,
+        req.body.lastA,
+        req.body.emailA,
+        req.body.passwordA,
+      ],
+    );
+    connection.end();
+});
+
 
 //ALL PAGE REDIRECTS END HERE
 
