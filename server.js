@@ -524,7 +524,7 @@ async function init() {
         var tables = await database.query(createDBAndTables1);
     }
 
-    database.query(tables); 
+    tables.query(tables); 
 
     const [userRows, userFields] = await database.query(
         "SELECT * FROM BBY_13_mm_users"
@@ -544,21 +544,21 @@ async function init() {
     console.log("Listening on port " + port + "!");
 }
 
-// let http = require('http');
-// let url = require('url');
-// // const res = require("express/lib/response");
+let http = require('http');
+let url = require('url');
+// const res = require("express/lib/response");
 
-// http.createServer((req, res) => {
-//     let q = url.parse(req.url, ture);
-//     console.log(q.query);
+http.createServer((req, res) => {
+    let q = url.parse(req.url, ture);
+    console.log(q.query);
 
-//     res.writeHead(200, {
-//         "Content-Type": "text/html",
-//         "Access-Control-Allow-Origin": "*"
-//     });
+    res.writeHead(200, {
+        "Content-Type": "text/html",
+        "Access-Control-Allow-Origin": "*"
+    });
 
-//     res.end(`Hello ${q.query['name']} `);
-// })
+    res.end(`Hello ${q.query['name']} `);
+})
 
 let port = 8000;
 // app.listen(port, init);
