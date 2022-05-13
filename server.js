@@ -522,11 +522,6 @@ app.get("/new_acc", function (req, res) {
 app.post("/add-new-user", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  console.log("user name: ", req.body.username);
-  console.log("first name: ", req.body.first);
-  console.log("last name: ", req.body.last);
-  console.log("email: ", req.body.email);
-
   const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -573,10 +568,6 @@ app.get("/index", function (req, res) {
 app.post("/add-new-admin", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  console.log("user name: ", req.body.usernameA);
-  console.log("first name: ", req.body.firstA);
-  console.log("last name: ", req.body.lastA);
-  console.log("email: ", req.body.emailA);
 
   const connection = mysql.createConnection({
     host: "localhost",
