@@ -243,3 +243,53 @@ function confirmDelete() {
     setTimeout("location.reload(true);", 0);
   }
 }
+
+const docum = document.querySelector("#createNew");
+if (docum) {
+  docum.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let first = document.getElementById("first");
+    let last = document.getElementById("last");
+    let username = document.getElementById("username");
+    let password = document.getElementById("password");
+    let email = document.getElementById("email");
+    let queryString =
+      "username=" +
+      username.value +
+      "&first=" +
+      first.value +
+      "&last=" +
+      last.value +
+      "&email=" +
+      email.value +
+      "&password=" +
+      password.value;
+
+    ajaxPOST(
+      "/add-new-user",
+      function (data) {
+        if (
+          first == null ||
+          last == null ||
+          username == null ||
+          password == null ||
+          email == null
+        ) {
+          document.getElementById("errorMsg").innerHTML = jsondata.msg;
+        }
+
+        if (data) {
+          let dataParsed = JSON.parse(data);
+          if (dataParsed.status == "fail") {
+            document.getElementById("errorMsg").innerHTML = dataParsed.msg;
+          } else {
+            window.location.replace("/index");
+          }
+        }
+      },
+      queryString
+    );
+    window.location.replace("/index");
+  });
+}
