@@ -522,11 +522,6 @@ app.get("/new_acc", function (req, res) {
 app.post("/add-new-user", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  console.log("user name: ", req.body.username);
-  console.log("first name: ", req.body.first);
-  console.log("last name: ", req.body.last);
-  console.log("email: ", req.body.email);
-
   const connection = mysql.createConnection({
     host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     user: "z596t5v95ron6fzg",
@@ -573,10 +568,6 @@ app.get("/index", function (req, res) {
 app.post("/add-new-admin", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  console.log("user name: ", req.body.usernameA);
-  console.log("first name: ", req.body.firstA);
-  console.log("last name: ", req.body.lastA);
-  console.log("email: ", req.body.emailA);
 
   const connection = mysql.createConnection({
     host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
