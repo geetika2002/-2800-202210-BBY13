@@ -5,5 +5,6 @@ Team members:
 [Geetika Varma], [A01236366], [1C], [May 6th, 2022]
 [Gangmin(Sam) Bae], [A01274381], [2A], [May 6th, 2022]
 
-This assignment is [100]% complete.
+This assignment is [95]% complete.
 
+Avatar is unable to edit
