@@ -4,10 +4,35 @@ const session = require("express-session");
 const app = express();
 const fs = require("fs");
 const { JSDOM } = require("jsdom");
-const mysql = require("mysql");
 const { response } = require("express");
 const req = require("express/lib/request");
 const { ReadableStreamBYOBRequest } = require("stream/web");
+
+const is_heroku = process.env.IS_HEROKU || false;
+const mysql = require("mysql2/promise");
+const dbConfigLocal = {
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "COMP2800",
+  multipleStatements: true
+};
+const dbConfigHeroku = {
+  host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  user: "z596t5v95ron6fzg",
+  password: "lh6fsygbhuhgi3i7",
+  database: "rz2y3uh9vljkf5dz",
+  multipleStatements: true
+};
+
+if (is_heroku) {
+  var database = mysql.createPool(dbConfigHeroku);
+  console.log("is_heroku"); 
+}
+
+else {
+  var database = mysql.createPool(dbConfigLocal);
+}
 
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
@@ -47,20 +72,14 @@ app.get("/home", async (req, res) => {
     let profile = fs.readFileSync("./app/home.html", "utf-8");
     let profileDOM = new JSDOM(profile);
 
-    const mysql = require("mysql2");
+    var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect;
+    database.query(SQL);
 
     profileDOM.window.document.getElementById("first_name").innerHTML =
       "Pleased to see you, " + req.session.fname;
 
-    connection.end();
+    database.end();
 
     res.set("Server", "candy");
     res.set("X-Powered-By", "candy");
@@ -98,15 +117,11 @@ app.use(
 app.post("/login", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  const mysql = require("mysql2/promise");
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
-  });
-  connection.connect();
-  const [rows, fields] = await connection.execute(
+  var SQL = "SELECT * FROM BBY_13_mm_users;";
+
+  database.query(SQL);
+
+  const [rows, fields] = await database.execute(
     `SELECT * FROM BBY_13_mm_users WHERE username = "${req.body.username}" AND password = "${req.body.password}"`
   );
 
@@ -122,7 +137,7 @@ app.post("/login", async function (req, res) {
 
     req.session.save(function (err) { });
 
-    connection.end();
+    database.end();
 
     res.send({
       status: "success",
@@ -179,17 +194,11 @@ app.post("/user-info", async function (req, res) {
 app.post("/delete-user", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  const mysql = require("mysql2/promise");
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
-    multipleStatements: true,
-  });
-  connection.connect();
+  var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-  const [rows, fields] = await connection.execute(
+  database.query(SQL);
+
+  const [rows, fields] = await database.execute(
     `SELECT * FROM BBY_13_mm_users`
   );
 
@@ -198,11 +207,11 @@ app.post("/delete-user", async function (req, res) {
   req.session.save(function (err) { });
 
   let sql = `DELETE FROM BBY_13_mm_users WHERE username=?`;
-  connection.query(sql, req.session.to_delete, function (err, result) {
+  database.query(sql, req.session.to_delete, function (err, result) {
     if (err) throw err;
   });
 
-  connection.end();
+  database.end();
 
   res.send({
     msg: "data in.",
@@ -214,17 +223,11 @@ app.get("/user-profiles", function (req, res) {
     let profile = fs.readFileSync("./app/user-profiles.html", "utf8");
     let profileDOM = new JSDOM(profile);
 
-    const mysql = require("mysql2");
+    var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
+    database.query(SQL);;
 
-    connection.query(
+    database.query(
       "SELECT * FROM BBY_13_mm_users",
       function (error, userresults, fields) {
         if (error) {
@@ -290,7 +293,7 @@ app.get("/user-profiles", function (req, res) {
         profileDOM.window.document
           .getElementById("user_table")
           .appendChild(allUsers);
-        connection.end();
+        database.end();
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -305,17 +308,11 @@ app.get("/edit-by-admin", function (req, res) {
     let prof = fs.readFileSync("./app/edit-by-admin.html", "utf8");
     let profDOM = new JSDOM(prof);
 
-    const mysql = require("mysql2");
+    var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
+    database.query(SQL);
 
-    connection.query(
+    database.query(
       // `SELECT * FROM BBY_13_mm_users WHERE username ="${req.session.user_edit}"`,
       `SELECT * FROM BBY_13_mm_users WHERE username="${req.session.user_edit}"`,
       function (error, results, fields) {
@@ -348,7 +345,7 @@ app.get("/edit-by-admin", function (req, res) {
             pwd.innerHTML += password;
           }
         }
-        connection.end();
+        database.end();
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
         res.send(profDOM.serialize());
@@ -369,17 +366,11 @@ app.get("/profile", function (req, res) {
     let prof = fs.readFileSync("./app/profile.html", "utf8");
     let profDOM = new JSDOM(prof);
 
-    const mysql = require("mysql2");
+    var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
+    database.query(SQL);
 
-    connection.query(
+    database.query(
       `SELECT * FROM BBY_13_mm_users WHERE username = "${req.session.username}" AND password = "${req.session.password}"`,
       function (error, results, fields) {
         if (error) {
@@ -421,7 +412,7 @@ app.get("/profile", function (req, res) {
           ">";
         thisPWD.innerHTML += pwd;
 
-        connection.end();
+        database.end();
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -436,17 +427,11 @@ app.get("/profile-admin", function (req, res) {
     let prof = fs.readFileSync("./app/profile-admin.html", "utf8");
     let profDOM = new JSDOM(prof);
 
-    const mysql = require("mysql2");
+    var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
+    database.query(SQL);
 
-    connection.query(
+    database.query(
       `SELECT * FROM BBY_13_mm_users WHERE username = "${req.session.username}" AND password = "${req.session.password}"`,
       function (error, results, fields) {
         if (error) {
@@ -488,7 +473,7 @@ app.get("/profile-admin", function (req, res) {
           ">";
         thisPWD.innerHTML += pwd;
 
-        connection.end();
+        database.end();
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -522,16 +507,11 @@ app.get("/new_acc", function (req, res) {
 app.post("/add-new-user", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
-  });
+  var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-  connection.connect();
+  database.query(SQL);
 
-  connection.query(
+  database.query(
     "INSERT INTO BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values (?, ?, ?, ?, 'n', 'n', ?)",
     [
       req.body.username,
@@ -541,7 +521,7 @@ app.post("/add-new-user", function (req, res) {
       req.body.password,
     ]
   );
-  connection.end();
+  database.end();
 });
 
 app.get("/new_admin", function (req, res) {
@@ -569,16 +549,11 @@ app.post("/add-new-admin", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
 
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
-  });
+  var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-  connection.connect();
+  database.query(SQL);
 
-  connection.query(
+  database.query(
     "INSERT INTO BBY_13_mm_users (username, firstname, lastname, email, administrator, delete_user, password) values (?, ?, ?, ?, 'y', 'n', ?)",
     [
       req.body.usernameA,
@@ -588,7 +563,7 @@ app.post("/add-new-admin", function (req, res) {
       req.body.passwordA,
     ]
   );
-  connection.end();
+  database.end();
 });
 
 //ALL PAGE REDIRECTS END HERE
@@ -617,17 +592,11 @@ app.get("/change_pw", async function (req, res) {
 
 app.post("/new_info", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  const mysql = require("mysql2/promise");
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
-    multipleStatements: true,
-  });
-  connection.connect();
+  var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-  const [rows, fields] = await connection.execute(
+  database.query(SQL);
+
+  const [rows, fields] = await database.execute(
     `SELECT * FROM BBY_13_mm_users`
   );
 
@@ -639,29 +608,23 @@ app.post("/new_info", async function (req, res) {
   }
 
   let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.username}'`;
-  connection.query(sql, [
+  database.query(sql, [
     req.session.fname,
     req.session.lname,
     req.session.email,
     req.session.password,
   ]);
 
-  connection.end();
+  database.end();
 });
 
 app.post("/new_info_admin", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  const mysql = require("mysql2/promise");
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800",
-    multipleStatements: true,
-  });
-  connection.connect();
+  var SQL = "SELECT * FROM BBY_13_mm_users;";
 
-  const [rows, fields] = await connection.execute(
+  database.query(SQL);
+
+  const [rows, fields] = await database.execute(
     `SELECT * FROM BBY_13_mm_users`
   );
 
@@ -673,41 +636,59 @@ app.post("/new_info_admin", async function (req, res) {
   }
 
   let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.user_edit}'`;
-  connection.query(sql, [
+  database.query(sql, [
     req.session.fname,
     req.session.lname,
     req.session.email,
     req.session.password,
   ]);
 
-  connection.end();
+  database.end();
 });
 
 async function init() {
-  const mysql = require("mysql2/promise");
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    multipleStatements: true,
-  });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
-                            use COMP2800;
-                            CREATE TABLE IF NOT EXISTS BBY_13_mm_users (
-                                ID_NUMBER int NOT NULL AUTO_INCREMENT,
-                                username VARCHAR(50),
-                                firstname VARCHAR(50),
-                                lastname VARCHAR(50),
-                                email VARCHAR(50),
-                                administrator VARCHAR(1),
-                                delete_user VARCHAR(1),
-                                password VARCHAR(50),
-                                PRIMARY KEY (ID_NUMBER));`;
 
-  await connection.query(createDBAndTables);
+  if (is_heroku) {
+    const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
+    use COMP2800;
+    CREATE TABLE IF NOT EXISTS BBY_13_mm_users (
+        ID_NUMBER int NOT NULL AUTO_INCREMENT,
+        username VARCHAR(50),
+        firstname VARCHAR(50),
+        lastname VARCHAR(50),
+        email VARCHAR(50),
+        administrator VARCHAR(1),
+        delete_user VARCHAR(1),
+        password VARCHAR(50),
+        PRIMARY KEY (ID_NUMBER));`;
 
-  const [userRows, userFields] = await connection.query(
+    await database.query(createDBAndTables);
+  }
+
+  else {
+
+    const createDBAndTables = `CREATE DATABASE IF NOT EXISTS rz2y3uh9vljkf5dz;
+    use rz2y3uh9vljkf5dz;
+    CREATE TABLE IF NOT EXISTS BBY_13_mm_users (
+        ID_NUMBER int NOT NULL AUTO_INCREMENT,
+        username VARCHAR(50),
+        firstname VARCHAR(50),
+        lastname VARCHAR(50),
+        email VARCHAR(50),
+        administrator VARCHAR(1),
+        delete_user VARCHAR(1),
+        password VARCHAR(50),
+        PRIMARY KEY (ID_NUMBER));`;
+
+    await database.query(createDBAndTables);
+
+  }
+  var SQL = "SELECT * FROM BBY_13_mm_users;";
+
+  database.query(SQL);
+
+  const [userRows, userFields] = await database.query(
     "SELECT * FROM BBY_13_mm_users"
   );
 
@@ -720,7 +701,7 @@ async function init() {
       ["sbae", "Sam", "Bae", "sbae@bcit.ca", "y", "n", "12345"],
       ["joh", "Jason", "Oh", "joh@bcit.ca", "y", "n", "12345"],
     ];
-    await connection.query(userRecord, [userValue]);
+    await database.query(userRecord, [userValue]);
   }
 
   console.log("Listening on port " + port + "!");
