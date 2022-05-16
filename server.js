@@ -591,8 +591,6 @@ app.post("/add-new-admin", function (req, res) {
   connection.end();
 });
 
-//ALL PAGE REDIRECTS END HERE
-
 app.get("/profile", function (req, res) {
   if (req.session) {
     let profile = fs.readFileSync("./app/profile.html", "utf8");
@@ -603,7 +601,12 @@ app.get("/profile", function (req, res) {
     res.send(profileDOM.serialize());
   }
 });
+//ALL PAGE REDIRECTS END HERE
 
+
+
+
+//CHANGE PASSWORD HERE
 app.get("/change_pw", async function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/change_pw.html", "utf8");
@@ -615,6 +618,7 @@ app.get("/change_pw", async function (req, res) {
   }
 });
 
+//UPDATES USER INFORMATION HERE 
 app.post("/new_info", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
@@ -649,6 +653,8 @@ app.post("/new_info", async function (req, res) {
   connection.end();
 });
 
+
+//UPDATES ADMIN INFORMATION HERE
 app.post("/new_info_admin", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
@@ -683,6 +689,7 @@ app.post("/new_info_admin", async function (req, res) {
   connection.end();
 });
 
+//CREATE DB AND TABLES HERE
 async function init() {
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
@@ -703,7 +710,25 @@ async function init() {
                                 administrator VARCHAR(1),
                                 delete_user VARCHAR(1),
                                 password VARCHAR(50),
-                                PRIMARY KEY (ID_NUMBER));`;
+                                PRIMARY KEY (ID_NUMBER));
+
+                                  use COMP2800;
+                                  CREATE TABLE IF NOT EXISTS BBY_13_products (
+                                    ID int NOT NULL AUTO_INCREMENT,
+                                    name VARCHAR(50),
+                                    price VARCHAR(50),
+                                    image VARCHAR(50),
+                                    PRIMARY KEY (ID));  
+                                    
+                                    use COMP2800;
+                                    CREATE TABLE IF NOT EXISTS BBY_13_cart (
+                                        ID int NOT NULL AUTO_INCREMENT,
+                                        ID_NUMBER VARCHAR(50),
+                                        name VARCHAR(50),
+                                        price VARCHAR(50),
+                                        image VARCHAR(50),
+                                        quantity VARCHAR(100),
+                                        PRIMARY KEY (ID));`;
 
   await connection.query(createDBAndTables);
 
@@ -723,8 +748,25 @@ async function init() {
     await connection.query(userRecord, [userValue]);
   }
 
+  const [productRows, productFields] = await connection.query(
+    "SELECT * FROM BBY_13_products"
+  );
+
+  if (productRows.length == 0) {
+    let productRecord =
+      "insert into BBY_13_products (name, price, image) values ?";
+    let productValue = [
+      ["Eco Spec Paint", "$45/gallon", "paint1.jpg"],
+      ["Sherwin-Williams' Harmony", "$65/gallon", "paint2.jpg"],
+      ["Bio Shield", "$46/gallon", "paint3.jpg"],
+      ["Behr Premium Plus", "$28.98/gallon", "paint4.jpg"],
+    ];
+    await connection.query(productRecord, [productValue]);
+
   console.log("Listening on port " + port + "!");
-}
+    }
+  }
 
 let port = 8000;
 app.listen(port, init);
+console.log("listening on port " + port + "!");
