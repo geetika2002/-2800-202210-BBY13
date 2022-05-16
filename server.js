@@ -27,7 +27,7 @@ const dbConfigHeroku = {
 
 if (is_heroku) {
   var database = mysql.createPool(dbConfigHeroku);
-  console.log("is_heroku"); 
+  console.log("is_heroku is working!"); 
 }
 
 else {
