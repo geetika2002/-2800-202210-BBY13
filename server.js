@@ -519,6 +519,34 @@ app.get("/new_acc", function (req, res) {
   }
 });
 
+app.get("/ecospec", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/ecospec.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/bio", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/bio.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/behr", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/behr.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/sherwin", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/sherwin.html", "utf8");
+    res.send(doc);
+  }
+});
+
 app.post("/add-new-user", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
