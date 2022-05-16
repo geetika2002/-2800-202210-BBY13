@@ -2,11 +2,72 @@
 <html lang="en">
 
 <head>
-    <title>Administrator Dashboard</title>
+    <title>Profile Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
     <link href="/css/user-profile.css" rel="stylesheet" />
+
+    <!-- STYLE JUST FOR USER DEMO -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: sans-serif;
+            text-align: center;
+            font-size: 30px;
+            color: #222;
+        }
+
+        .profile-pic-div {
+            margin-top: 30%;
+            margin-bottom: -15%;
+            height: 200px;
+            width: 200px;
+            top: 50%;
+            left: 50%;
+            margin-left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid grey;
+        }
+
+        #photo {
+            height: 100%;
+            width: 100%;
+        }
+
+        #file {
+            display: none;
+        }
+
+        #uploadBtn {
+            height: 40px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            color: wheat;
+            line-height: 30px;
+            font-family: sans-serif;
+            font-size: 15px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,7 +105,11 @@
         <h2>
             My Profile
         </h2>
-        <div id="userpic"><img src="https://dummyimage.com/300x300/000/fff" /></div>
+        <div class="profile-pic-div">
+            <img src="imgs/profile.png" id="photo">
+            <input type="file" id="file">
+            <label for="file" id="uploadBtn">Choose Photo</label>
+        </div>
         <form id="info">
             <div id="Id_num">
                 <label for="ID">ID Number</label>
@@ -77,6 +142,41 @@
     </div>
 
     <script src="js/client.js"></script>
+    <script>
+        const imgDiv = document.querySelector('.profile-pic-div');
+        const img = document.querySelector('#photo');
+        const file = document.querySelector('#file');
+        const uploadBtn = document.querySelector('#uploadBtn');
+
+
+        imgDiv.addEventListener('mouseenter', function () {
+            uploadBtn.style.display = "block";
+        });
+
+
+        imgDiv.addEventListener('mouseleave', function () {
+            uploadBtn.style.display = "none";
+        });
+
+
+        file.addEventListener('change', function () {
+
+            const choosedFile = this.files[0];
+
+            if (choosedFile) {
+
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function () {
+                    img.setAttribute('src', reader.result);
+                });
+
+                reader.readAsDataURL(choosedFile);
+            }
+        });
+    </script>
 </body>
+
+
 
 </html>
