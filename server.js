@@ -519,6 +519,13 @@ app.get("/new_acc", function (req, res) {
   }
 });
 
+app.get("/cart", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/cart.html", "utf8");
+    res.send(doc);
+  }
+});
+
 app.get("/ecospec", function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/ecospec.html", "utf8");

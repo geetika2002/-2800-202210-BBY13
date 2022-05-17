@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Nunito+Sans:wght@300&display=swap");
+
+* {
+    font-family: "Montserrat", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-top: 1%;
+    color: black;
+}
+
+#comp_name {
+    text-align: center;
+    padding-left: 25%;
+
+}
+
+#header {
+    padding-top: 7%;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+#checkout > input[type="button"]:hover {
+    outline: none;
+    padding: 2% 10% 2% 10%;
+  }
+  
+  #checkout > input[type="button"]:active {
+    transform: translateY(3px);
+    box-shadow: 0 5px rgb(119, 119, 119);
+  }
+
+  #checkout > input[type="button"] {
+    cursor: pointer;
+    box-shadow: 0 6px rgb(149, 149, 149);
+    display: inline-block;
+    transition: 0.3s;
+    margin-bottom: 10%;
+    color: black;
+    position:absolute;
+    bottom:0;
+    margin-left: 33%;
+  }
+
+  #checkout > input {
+    font-size: 0.9em;
+    display: block;
+    margin: 0 auto;
+    margin-top: 1em;
+    outline: none;
+    border: none;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 2% 5% 2% 5%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+  }
+
