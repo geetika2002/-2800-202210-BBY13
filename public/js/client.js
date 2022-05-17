@@ -319,6 +319,7 @@ if (product1) {
   });
 }
 
+//EASTER EGG
 function showEnd() {
   document.getElementById("stopconfetti").style.display = "inline";
 }

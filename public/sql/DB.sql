@@ -23,25 +23,26 @@ cart table :
 use `COMP2800`;
 CREATE TABLE `BBY_13_cart` (
     `ID` int(100) NOT NULL AUTO_INCREMENT,
+    `userid` int,
     `ID_NUMBER` int(100) NOT NULL,
     `name` varchar(100) NOT NULL,
     `price` varchar(100) NOT NULL,
     `image` varchar(100) NOT NULL,
     `quantity` int(100) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`userid`) REFERENCES BBY_13_mm_users(`ID_NUMBER`)
 );
 
 product table :
 use `COMP2800`;
 CREATE TABLE `BBY_13_products` (
     `ID` int(100) NOT NULL AUTO_INCREMENT,
-    `userid` int,
     `name` varchar(100) NOT NULL,
     `price` varchar(100) NOT NULL,
     `quantity` int(100) NOT NULL DEFAULT 0,
     `image` varchar(100) NOT NULL,
     PRIMARY KEY (`ID`),
-    FOREIGN KEY (`userid`) REFERENCES BBY_13_mm_users(`ID_NUMBER`)
+    
 );
 
 insert into `BBY_13_products` (name, price, image) values
