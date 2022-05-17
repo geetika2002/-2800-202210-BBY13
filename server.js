@@ -8,6 +8,7 @@ const mysql = require("mysql");
 const { response } = require("express");
 const req = require("express/lib/request");
 const { ReadableStreamBYOBRequest } = require("stream/web");
+const { type } = require("express/lib/response");
 
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
@@ -280,7 +281,7 @@ app.get("/user-profiles", function (req, res) {
             " onclick='info_change(this.id) '> Edit </button></a></td>" +
             "<td><button class='delete' id=" +
             userresults[i].username +
-            " onclick='delete_user(this.id); confirmDelete();'> Delete </button></td>";
+            " onclick='confirmDelete(this.id);'> Delete </button></td>";
           allUsers.innerHTML += users;
         }
 
@@ -396,27 +397,56 @@ app.get("/profile", function (req, res) {
           ">";
         thisUserName.innerHTML += uName;
 
+        // console.log(req.session.new_fname);
+
         const thisFName = profDOM.window.document.getElementById("first_name");
-        let fName =
-          "<input type=text id=fname value=" + req.session.fname + ">";
-        thisFName.innerHTML += fName;
+        let fName;
+        if (typeof req.session.new_fname == "undefined") {
+          fName = "<input type=text id=fname value=" + req.session.fname + ">";
+          thisFName.innerHTML += fName;
+        } else {
+          fName =
+            "<input type=text id=fname value=" + req.session.new_fname + ">";
+          thisFName.innerHTML += fName;
+        }
 
         const thisLName = profDOM.window.document.getElementById("last_name");
-        let lName =
-          "<input type=text id=lname value=" + req.session.lname + ">";
-        thisLName.innerHTML += lName;
+        let lName;
+        if (typeof req.session.new_lname == "undefined") {
+          lName = "<input type=text id=lname value=" + req.session.lname + ">";
+          thisLName.innerHTML += lName;
+        } else {
+          lName =
+            "<input type=text id=lname value=" + req.session.new_lname + ">";
+          thisLName.innerHTML += lName;
+        }
 
         const thisMail = profDOM.window.document.getElementById("mail");
-        let mail =
-          "<input type=email id=email value=" + req.session.email + ">";
-        thisMail.innerHTML += mail;
+        let mail;
+        if (typeof req.session.new_email == "undefined") {
+          mail = "<input type=email id=email value=" + req.session.email + ">";
+          thisMail.innerHTML += mail;
+        } else {
+          mail =
+            "<input type=email id=email value=" + req.session.new_email + ">";
+          thisMail.innerHTML += mail;
+        }
 
         const thisPWD = profDOM.window.document.getElementById("pwd");
-        let pwd =
-          "<input type=password id=password value=" +
-          req.session.password +
-          ">";
-        thisPWD.innerHTML += pwd;
+        let pwd;
+        if (typeof req.session.new_password) {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        } else {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.new_password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        }
 
         connection.end();
 
@@ -463,27 +493,56 @@ app.get("/profile-admin", function (req, res) {
           ">";
         thisUserName.innerHTML += uName;
 
+        // console.log(req.session.new_fname);
+
         const thisFName = profDOM.window.document.getElementById("first_name");
-        let fName =
-          "<input type=text id=fname value=" + req.session.fname + ">";
-        thisFName.innerHTML += fName;
+        let fName;
+        if (typeof req.session.new_fname == "undefined") {
+          fName = "<input type=text id=fname value=" + req.session.fname + ">";
+          thisFName.innerHTML += fName;
+        } else {
+          fName =
+            "<input type=text id=fname value=" + req.session.new_fname + ">";
+          thisFName.innerHTML += fName;
+        }
 
         const thisLName = profDOM.window.document.getElementById("last_name");
-        let lName =
-          "<input type=text id=lname value=" + req.session.lname + ">";
-        thisLName.innerHTML += lName;
+        let lName;
+        if (typeof req.session.new_lname == "undefined") {
+          lName = "<input type=text id=lname value=" + req.session.lname + ">";
+          thisLName.innerHTML += lName;
+        } else {
+          lName =
+            "<input type=text id=lname value=" + req.session.new_lname + ">";
+          thisLName.innerHTML += lName;
+        }
 
         const thisMail = profDOM.window.document.getElementById("mail");
-        let mail =
-          "<input type=email id=email value=" + req.session.email + ">";
-        thisMail.innerHTML += mail;
+        let mail;
+        if (typeof req.session.new_email == "undefined") {
+          mail = "<input type=email id=email value=" + req.session.email + ">";
+          thisMail.innerHTML += mail;
+        } else {
+          mail =
+            "<input type=email id=email value=" + req.session.new_email + ">";
+          thisMail.innerHTML += mail;
+        }
 
         const thisPWD = profDOM.window.document.getElementById("pwd");
-        let pwd =
-          "<input type=password id=password value=" +
-          req.session.password +
-          ">";
-        thisPWD.innerHTML += pwd;
+        let pwd;
+        if (typeof req.session.new_password) {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        } else {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.new_password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        }
 
         connection.end();
 
@@ -584,9 +643,7 @@ app.get("/ecospec", function (req, res) {
 
         let paint;
 
-        paint1.innerHTML =
-          "<p>" +
-        "</p>"
+        paint1.innerHTML = "<p>" + "</p>";
         for (let i = 0; i < paintresults.length; i++) {
           paint =
             "<img src = imgs/paint1.jpg alt = paint1>" +
@@ -598,14 +655,16 @@ app.get("/ecospec", function (req, res) {
             "</h4>" +
             "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
             "<button class='addToCart' id=" +
+            "<input type=number id=quantity value =" +
+            paintresults[i].quantity +
+            ">" +
+            "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button>";
           paint1.innerHTML += paint;
         }
 
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint1);
+        profileDOM.window.document.getElementById("paint").appendChild(paint1);
         connection.end();
 
         res.set("Server", "candy");
@@ -642,9 +701,7 @@ app.get("/sherwin", function (req, res) {
 
         let paint;
 
-        paint2.innerHTML =
-          "<p>" +
-        "</p>"
+        paint2.innerHTML = "<p>" + "</p>";
         for (let i = 0; i < paintresults.length; i++) {
           paint =
             "<img src = imgs/paint2.jpg alt = paint1>" +
@@ -654,16 +711,16 @@ app.get("/sherwin", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
+            "<input type=number id=quantity value =" +
+            paintresults[i].quantity +
+            ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
           paint2.innerHTML += paint;
         }
 
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint2);
+        profileDOM.window.document.getElementById("paint").appendChild(paint2);
         connection.end();
 
         res.set("Server", "candy");
@@ -700,9 +757,7 @@ app.get("/bio", function (req, res) {
 
         let paint;
 
-        paint3.innerHTML =
-          "<p>" +
-        "</p>"
+        paint3.innerHTML = "<p>" + "</p>";
         for (let i = 0; i < paintresults.length; i++) {
           paint =
             "<img src = imgs/paint3.jpg alt = paint1>" +
@@ -712,16 +767,16 @@ app.get("/bio", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
+            "<input type=number id=quantity value =" +
+            paintresults[i].quantity +
+            ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
           paint3.innerHTML += paint;
         }
 
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint3);
+        profileDOM.window.document.getElementById("paint").appendChild(paint3);
         connection.end();
 
         res.set("Server", "candy");
@@ -758,9 +813,7 @@ app.get("/behr", function (req, res) {
 
         let paint;
 
-        paint4.innerHTML =
-          "<p>" +
-        "</p>"
+        paint4.innerHTML = "<p>" + "</p>";
         for (let i = 0; i < paintresults.length; i++) {
           paint =
             "<img src = imgs/paint4.jpg alt = paint1>" +
@@ -770,16 +823,16 @@ app.get("/behr", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
+            "<input type=number id=quantity value =" +
+            paintresults[i].quantity +
+            ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
           paint4.innerHTML += paint;
         }
 
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint4);
+        profileDOM.window.document.getElementById("paint").appendChild(paint4);
         connection.end();
 
         res.set("Server", "candy");
@@ -928,6 +981,12 @@ app.post("/new_info", async function (req, res) {
     req.session.lname = `${req.body.new_lname}`;
     req.session.email = `${req.body.new_email}`;
     req.session.password = `${req.body.new_password}`;
+    req.session.new_fname = `${req.body.new_fname}`;
+    req.session.new_lname = `${req.body.new_lname}`;
+    req.session.new_email = `${req.body.new_email}`;
+    req.session.new_password = `${req.body.new_password}`;
+
+    req.session.save(function err() {});
   }
 
   let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.username}'`;
@@ -1011,12 +1070,14 @@ async function init() {
                                     use COMP2800;
                                     CREATE TABLE IF NOT EXISTS BBY_13_cart (
                                         ID int NOT NULL AUTO_INCREMENT,
+                                        userid int NOT NULL,
                                         ID_NUMBER VARCHAR(50),
                                         name VARCHAR(50),
                                         price VARCHAR(50),
                                         image VARCHAR(50),
                                         quantity VARCHAR(100),
-                                        PRIMARY KEY (ID));`;
+                                        PRIMARY KEY (ID),
+                                        FOREIGN KEY (userid) REFERENCES BBY_13_mm_users(ID_NUMBER));`;
 
   await connection.query(createDBAndTables);
 

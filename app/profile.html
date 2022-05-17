@@ -9,7 +9,7 @@
     <link href="/css/user-profile.css" rel="stylesheet" />
 
     <!-- STYLE JUST FOR USER DEMO -->
-    <style>
+    <!-- <style>
         * {
             margin: 0;
             padding: 0;
@@ -67,7 +67,7 @@
             cursor: pointer;
             display: none;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
@@ -105,15 +105,16 @@
         <h2>
             My Profile
         </h2>
-        <div class="profile-pic-div">
+        <!-- <div class="profile-pic-div">
             <img src="imgs/profile.png" id="photo">
             <input type="file" id="file">
             <label for="file" id="uploadBtn">Choose Photo</label>
-        </div>
+        </div> -->
+
+        <div id="userpic"><img src="https://dummyimage.com/300x300/000/fff" /></div>
         <form id="info">
             <div id="Id_num">
-                <label for="ID">Your Information</label>
-
+                <label for="ID">ID Number</label>
             </div>
             <div id="user_name">
                 <label for="username">Username</label>
@@ -135,14 +136,15 @@
         </form>
 
         <div>
-            <input id="submit_info" type="button" value="Submit Info" />
+            <input id="submit_info" type="button" value="Submit Info" onclick="setTimeout(function(){
+                window.location.reload(); }, 100);" />
 
         </div>
 
     </div>
 
     <script src="js/client.js"></script>
-    <script>
+    <!-- <script>
         const imgDiv = document.querySelector('.profile-pic-div');
         const img = document.querySelector('#photo');
         const file = document.querySelector('#file');
@@ -174,7 +176,7 @@
                 reader.readAsDataURL(choosedFile);
             }
         });
-    </script>
+    </script> -->
 </body>
 
 

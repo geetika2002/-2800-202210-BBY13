@@ -220,27 +220,25 @@ function info_change(clicked_id) {
   );
 }
 
-function delete_user(clicked_id) {
-  ajaxPOST(
-    "/delete-user",
-    (data) => {
-      if (data) {
-        const jsondata = JSON.parse(data);
-
-        if (jsondata.status === "sucess") {
-        }
-      }
-    },
-    {
-      to_delete: clicked_id,
-    }
-  );
-}
-
-function confirmDelete() {
+function confirmDelete(clicked_id) {
   let okToDelete = confirm("Do you really want to DELETE this user?");
   if (okToDelete) {
-    setTimeout("location.reload(true);", 0);
+    ajaxPOST(
+      "/delete-user",
+      (data) => {
+        if (data) {
+          const jsondata = JSON.parse(data);
+
+          if (jsondata.status === "sucess") {
+          }
+        }
+      },
+      {
+        to_delete: clicked_id,
+      }
+    );
+
+    setTimeout("location.reload(true);", 100);
   }
 }
 
