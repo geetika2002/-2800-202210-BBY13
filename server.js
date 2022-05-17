@@ -512,6 +512,20 @@ app.get("/paint", function (req, res) {
   }
 });
 
+app.get("/faq", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/faq.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/about", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/about.html", "utf8");
+    res.send(doc);
+  }
+});
+
 app.get("/new_acc", function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/new_acc.html", "utf8");
