@@ -288,3 +288,27 @@ if (docum) {
         window.location.replace("/index");
     });
 }
+
+const product1 = document.getElementById("product1");
+if (product1) {
+    product1.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        ajaxPOST(
+            "/ecospec",
+            (data) => {
+                if (data) {
+                    const jsondata = JSON.parse(data);
+
+                    if (jsondata.status === "success") {
+                        window.location.replace("/");
+                    }
+                }
+            }, {
+                name: document.getElementById("name").value,
+                image: document.getElementById("image").value,
+                price: document.getElementById("price").value,
+            }
+        );
+    });
+}

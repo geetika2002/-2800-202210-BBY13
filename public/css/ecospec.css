@@ -395,6 +395,23 @@ body {
         text-decoration: none;
     }
 
+    #paint {
+        text-align: center;
+    }
+
+    img {
+        width: 60%;
+    }
+    h2 {
+        text-align: left;
+        margin-left: 8%;
+    }
+
+    h4 {
+        text-align: left;
+        margin-left: 8%;
+    }
+
 
     #footer {
         grid-area: footer;
