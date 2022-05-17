@@ -1,290 +1,303 @@
 "use strict";
 
 function ajaxPOST(url, callback, data) {
-    let params =
-        typeof data == "string" ?
-        data :
-        Object.keys(data)
-        .map(function (k) {
+  let params =
+    typeof data == "string"
+      ? data
+      : Object.keys(data)
+          .map(function (k) {
             return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
-        })
-        .join("&");
+          })
+          .join("&");
 
-    const xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            callback(this.responseText);
-        } else {
-            console.log(this.status);
-        }
-    };
-    xhr.open("POST", url);
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(params);
+  const xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+      callback(this.responseText);
+    } else {
+      console.log(this.status);
+    }
+  };
+  xhr.open("POST", url);
+  xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.send(params);
 }
 
 const sub = document.getElementById("submit");
 if (sub) {
-    sub.addEventListener("click", (event) => {
-        event.preventDefault();
+  sub.addEventListener("click", (event) => {
+    event.preventDefault();
 
-        ajaxPOST(
-            "/login",
-            (data) => {
-                if (data) {
-                    const jsondata = JSON.parse(data);
+    ajaxPOST(
+      "/login",
+      (data) => {
+        if (data) {
+          const jsondata = JSON.parse(data);
 
-                    if (jsondata.status === "success") {
-                        window.location.replace("/home");
-                    } else {
-                        document.getElementById("errorMsg").innerHTML = jsondata.msg;
-                    }
-                }
-            },
-
-            {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value,
-            }
-        );
-    });
-
-    function ready(callback) {
-        if (document.readyState != "loading") {
-            callback();
-            console.log("ready state is 'complete'");
-        } else {
-            document.addEventListener("DOMContentLoaded", callback);
-            console.log("Listener was invoked");
+          if (jsondata.status === "success") {
+            window.location.replace("/home");
+          } else {
+            document.getElementById("errorMsg").innerHTML = jsondata.msg;
+          }
         }
+      },
+
+      {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value,
+      }
+    );
+  });
+
+  function ready(callback) {
+    if (document.readyState != "loading") {
+      callback();
+      console.log("ready state is 'complete'");
+    } else {
+      document.addEventListener("DOMContentLoaded", callback);
+      console.log("Listener was invoked");
     }
+  }
 }
 
 const pw_sub = document.getElementById("submit_info");
 if (pw_sub) {
-    pw_sub.addEventListener("click", (event) => {
-        event.preventDefault();
+  pw_sub.addEventListener("click", (event) => {
+    event.preventDefault();
 
-        ajaxPOST(
-            "/new_info",
-            (data) => {
-                if (data) {
-                    const jsondata = JSON.parse(data);
+    ajaxPOST(
+      "/new_info",
+      (data) => {
+        if (data) {
+          const jsondata = JSON.parse(data);
 
-                    if (jsondata.status === "success") {
-                        window.location.replace("/");
-                    }
-                }
-            }, {
-                new_fname: document.getElementById("fname").value,
-                new_lname: document.getElementById("lname").value,
-                new_email: document.getElementById("email").value,
-                new_password: document.getElementById("password").value,
-            }
-        );
-    });
+          if (jsondata.status === "success") {
+            window.location.replace("/");
+          }
+        }
+      },
+      {
+        new_fname: document.getElementById("fname").value,
+        new_lname: document.getElementById("lname").value,
+        new_email: document.getElementById("email").value,
+        new_password: document.getElementById("password").value,
+      }
+    );
+  });
 }
 
 const doc = document.querySelector("#create");
 if (doc) {
-    doc.addEventListener("click", function (e) {
-        e.preventDefault();
+  doc.addEventListener("click", function (e) {
+    e.preventDefault();
 
-        let first = document.getElementById("first");
-        let last = document.getElementById("last");
-        let username = document.getElementById("username");
-        let password = document.getElementById("password");
-        let email = document.getElementById("email");
-        let queryString =
-            "username=" +
-            username.value +
-            "&first=" +
-            first.value +
-            "&last=" +
-            last.value +
-            "&email=" +
-            email.value +
-            "&password=" +
-            password.value;
+    let first = document.getElementById("first");
+    let last = document.getElementById("last");
+    let username = document.getElementById("username");
+    let password = document.getElementById("password");
+    let email = document.getElementById("email");
+    let queryString =
+      "username=" +
+      username.value +
+      "&first=" +
+      first.value +
+      "&last=" +
+      last.value +
+      "&email=" +
+      email.value +
+      "&password=" +
+      password.value;
 
-        ajaxPOST(
-            "/add-new-user",
-            (data) => {
-                if (data) {
-                    const jsondata = JSON.parse(data);
+    ajaxPOST(
+      "/add-new-user",
+      (data) => {
+        if (data) {
+          const jsondata = JSON.parse(data);
 
-                    if (jsondata.status === "success") {
-                        window.location.replace("/user-profiles");
-                    }
-                }
-            },
-            queryString
-        );
-        window.location.replace("/user-profiles");
-    });
+          if (jsondata.status === "success") {
+            window.location.replace("/user-profiles");
+          }
+        }
+      },
+      queryString
+    );
+    window.location.replace("/user-profiles");
+  });
 }
 
 const docu = document.querySelector("#createA");
 if (docu) {
-    docu.addEventListener("click", function (e) {
-        e.preventDefault();
+  docu.addEventListener("click", function (e) {
+    e.preventDefault();
 
-        let first = document.getElementById("firstA");
-        let last = document.getElementById("lastA");
-        let username = document.getElementById("usernameA");
-        let password = document.getElementById("passwordA");
-        let email = document.getElementById("emailA");
-        let queryString =
-            "usernameA=" +
-            username.value +
-            "&firstA=" +
-            first.value +
-            "&lastA=" +
-            last.value +
-            "&emailA=" +
-            email.value +
-            "&passwordA=" +
-            password.value;
+    let first = document.getElementById("firstA");
+    let last = document.getElementById("lastA");
+    let username = document.getElementById("usernameA");
+    let password = document.getElementById("passwordA");
+    let email = document.getElementById("emailA");
+    let queryString =
+      "usernameA=" +
+      username.value +
+      "&firstA=" +
+      first.value +
+      "&lastA=" +
+      last.value +
+      "&emailA=" +
+      email.value +
+      "&passwordA=" +
+      password.value;
 
-        ajaxPOST(
-            "/add-new-admin",
-            function (data) {
-                if (
-                    first == null ||
-                    last == null ||
-                    username == null ||
-                    password == null ||
-                    email == null
-                ) {
-                    document.getElementById("errorMsg").innerHTML = jsondata.msg;
-                }
+    ajaxPOST(
+      "/add-new-admin",
+      function (data) {
+        if (
+          first == null ||
+          last == null ||
+          username == null ||
+          password == null ||
+          email == null
+        ) {
+          document.getElementById("errorMsg").innerHTML = jsondata.msg;
+        }
 
-                if (data) {
-                    let dataParsed = JSON.parse(data);
-                    if (dataParsed.status == "fail") {
-                        document.getElementById("errorMsg").innerHTML = dataParsed.msg;
-                    } else {
-                        window.location.replace("/");
-                    }
-                }
-            },
-            queryString
-        );
-        window.location.replace("/user-profiles");
-    });
+        if (data) {
+          let dataParsed = JSON.parse(data);
+          if (dataParsed.status == "fail") {
+            document.getElementById("errorMsg").innerHTML = dataParsed.msg;
+          } else {
+            window.location.replace("/");
+          }
+        }
+      },
+      queryString
+    );
+    window.location.replace("/user-profiles");
+  });
 }
 
 const admin_change = document.getElementById("admin_change");
 if (admin_change) {
-    admin_change.addEventListener("click", (event) => {
-        event.preventDefault();
+  admin_change.addEventListener("click", (event) => {
+    event.preventDefault();
 
-        ajaxPOST(
-            "/new_info_admin",
-            (data) => {
-                if (data) {
-                    const jsondata = JSON.parse(data);
+    ajaxPOST(
+      "/new_info_admin",
+      (data) => {
+        if (data) {
+          const jsondata = JSON.parse(data);
 
-                    if (jsondata.status === "success") {
-                        window.location.replace("/");
-                    }
-                }
-            }, {
-                new_fname: document.getElementById("fname").value,
-                new_lname: document.getElementById("lname").value,
-                new_email: document.getElementById("email").value,
-                new_password: document.getElementById("password").value,
-            }
-        );
-    });
+          if (jsondata.status === "success") {
+            window.location.replace("/");
+          }
+        }
+      },
+      {
+        new_fname: document.getElementById("fname").value,
+        new_lname: document.getElementById("lname").value,
+        new_email: document.getElementById("email").value,
+        new_password: document.getElementById("password").value,
+      }
+    );
+  });
 }
 
 function info_change(clicked_id) {
-    ajaxPOST(
-        "/user-info",
-        (data) => {
-            if (data) {
-                const jsondata = JSON.parse(data);
+  ajaxPOST(
+    "/user-info",
+    (data) => {
+      if (data) {
+        const jsondata = JSON.parse(data);
 
-                if (jsondata.status === "success") {
-                    window.location.replace("/");
-                }
-            }
-        }, {
-            user_edit: clicked_id,
+        if (jsondata.status === "success") {
+          window.location.replace("/");
         }
-    );
+      }
+    },
+    {
+      user_edit: clicked_id,
+    }
+  );
 }
 
 function delete_user(clicked_id) {
-    ajaxPOST(
-        "/delete-user",
-        (data) => {
-            if (data) {
-                const jsondata = JSON.parse(data);
+  ajaxPOST(
+    "/delete-user",
+    (data) => {
+      if (data) {
+        const jsondata = JSON.parse(data);
 
-                if (jsondata.status === "sucess") {}
-            }
-        }, {
-            to_delete: clicked_id,
+        if (jsondata.status === "sucess") {
         }
-    );
+      }
+    },
+    {
+      to_delete: clicked_id,
+    }
+  );
 }
 
 function confirmDelete() {
-    let okToDelete = confirm("Do you really want to DELETE this user?");
-    if (okToDelete) {
-        setTimeout("location.reload(true);", 0);
-    }
+  let okToDelete = confirm("Do you really want to DELETE this user?");
+  if (okToDelete) {
+    setTimeout("location.reload(true);", 0);
+  }
 }
 
 const docum = document.querySelector("#createNew");
 if (docum) {
-    docum.addEventListener("click", function (e) {
-        e.preventDefault();
+  docum.addEventListener("click", function (e) {
+    e.preventDefault();
 
-        let first = document.getElementById("first");
-        let last = document.getElementById("last");
-        let username = document.getElementById("username");
-        let password = document.getElementById("password");
-        let email = document.getElementById("email");
-        let queryString =
-            "username=" +
-            username.value +
-            "&first=" +
-            first.value +
-            "&last=" +
-            last.value +
-            "&email=" +
-            email.value +
-            "&password=" +
-            password.value;
+    let first = document.getElementById("first");
+    let last = document.getElementById("last");
+    let username = document.getElementById("username");
+    let password = document.getElementById("password");
+    let email = document.getElementById("email");
+    let queryString =
+      "username=" +
+      username.value +
+      "&first=" +
+      first.value +
+      "&last=" +
+      last.value +
+      "&email=" +
+      email.value +
+      "&password=" +
+      password.value;
 
-        ajaxPOST(
-            "/add-new-user",
-            function (data) {
-                if (
-                    first == null ||
-                    last == null ||
-                    username == null ||
-                    password == null ||
-                    email == null
-                ) {
-                    document.getElementById("errorMsg").innerHTML = jsondata.msg;
-                }
+    ajaxPOST(
+      "/add-new-user",
+      function (data) {
+        if (
+          first == null ||
+          last == null ||
+          username == null ||
+          password == null ||
+          email == null
+        ) {
+          document.getElementById("errorMsg").innerHTML = jsondata.msg;
+        }
 
-                if (data) {
-                    let dataParsed = JSON.parse(data);
-                    if (dataParsed.status == "fail") {
-                        document.getElementById("errorMsg").innerHTML = dataParsed.msg;
-                    } else {
-                        window.location.replace("/index");
-                    }
-                }
-            },
-            queryString
-        );
-        window.location.replace("/index");
-    });
+        if (data) {
+          let dataParsed = JSON.parse(data);
+          if (dataParsed.status == "fail") {
+            document.getElementById("errorMsg").innerHTML = dataParsed.msg;
+          } else {
+            window.location.replace("/index");
+          }
+        }
+      },
+      queryString
+    );
+    window.location.replace("/index");
+  });
+}
+
+function showEnd() {
+  document.getElementById("stopconfetti").style.display = "inline";
+}
+
+function hideEnd() {
+  document.getElementById("stopconfetti").style.display = "none";
 }

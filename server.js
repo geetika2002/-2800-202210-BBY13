@@ -58,7 +58,10 @@ app.get("/home", async (req, res) => {
     connection.connect;
 
     profileDOM.window.document.getElementById("first_name").innerHTML =
-      "Pleased to see you, " + req.session.fname;
+      "Pleased to see you, " +
+      req.session.fname +
+      "<input id='confetti' type='button' onclick='startConfetti(); showEnd();' value='&#127793'>" +
+      "<input type='button' id='stopconfetti' onclick='stopConfetti(); hideEnd()', value='&#10060'>";
 
     connection.end();
 
@@ -357,12 +360,12 @@ app.get("/edit-by-admin", function (req, res) {
   }
 });
 
-app.get("/home", function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/home.html", "utf8");
-    res.send(doc);
-  }
-});
+// app.get("/home", function (req, res) {
+//   if (req.session) {
+//     let doc = fs.readFileSync("./app/home.html", "utf8");
+//     res.send(doc);
+//   }
+// });
 
 app.get("/profile", function (req, res) {
   if (req.session) {
@@ -567,7 +570,6 @@ app.get("/index", function (req, res) {
 
 app.post("/add-new-admin", function (req, res) {
   res.setHeader("Content-Type", "application/json");
-
 
   const connection = mysql.createConnection({
     host: "localhost",
