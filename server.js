@@ -796,10 +796,6 @@ async function init() {
   }
 
 let port = 8000;
-<<<<<<< HEAD
 app.listen(process.env.PORT || 8000, init);
-
-=======
-app.listen(port, init);
 console.log("listening on port " + port + "!");
->>>>>>> dev
+
