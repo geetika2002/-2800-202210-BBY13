@@ -395,6 +395,31 @@ body {
         text-decoration: none;
     }
 
+    #paint {
+        text-align: center;
+    }
+
+    img {
+        width: 60%;
+        padding-top: 5%;
+    }
+
+    h2 {
+        text-align: left;
+        margin-left: 8%;
+    }
+
+    h4 {
+        text-align: left;
+        margin-left: 8%;
+    }
+
+    input {
+        text-align: left;
+        margin-right: 74%;
+        margin-top: 3%;
+        width: 10%;
+    }
 
     #footer {
         grid-area: footer;
