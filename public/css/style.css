@@ -173,6 +173,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 300%;
 }
 
 /* Hamburger Line */
@@ -186,6 +187,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
+    margin-left: 300%;
 }
 
 /* Hamburger Lines - Top & Bottom */
@@ -422,11 +424,11 @@ body {
     }
 
     #profile_icon {
-        margin-left: 800%;
+        margin-left: 700%;
     }
 
     #shopping {
-        margin-left: 800%;
+        margin-left: 700%;
     }
 
     #options {
