@@ -412,6 +412,12 @@ body {
         margin-left: 8%;
     }
 
+    input {
+        text-align: left;
+        margin-right: 74%;
+        margin-top: 3%;
+        width: 10%;
+    }
 
     #footer {
         grid-area: footer;

@@ -536,6 +536,7 @@ app.get("/ecospec", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
+            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
@@ -593,6 +594,7 @@ app.get("/sherwin", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
+            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
@@ -650,6 +652,7 @@ app.get("/bio", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
+            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
@@ -707,6 +710,7 @@ app.get("/behr", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
+            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
@@ -981,6 +985,7 @@ async function init() {
                                     name VARCHAR(50),
                                     price VARCHAR(50),
                                     image VARCHAR(50),
+                                    quantity INT(100) NOT NULL,
                                     PRIMARY KEY (ID));  
                                     
                                     use COMP2800;

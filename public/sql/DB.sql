@@ -37,12 +37,13 @@ CREATE TABLE `BBY_13_products` (
     `ID` int(100) NOT NULL AUTO_INCREMENT,
     `name` varchar(100) NOT NULL,
     `price` varchar(100) NOT NULL,
+    `quantity` int(100) NOT NULL,
     `image` varchar(100) NOT NULL,
     PRIMARY KEY (`ID`)
 );
 
 insert into `BBY_13_products` (name, price, image) values
-    ("Eco Spec Paint", "$45/gallon", "paint1.jpg"),
-    ("Sherwin-Williams' Harmony", "$65/gallon", "paint2.jpg"),
+    ("Eco Spec Paint", "$45/gallon", "1", "paint1.jpg"),
+    ("Sherwin-Williams' Harmony", "$65/gallon", "1", "paint2.jpg"),
     ("Bio Shield", "$46/gallon", "paint3.jpg"),
-    ("Behr Premium Plus", "$28.98/gallon", "paint4.jpg");
+    ("Behr Premium Plus", "$28.98/gallon", "1", "paint4.jpg");
