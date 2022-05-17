@@ -1015,8 +1015,8 @@ async function init() {
                                         price VARCHAR(50),
                                         image VARCHAR(50),
                                         quantity VARCHAR(100),
-                                        PRIMARY KEY (ID)),
-                                        FOREIGN KEY (userid) REFERENCES BBY_13_mm_users(ID_NUMBER);`;
+                                        PRIMARY KEY (ID),
+                                        FOREIGN KEY (userid) REFERENCES BBY_13_mm_users(ID_NUMBER));`;
 
   await connection.query(createDBAndTables);
 
