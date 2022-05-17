@@ -402,10 +402,23 @@ app.get("/profile", function (req, res) {
           ">";
         thisUserName.innerHTML += uName;
 
+        console.log(req.session.new_fname);
+
         const thisFName = profDOM.window.document.getElementById("first_name");
-        let fName =
-          "<input type=text id=fname value=" + req.session.fname + ">";
-        thisFName.innerHTML += fName;
+        let fName;
+        if (typeof req.session.new_fname == "undefined") {
+          fName = "<input type=text id=fname value=" + req.session.fname + ">";
+          thisFName.innerHTML += fName;
+        } else {
+          fName =
+            "<input type=text id=fname value=" + req.session.new_fname + ">";
+          thisFName.innerHTML += fName;
+        }
+
+        // const thisFName = profDOM.window.document.getElementById("first_name");
+        // let fName =
+        //   "<input type=text id=fname value=" + req.session.fname + ">";
+        // thisFName.innerHTML += fName;
 
         const thisLName = profDOM.window.document.getElementById("last_name");
         let lName =
@@ -730,6 +743,9 @@ app.post("/new_info", async function (req, res) {
     req.session.lname = `${req.body.new_lname}`;
     req.session.email = `${req.body.new_email}`;
     req.session.password = `${req.body.new_password}`;
+    req.session.new_fname = `${req.body.new_fname}`;
+
+    req.session.save(function err() {});
   }
 
   let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.username}'`;
