@@ -526,7 +526,6 @@ app.get("/faq", function (req, res) {
   }
 });
 
-
 app.get("/admin", function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/admin.html", "utf8");
@@ -660,7 +659,6 @@ app.get("/index", function (req, res) {
 app.post("/add-new-admin", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
-
   const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -695,9 +693,6 @@ app.get("/profile", function (req, res) {
 });
 //ALL PAGE REDIRECTS END HERE
 
-
-
-
 //CHANGE PASSWORD HERE
 app.get("/change_pw", async function (req, res) {
   if (req.session) {
@@ -710,7 +705,7 @@ app.get("/change_pw", async function (req, res) {
   }
 });
 
-//UPDATES USER INFORMATION HERE 
+//UPDATES USER INFORMATION HERE
 app.post("/new_info", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
@@ -744,7 +739,6 @@ app.post("/new_info", async function (req, res) {
 
   connection.end();
 });
-
 
 //UPDATES ADMIN INFORMATION HERE
 app.post("/new_info_admin", async function (req, res) {
@@ -810,7 +804,7 @@ async function init() {
                                     name VARCHAR(50),
                                     price VARCHAR(50),
                                     image VARCHAR(50),
-                                    quantity INT(100) NOT NULL,
+                                    quantity INT(100) NOT NULL DEFAULT 0,
                                     PRIMARY KEY (ID));  
                                     
                                     use COMP2800;
@@ -856,9 +850,9 @@ async function init() {
     ];
     await connection.query(productRecord, [productValue]);
 
-  console.log("Listening on port " + port + "!");
-    }
+    console.log("Listening on port " + port + "!");
   }
+}
 
 let port = 8000;
 app.listen(port, init);
