@@ -498,237 +498,34 @@ app.get("/profile-admin", function (req, res) {
   }
 });
 
-app.get("/ecospec", function (req, res) {
+app.get("/home", function (req, res) {
   if (req.session) {
-    let profile = fs.readFileSync("./app/ecospec.html", "utf8");
-    let profileDOM = new JSDOM(profile);
-
-    const mysql = require("mysql2");
-
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
-
-    connection.query(
-      "SELECT * FROM BBY_13_products WHERE ID = 1",
-      function (error, paintresults, fields) {
-        if (error) {
-          console.log(error);
-        }
-
-        const paint1 = profileDOM.window.document.createElement("div");
-
-        let paint;
-
-        paint1.innerHTML =
-          "<p>" +
-        "</p>"
-        for (let i = 0; i < paintresults.length; i++) {
-          paint =
-            "<img src = imgs/paint1.jpg alt = paint1>" +
-            "<h2>" +
-            paintresults[i].name +
-            "</h2>" +
-            "<h4>" +
-            paintresults[i].price +
-            "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
-            "<p><button class='addToCart' id=" +
-            paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
-          paint1.innerHTML += paint;
-        }
-
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint1);
-        connection.end();
-
-        res.set("Server", "candy");
-        res.set("X-Powered-By", "candy");
-        res.send(profileDOM.serialize());
-      }
-    );
+    let doc = fs.readFileSync("./app/home.html", "utf8");
+    res.send(doc);
   }
 });
 
-app.get("/sherwin", function (req, res) {
+app.get("/orders", function (req, res) {
   if (req.session) {
-    let profile = fs.readFileSync("./app/sherwin.html", "utf8");
-    let profileDOM = new JSDOM(profile);
-
-    const mysql = require("mysql2");
-
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
-
-    connection.query(
-      "SELECT * FROM BBY_13_products WHERE ID = 2",
-      function (error, paintresults, fields) {
-        if (error) {
-          console.log(error);
-        }
-
-        const paint2 = profileDOM.window.document.createElement("div");
-
-        let paint;
-
-        paint2.innerHTML =
-          "<p>" +
-        "</p>"
-        for (let i = 0; i < paintresults.length; i++) {
-          paint =
-            "<img src = imgs/paint2.jpg alt = paint1>" +
-            "<h2>" +
-            paintresults[i].name +
-            "</h2>" +
-            "<h4>" +
-            paintresults[i].price +
-            "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
-            "<p><button class='addToCart' id=" +
-            paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
-          paint2.innerHTML += paint;
-        }
-
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint2);
-        connection.end();
-
-        res.set("Server", "candy");
-        res.set("X-Powered-By", "candy");
-        res.send(profileDOM.serialize());
-      }
-    );
+    let doc = fs.readFileSync("./app/orders.html", "utf8");
+    res.send(doc);
   }
 });
 
-app.get("/bio", function (req, res) {
+app.get("/about", function (req, res) {
   if (req.session) {
-    let profile = fs.readFileSync("./app/bio.html", "utf8");
-    let profileDOM = new JSDOM(profile);
-
-    const mysql = require("mysql2");
-
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
-
-    connection.query(
-      "SELECT * FROM BBY_13_products WHERE ID = 3",
-      function (error, paintresults, fields) {
-        if (error) {
-          console.log(error);
-        }
-
-        const paint3 = profileDOM.window.document.createElement("div");
-
-        let paint;
-
-        paint3.innerHTML =
-          "<p>" +
-        "</p>"
-        for (let i = 0; i < paintresults.length; i++) {
-          paint =
-            "<img src = imgs/paint3.jpg alt = paint1>" +
-            "<h2>" +
-            paintresults[i].name +
-            "</h2>" +
-            "<h4>" +
-            paintresults[i].price +
-            "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
-            "<p><button class='addToCart' id=" +
-            paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
-          paint3.innerHTML += paint;
-        }
-
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint3);
-        connection.end();
-
-        res.set("Server", "candy");
-        res.set("X-Powered-By", "candy");
-        res.send(profileDOM.serialize());
-      }
-    );
+    let doc = fs.readFileSync("./app/about.html", "utf8");
+    res.send(doc);
   }
 });
 
-app.get("/behr", function (req, res) {
+app.get("/faq", function (req, res) {
   if (req.session) {
-    let profile = fs.readFileSync("./app/behr.html", "utf8");
-    let profileDOM = new JSDOM(profile);
-
-    const mysql = require("mysql2");
-
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800",
-    });
-    connection.connect();
-
-    connection.query(
-      "SELECT * FROM BBY_13_products WHERE ID = 4",
-      function (error, paintresults, fields) {
-        if (error) {
-          console.log(error);
-        }
-
-        const paint4 = profileDOM.window.document.createElement("div");
-
-        let paint;
-
-        paint4.innerHTML =
-          "<p>" +
-        "</p>"
-        for (let i = 0; i < paintresults.length; i++) {
-          paint =
-            "<img src = imgs/paint4.jpg alt = paint1>" +
-            "<h2>" +
-            paintresults[i].name +
-            "</h2>" +
-            "<h4>" +
-            paintresults[i].price +
-            "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
-            "<p><button class='addToCart' id=" +
-            paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
-          paint4.innerHTML += paint;
-        }
-
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint4);
-        connection.end();
-
-        res.set("Server", "candy");
-        res.set("X-Powered-By", "candy");
-        res.send(profileDOM.serialize());
-      }
-    );
+    let doc = fs.readFileSync("./app/faq.html", "utf8");
+    res.send(doc);
   }
 });
+
 
 app.get("/admin", function (req, res) {
   if (req.session) {
@@ -740,6 +537,13 @@ app.get("/admin", function (req, res) {
 app.get("/paint", function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/paint.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/flooring", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/flooring.html", "utf8");
     res.send(doc);
   }
 });
@@ -782,6 +586,27 @@ app.get("/behr", function (req, res) {
 app.get("/sherwin", function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/sherwin.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/tile", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/tile.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/shopall", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/shopall.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/bestseller", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/bestseller.html", "utf8");
     res.send(doc);
   }
 });
