@@ -34,7 +34,7 @@ app.get("/", function (req, res) {
       res.redirect("/home");
     } else {
       admin === true;
-      res.redirect("/admin");
+      res.redirect("/admin-dash");
     }
   } else {
     let doc = fs.readFileSync("./app/index.html", "utf8");
