@@ -498,6 +498,35 @@ app.get("/profile-admin", function (req, res) {
   }
 });
 
+app.get("/home", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/home.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/orders", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/orders.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/about", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/about.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/faq", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/faq.html", "utf8");
+    res.send(doc);
+  }
+});
+
+
 app.get("/admin", function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/admin.html", "utf8");
@@ -508,6 +537,13 @@ app.get("/admin", function (req, res) {
 app.get("/paint", function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/paint.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/flooring", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/flooring.html", "utf8");
     res.send(doc);
   }
 });
@@ -550,6 +586,27 @@ app.get("/behr", function (req, res) {
 app.get("/sherwin", function (req, res) {
   if (req.session) {
     let doc = fs.readFileSync("./app/sherwin.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/tile", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/tile.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/shopall", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/shopall.html", "utf8");
+    res.send(doc);
+  }
+});
+
+app.get("/bestseller", function (req, res) {
+  if (req.session) {
+    let doc = fs.readFileSync("./app/bestseller.html", "utf8");
     res.send(doc);
   }
 });
