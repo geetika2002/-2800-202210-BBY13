@@ -590,9 +590,7 @@ app.get("/ecospec", function (req, res) {
 
         let paint;
 
-        paint1.innerHTML =
-          "<p>" +
-        "</p>"
+        paint1.innerHTML = "<p>" + "</p>";
         for (let i = 0; i < paintresults.length; i++) {
           paint =
             "<img src = imgs/paint1.jpg alt = paint1>" +
@@ -602,16 +600,16 @@ app.get("/ecospec", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
+            "<input type=number id=quantity value =" +
+            paintresults[i].quantity +
+            ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
           paint1.innerHTML += paint;
         }
 
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint1);
+        profileDOM.window.document.getElementById("paint").appendChild(paint1);
         connection.end();
 
         res.set("Server", "candy");
@@ -648,9 +646,7 @@ app.get("/sherwin", function (req, res) {
 
         let paint;
 
-        paint2.innerHTML =
-          "<p>" +
-        "</p>"
+        paint2.innerHTML = "<p>" + "</p>";
         for (let i = 0; i < paintresults.length; i++) {
           paint =
             "<img src = imgs/paint2.jpg alt = paint1>" +
@@ -660,16 +656,16 @@ app.get("/sherwin", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
+            "<input type=number id=quantity value =" +
+            paintresults[i].quantity +
+            ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
           paint2.innerHTML += paint;
         }
 
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint2);
+        profileDOM.window.document.getElementById("paint").appendChild(paint2);
         connection.end();
 
         res.set("Server", "candy");
@@ -706,9 +702,7 @@ app.get("/bio", function (req, res) {
 
         let paint;
 
-        paint3.innerHTML =
-          "<p>" +
-        "</p>"
+        paint3.innerHTML = "<p>" + "</p>";
         for (let i = 0; i < paintresults.length; i++) {
           paint =
             "<img src = imgs/paint3.jpg alt = paint1>" +
@@ -718,16 +712,16 @@ app.get("/bio", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
+            "<input type=number id=quantity value =" +
+            paintresults[i].quantity +
+            ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
           paint3.innerHTML += paint;
         }
 
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint3);
+        profileDOM.window.document.getElementById("paint").appendChild(paint3);
         connection.end();
 
         res.set("Server", "candy");
@@ -764,9 +758,7 @@ app.get("/behr", function (req, res) {
 
         let paint;
 
-        paint4.innerHTML =
-          "<p>" +
-        "</p>"
+        paint4.innerHTML = "<p>" + "</p>";
         for (let i = 0; i < paintresults.length; i++) {
           paint =
             "<img src = imgs/paint4.jpg alt = paint1>" +
@@ -776,16 +768,16 @@ app.get("/behr", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
+            "<input type=number id=quantity value =" +
+            paintresults[i].quantity +
+            ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
             " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
           paint4.innerHTML += paint;
         }
 
-        profileDOM.window.document
-          .getElementById("paint")
-          .appendChild(paint4);
+        profileDOM.window.document.getElementById("paint").appendChild(paint4);
         connection.end();
 
         res.set("Server", "candy");
@@ -1017,12 +1009,14 @@ async function init() {
                                     use COMP2800;
                                     CREATE TABLE IF NOT EXISTS BBY_13_cart (
                                         ID int NOT NULL AUTO_INCREMENT,
+                                        userid int NOT NULL,
                                         ID_NUMBER VARCHAR(50),
                                         name VARCHAR(50),
                                         price VARCHAR(50),
                                         image VARCHAR(50),
                                         quantity VARCHAR(100),
-                                        PRIMARY KEY (ID));`;
+                                        PRIMARY KEY (ID)),
+                                        FOREIGN KEY (userid) REFERENCES BBY_13_mm_users(ID_NUMBER);`;
 
   await connection.query(createDBAndTables);
 
