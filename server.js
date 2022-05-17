@@ -8,6 +8,7 @@ const mysql = require("mysql");
 const { response } = require("express");
 const req = require("express/lib/request");
 const { ReadableStreamBYOBRequest } = require("stream/web");
+const { type } = require("express/lib/response");
 
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
@@ -286,7 +287,7 @@ app.get("/user-profiles", function (req, res) {
             " onclick='info_change(this.id) '> Edit </button></a></td>" +
             "<td><button class='delete' id=" +
             userresults[i].username +
-            " onclick='delete_user(this.id); confirmDelete();'> Delete </button></td>";
+            " onclick='confirmDelete(this.id);'> Delete </button></td>";
           allUsers.innerHTML += users;
         }
 
@@ -402,7 +403,7 @@ app.get("/profile", function (req, res) {
           ">";
         thisUserName.innerHTML += uName;
 
-        console.log(req.session.new_fname);
+        // console.log(req.session.new_fname);
 
         const thisFName = profDOM.window.document.getElementById("first_name");
         let fName;
@@ -415,27 +416,43 @@ app.get("/profile", function (req, res) {
           thisFName.innerHTML += fName;
         }
 
-        // const thisFName = profDOM.window.document.getElementById("first_name");
-        // let fName =
-        //   "<input type=text id=fname value=" + req.session.fname + ">";
-        // thisFName.innerHTML += fName;
-
         const thisLName = profDOM.window.document.getElementById("last_name");
-        let lName =
-          "<input type=text id=lname value=" + req.session.lname + ">";
-        thisLName.innerHTML += lName;
+        let lName;
+        if (typeof req.session.new_lname == "undefined") {
+          lName = "<input type=text id=lname value=" + req.session.lname + ">";
+          thisLName.innerHTML += lName;
+        } else {
+          lName =
+            "<input type=text id=lname value=" + req.session.new_lname + ">";
+          thisLName.innerHTML += lName;
+        }
 
         const thisMail = profDOM.window.document.getElementById("mail");
-        let mail =
-          "<input type=email id=email value=" + req.session.email + ">";
-        thisMail.innerHTML += mail;
+        let mail;
+        if (typeof req.session.new_email == "undefined") {
+          mail = "<input type=email id=email value=" + req.session.email + ">";
+          thisMail.innerHTML += mail;
+        } else {
+          mail =
+            "<input type=email id=email value=" + req.session.new_email + ">";
+          thisMail.innerHTML += mail;
+        }
 
         const thisPWD = profDOM.window.document.getElementById("pwd");
-        let pwd =
-          "<input type=password id=password value=" +
-          req.session.password +
-          ">";
-        thisPWD.innerHTML += pwd;
+        let pwd;
+        if (typeof req.session.new_password) {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        } else {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.new_password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        }
 
         connection.end();
 
@@ -482,27 +499,56 @@ app.get("/profile-admin", function (req, res) {
           ">";
         thisUserName.innerHTML += uName;
 
+        // console.log(req.session.new_fname);
+
         const thisFName = profDOM.window.document.getElementById("first_name");
-        let fName =
-          "<input type=text id=fname value=" + req.session.fname + ">";
-        thisFName.innerHTML += fName;
+        let fName;
+        if (typeof req.session.new_fname == "undefined") {
+          fName = "<input type=text id=fname value=" + req.session.fname + ">";
+          thisFName.innerHTML += fName;
+        } else {
+          fName =
+            "<input type=text id=fname value=" + req.session.new_fname + ">";
+          thisFName.innerHTML += fName;
+        }
 
         const thisLName = profDOM.window.document.getElementById("last_name");
-        let lName =
-          "<input type=text id=lname value=" + req.session.lname + ">";
-        thisLName.innerHTML += lName;
+        let lName;
+        if (typeof req.session.new_lname == "undefined") {
+          lName = "<input type=text id=lname value=" + req.session.lname + ">";
+          thisLName.innerHTML += lName;
+        } else {
+          lName =
+            "<input type=text id=lname value=" + req.session.new_lname + ">";
+          thisLName.innerHTML += lName;
+        }
 
         const thisMail = profDOM.window.document.getElementById("mail");
-        let mail =
-          "<input type=email id=email value=" + req.session.email + ">";
-        thisMail.innerHTML += mail;
+        let mail;
+        if (typeof req.session.new_email == "undefined") {
+          mail = "<input type=email id=email value=" + req.session.email + ">";
+          thisMail.innerHTML += mail;
+        } else {
+          mail =
+            "<input type=email id=email value=" + req.session.new_email + ">";
+          thisMail.innerHTML += mail;
+        }
 
         const thisPWD = profDOM.window.document.getElementById("pwd");
-        let pwd =
-          "<input type=password id=password value=" +
-          req.session.password +
-          ">";
-        thisPWD.innerHTML += pwd;
+        let pwd;
+        if (typeof req.session.new_password) {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        } else {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.new_password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        }
 
         connection.end();
 
@@ -744,6 +790,9 @@ app.post("/new_info", async function (req, res) {
     req.session.email = `${req.body.new_email}`;
     req.session.password = `${req.body.new_password}`;
     req.session.new_fname = `${req.body.new_fname}`;
+    req.session.new_lname = `${req.body.new_lname}`;
+    req.session.new_email = `${req.body.new_email}`;
+    req.session.new_password = `${req.body.new_password}`;
 
     req.session.save(function err() {});
   }
