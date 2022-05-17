@@ -10,7 +10,7 @@ body {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
-  background: url("/imgs/login_image.png");
+  background: url("/imgs/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -18,12 +18,20 @@ body {
   margin: 0;
 }
 
+a {
+  color: rgb(0, 52, 0);
+}
+
 #formPanel {
   grid-row: 2 / span 3;
   grid-column: 2 / span 3;
-
+  background-color: ivory;
+  border-radius: 20px;
+  border-width: none;
   margin: 0;
   display: grid;
+  padding: 10px;
+  box-shadow: 1px 8px 5px 4px rgba(44, 44, 44, 0.533);
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
 }

@@ -241,42 +241,36 @@ app.get("/user-profiles", function (req, res) {
         allUsers.innerHTML =
           "<tr>" +
           "<th>" +
-          "ID" +
+          "Users" +
+          "</th>" +
+          "<th>"+
+          " " +
+          "</th>" +
+          "<th>"+
+          " " +
+          "</th>" +
+          "<th>"+
+          " " +
           "</th>" +
           "<th>" +
-          "Username" +
+          "Admin." +
           "</th>" +
           "<th>" +
-          "First Name" +
-          "</th>" +
-          "<th>" +
-          "Last Name" +
-          "</th>" +
-          "<th>" +
-          "E-mail" +
-          "</th>" +
-          "<th>" +
-          "Administrator" +
-          "</th>" +
-          "<th>" +
-          "Edit User";
+          "";
         "</th>" + "</tr>";
         for (let i = 0; i < userresults.length; i++) {
           users =
             "<td>" +
-            userresults[i].ID_NUMBER +
-            "</td>" +
-            "<td>" +
             userresults[i].username +
             "</td>" +
             "<td>" +
-            userresults[i].firstname +
+            " " +
             "</td>" +
             "<td>" +
-            userresults[i].lastname +
+            " " +
             "</td>" +
             "<td>" +
-            userresults[i].email +
+            " " +
             "</td>" +
             "<td>" +
             userresults[i].administrator +
@@ -389,10 +383,10 @@ app.get("/profile", function (req, res) {
           console.log(error);
         }
 
-        const thisAD = profDOM.window.document.getElementById("Id_num");
-        let id =
-          "<input type=text id=ID disabled value=" + req.session.idnum + ">";
-        thisAD.innerHTML += id;
+        // const thisAD = profDOM.window.document.getElementById("Id_num");
+        // let id =
+        //   "<input type=text id=ID disabled value=" + req.session.idnum + ">";
+        // thisAD.innerHTML += id;
 
         const thisUserName =
           profDOM.window.document.getElementById("user_name");
@@ -456,10 +450,10 @@ app.get("/profile-admin", function (req, res) {
           console.log(error);
         }
 
-        const thisAD = profDOM.window.document.getElementById("Id_num");
-        let id =
-          "<input type=text id=ID disabled value=" + req.session.idnum + ">";
-        thisAD.innerHTML += id;
+        // const thisAD = profDOM.window.document.getElementById("Id_num");
+        // let id =
+        //   "<input type=text id=ID disabled value=" + req.session.idnum + ">";
+        // thisAD.innerHTML += id;
 
         const thisUserName =
           profDOM.window.document.getElementById("user_name");
@@ -603,9 +597,9 @@ app.get("/ecospec", function (req, res) {
             paintresults[i].price +
             "</h4>" +
             "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
-            "<p><button class='addToCart' id=" +
+            "<button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
+            " onclick='addToCart(this.id); addToCart();'> Add to cart </button>";
           paint1.innerHTML += paint;
         }
 
