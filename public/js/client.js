@@ -327,3 +327,5 @@ function showEnd() {
 function hideEnd() {
   document.getElementById("stopconfetti").style.display = "none";
 }
+
+//Shopping cart
