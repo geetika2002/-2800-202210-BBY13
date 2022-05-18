@@ -653,8 +653,6 @@ app.get("/ecospec", function (req, res) {
             "<h4>" +
             paintresults[i].price +
             "</h4>" +
-            "<input type=number id=quantity value =" + paintresults[i].quantity + ">" +
-            "<button class='addToCart' id=" +
             "<input type=number id=quantity value =" +
             paintresults[i].quantity +
             ">" +

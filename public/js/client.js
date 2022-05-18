@@ -324,3 +324,35 @@ function showEnd() {
 function hideEnd() {
   document.getElementById("stopconfetti").style.display = "none";
 }
+
+function openGreen() {
+    document.getElementById("gs").style.display = "block";
+  }
+  
+  function closeGreen() {
+    document.getElementById("gs").style.display = "none";
+  }
+
+  function openA() {
+    document.getElementById("aa").style.display = "block";
+  }
+  
+  function closeA() {
+    document.getElementById("aa").style.display = "none";
+  }
+
+  function openG() {
+    document.getElementById("greenGuard").style.display = "block";
+  }
+  
+  function closeG() {
+    document.getElementById("greenGuard").style.display = "none";
+  }
+
+  function openLeed() {
+    document.getElementById("leedCert").style.display = "block";
+  }
+  
+  function closeLeed() {
+    document.getElementById("leedCert").style.display = "none";
+  }
