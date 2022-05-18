@@ -8,6 +8,7 @@ const mysql = require("mysql");
 const { response } = require("express");
 const req = require("express/lib/request");
 const { ReadableStreamBYOBRequest } = require("stream/web");
+const { type } = require("express/lib/response");
 
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
@@ -286,7 +287,7 @@ app.get("/user-profiles", function (req, res) {
             " onclick='info_change(this.id) '> Edit </button></a></td>" +
             "<td><button class='delete' id=" +
             userresults[i].username +
-            " onclick='delete_user(this.id); confirmDelete();'> Delete </button></td>";
+            " onclick='confirmDelete(this.id);'> Delete </button></td>";
           allUsers.innerHTML += users;
         }
 
@@ -319,7 +320,6 @@ app.get("/edit-by-admin", function (req, res) {
     connection.connect();
 
     connection.query(
-      // `SELECT * FROM BBY_13_mm_users WHERE username ="${req.session.user_edit}"`,
       `SELECT * FROM BBY_13_mm_users WHERE username="${req.session.user_edit}"`,
       function (error, results, fields) {
         if (error) {
@@ -402,27 +402,56 @@ app.get("/profile", function (req, res) {
           ">";
         thisUserName.innerHTML += uName;
 
+        // console.log(req.session.new_fname);
+
         const thisFName = profDOM.window.document.getElementById("first_name");
-        let fName =
-          "<input type=text id=fname value=" + req.session.fname + ">";
-        thisFName.innerHTML += fName;
+        let fName;
+        if (typeof req.session.new_fname == "undefined") {
+          fName = "<input type=text id=fname value=" + req.session.fname + ">";
+          thisFName.innerHTML += fName;
+        } else {
+          fName =
+            "<input type=text id=fname value=" + req.session.new_fname + ">";
+          thisFName.innerHTML += fName;
+        }
 
         const thisLName = profDOM.window.document.getElementById("last_name");
-        let lName =
-          "<input type=text id=lname value=" + req.session.lname + ">";
-        thisLName.innerHTML += lName;
+        let lName;
+        if (typeof req.session.new_lname == "undefined") {
+          lName = "<input type=text id=lname value=" + req.session.lname + ">";
+          thisLName.innerHTML += lName;
+        } else {
+          lName =
+            "<input type=text id=lname value=" + req.session.new_lname + ">";
+          thisLName.innerHTML += lName;
+        }
 
         const thisMail = profDOM.window.document.getElementById("mail");
-        let mail =
-          "<input type=email id=email value=" + req.session.email + ">";
-        thisMail.innerHTML += mail;
+        let mail;
+        if (typeof req.session.new_email == "undefined") {
+          mail = "<input type=email id=email value=" + req.session.email + ">";
+          thisMail.innerHTML += mail;
+        } else {
+          mail =
+            "<input type=email id=email value=" + req.session.new_email + ">";
+          thisMail.innerHTML += mail;
+        }
 
         const thisPWD = profDOM.window.document.getElementById("pwd");
-        let pwd =
-          "<input type=password id=password value=" +
-          req.session.password +
-          ">";
-        thisPWD.innerHTML += pwd;
+        let pwd;
+        if (typeof req.session.new_password) {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        } else {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.new_password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        }
 
         connection.end();
 
@@ -469,27 +498,56 @@ app.get("/profile-admin", function (req, res) {
           ">";
         thisUserName.innerHTML += uName;
 
+        // console.log(req.session.new_fname);
+
         const thisFName = profDOM.window.document.getElementById("first_name");
-        let fName =
-          "<input type=text id=fname value=" + req.session.fname + ">";
-        thisFName.innerHTML += fName;
+        let fName;
+        if (typeof req.session.new_fname == "undefined") {
+          fName = "<input type=text id=fname value=" + req.session.fname + ">";
+          thisFName.innerHTML += fName;
+        } else {
+          fName =
+            "<input type=text id=fname value=" + req.session.new_fname + ">";
+          thisFName.innerHTML += fName;
+        }
 
         const thisLName = profDOM.window.document.getElementById("last_name");
-        let lName =
-          "<input type=text id=lname value=" + req.session.lname + ">";
-        thisLName.innerHTML += lName;
+        let lName;
+        if (typeof req.session.new_lname == "undefined") {
+          lName = "<input type=text id=lname value=" + req.session.lname + ">";
+          thisLName.innerHTML += lName;
+        } else {
+          lName =
+            "<input type=text id=lname value=" + req.session.new_lname + ">";
+          thisLName.innerHTML += lName;
+        }
 
         const thisMail = profDOM.window.document.getElementById("mail");
-        let mail =
-          "<input type=email id=email value=" + req.session.email + ">";
-        thisMail.innerHTML += mail;
+        let mail;
+        if (typeof req.session.new_email == "undefined") {
+          mail = "<input type=email id=email value=" + req.session.email + ">";
+          thisMail.innerHTML += mail;
+        } else {
+          mail =
+            "<input type=email id=email value=" + req.session.new_email + ">";
+          thisMail.innerHTML += mail;
+        }
 
         const thisPWD = profDOM.window.document.getElementById("pwd");
-        let pwd =
-          "<input type=password id=password value=" +
-          req.session.password +
-          ">";
-        thisPWD.innerHTML += pwd;
+        let pwd;
+        if (typeof req.session.new_password) {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        } else {
+          pwd =
+            "<input type=password id=password value=" +
+            req.session.new_password +
+            ">";
+          thisPWD.innerHTML += pwd;
+        }
 
         connection.end();
 
@@ -557,13 +615,6 @@ app.get("/new_acc", function (req, res) {
   }
 });
 
-app.get("/cart", function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/cart.html", "utf8");
-    res.send(doc);
-  }
-});
-
 app.get("/ecospec", function (req, res) {
   if (req.session) {
     let profile = fs.readFileSync("./app/ecospec.html", "utf8");
@@ -605,7 +656,7 @@ app.get("/ecospec", function (req, res) {
             ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
+            " onclick='addToCart(this.id);'> Add to cart </button></p>";
           paint1.innerHTML += paint;
         }
 
@@ -661,7 +712,7 @@ app.get("/sherwin", function (req, res) {
             ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
+            " onclick='addToCart(this.id);'> Add to cart </button></p>";
           paint2.innerHTML += paint;
         }
 
@@ -717,7 +768,7 @@ app.get("/bio", function (req, res) {
             ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
+            " onclick='addToCart(this.id);'> Add to cart </button></p>";
           paint3.innerHTML += paint;
         }
 
@@ -773,12 +824,96 @@ app.get("/behr", function (req, res) {
             ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
+            " onclick='addToCart(this.id);'> Add to cart </button></p>";
           paint4.innerHTML += paint;
         }
 
         profileDOM.window.document.getElementById("paint").appendChild(paint4);
         connection.end();
+
+        res.set("Server", "candy");
+        res.set("X-Powered-By", "candy");
+        res.send(profileDOM.serialize());
+      }
+    );
+  }
+});
+
+app.post("/add_paint", async function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+  const mysql = require("mysql2/promise");
+
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+    multipleStatements: true,
+  });
+
+  connection.connect();
+
+  const [rows, fields] = await connection.execute(
+    `SELECT * FROM BBY_13_products WHERE ID = "${req.body.productid}"`
+  );
+
+  if (`${req.body.quantity}` > 0) {
+    if (rows.length > 0) {
+      req.session.productID = rows[0].ID;
+      req.session.productName = rows[0].name;
+      req.session.price = rows[0].price;
+      req.session.image = rows[0].image;
+      req.session.quantity = `${req.body.quantity}`;
+    }
+
+    // console.log(req.session.idnum);
+
+    if (req.session.idnum) {
+      let sql = `INSERT INTO BBY_13_cart (userid, ID_NUMBER, name, price, image, quantity) VALUES (?,?,?,?,?,?)`;
+      connection.query(sql, [
+        req.session.idnum,
+        req.session.productID,
+        req.session.productName,
+        req.session.price,
+        req.session.image,
+        req.session.quantity,
+      ]);
+    }
+  }
+
+  connection.end();
+});
+
+app.get("/cart", function (req, res) {
+  if (req.session) {
+    let profile = fs.readFileSync("./app/cart.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    const mysql = require("mysql2");
+
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
+    });
+    connection.connect();
+
+    connection.query(
+      `SELECT * FROM BBY_13_cart WHERE userid = ${req.session.idnum}`,
+      function (error, results, fields) {
+        if (error) {
+          console.log(error);
+        }
+
+        if (results) {
+          for (let i = 0; i < results.length; i++) {
+            let allProduct =
+              profileDOM.window.document.getElementById("all_products");
+            let container = "<div class=product><h2>paint</h2></div>";
+            allProduct.innerHTML += container;
+          }
+        }
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -926,6 +1061,12 @@ app.post("/new_info", async function (req, res) {
     req.session.lname = `${req.body.new_lname}`;
     req.session.email = `${req.body.new_email}`;
     req.session.password = `${req.body.new_password}`;
+    req.session.new_fname = `${req.body.new_fname}`;
+    req.session.new_lname = `${req.body.new_lname}`;
+    req.session.new_email = `${req.body.new_email}`;
+    req.session.new_password = `${req.body.new_password}`;
+
+    req.session.save(function err() {});
   }
 
   let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.username}'`;
