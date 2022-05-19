@@ -126,12 +126,12 @@ app.post("/login", async function (req, res) {
 
     req.session.save(function (err) {});
 
-    connection.end();
-
     res.send({
       status: "success",
       msg: "Logged in.",
     });
+
+    connection.end();
 
     if (req.session.admin == "y") {
       admin = true;
@@ -192,10 +192,6 @@ app.post("/delete-user", async function (req, res) {
     multipleStatements: true,
   });
   connection.connect();
-
-  const [rows, fields] = await connection.execute(
-    `SELECT * FROM BBY_13_mm_users`
-  );
 
   req.session.to_delete = `${req.body.to_delete}`;
 
@@ -842,7 +838,6 @@ app.get("/behr", function (req, res) {
 app.post("/add_paint", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
-
   const connection = await mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -864,9 +859,9 @@ app.post("/add_paint", async function (req, res) {
       req.session.price = rows[0].price;
       req.session.image = rows[0].image;
       req.session.quantity = `${req.body.quantity}`;
-    }
 
-    // console.log(req.session.idnum);
+      req.session.save(function err() {});
+    }
 
     if (req.session.idnum) {
       let sql = `INSERT INTO BBY_13_cart (userid, ID_NUMBER, name, price, image, quantity) VALUES (?,?,?,?,?,?)`;
@@ -882,6 +877,10 @@ app.post("/add_paint", async function (req, res) {
   }
 
   connection.end();
+
+  res.send({
+    msg: "data in.",
+  });
 });
 
 app.get("/cart", function (req, res) {
@@ -900,18 +899,49 @@ app.get("/cart", function (req, res) {
     connection.connect();
 
     connection.query(
-      `SELECT * FROM BBY_13_cart WHERE userid = ${req.session.idnum}`,
-      function (error, results, fields) {
+      `SELECT userid, ID_NUMBER, name, price, image, SUM(quantity) AS quantity FROM BBY_13_cart WHERE userid = '${req.session.idnum}' GROUP BY ID_NUMBER`,
+      function (error, productRecord, fields) {
         if (error) {
           console.log(error);
         }
-
-        if (results) {
-          for (let i = 0; i < results.length; i++) {
+        if (productRecord) {
+          for (let i = 0; i < productRecord.length; i++) {
             let allProduct =
               profileDOM.window.document.getElementById("all_products");
-            let container = "<div class=product><h2>paint</h2></div>";
+            let container =
+              "<div class=product id=" + productRecord[i].ID_NUMBER + "></div>";
             allProduct.innerHTML += container;
+
+            let prodInfo = profileDOM.window.document.getElementById(
+              productRecord[i].ID_NUMBER
+            );
+
+            let prodImage =
+              "<div class=img_container><img src = imgs/" +
+              productRecord[i].image +
+              " alt = paint1></div>";
+            prodInfo.innerHTML += prodImage;
+
+            let prodID =
+              "<h3 id=prod_id>" + productRecord[i].ID_NUMBER + "</h3>";
+            prodInfo.innerHTML += prodID;
+
+            let prodName =
+              "<h3 id=prod_name>" + productRecord[i].name + "</h3>";
+            prodInfo.innerHTML += prodName;
+
+            let price = "<h4 id=price>" + productRecord[i].price + "<h4/>";
+            prodInfo.innerHTML += price;
+
+            let quantity =
+              "<h4 id=quantity> QTY " + productRecord[i].quantity + "</h4>";
+            prodInfo.innerHTML += quantity;
+
+            let deleteProduct =
+              "<button class='delete' id=" +
+              productRecord[i].ID_NUMBER +
+              " onclick='deleteProduct(this.id);'> Delete </button>";
+            prodInfo.innerHTML += deleteProduct;
           }
         }
 
@@ -921,6 +951,27 @@ app.get("/cart", function (req, res) {
       }
     );
   }
+});
+
+app.post("/delete_product", async function (req, res) {
+  res.setHeader("Content-type", "application/json");
+  const mysql = require("mysql2/promise");
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+    multipleStatements: true,
+  });
+
+  connection.connect();
+
+  let sql = `DELETE FROM BBY_13_cart WHERE ID_NUMBER = ? `;
+  connection.query(sql, req.body.productToDelete, function (err, result) {
+    if (err) throw err;
+  });
+
+  connection.end();
 });
 
 app.get("/tile", function (req, res) {

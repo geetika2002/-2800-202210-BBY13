@@ -221,25 +221,22 @@ function info_change(clicked_id) {
 }
 
 function confirmDelete(clicked_id) {
-  let okToDelete = confirm("Do you really want to DELETE this user?");
-  if (okToDelete) {
-    ajaxPOST(
-      "/delete-user",
-      (data) => {
-        if (data) {
-          const jsondata = JSON.parse(data);
+  ajaxPOST(
+    "/delete-user",
+    (data) => {
+      if (data) {
+        const jsondata = JSON.parse(data);
 
-          if (jsondata.status === "sucess") {
-          }
+        if (jsondata.status === "sucess") {
         }
-      },
-      {
-        to_delete: clicked_id,
       }
-    );
+    },
+    {
+      to_delete: clicked_id,
+    }
+  );
 
-    setTimeout("location.reload(true);", 100);
-  }
+  setTimeout("location.reload(true);", 100);
 }
 
 const docum = document.querySelector("#createNew");
@@ -333,7 +330,7 @@ function addToCart(clicked_id) {
     "/add_paint",
     (data) => {
       if (data) {
-        const jasondata = JSON.parse(data);
+        const jsondata = JSON.parse(data);
 
         if (jsondata.status === "success") {
           window.location.replace("/");
@@ -345,4 +342,24 @@ function addToCart(clicked_id) {
       quantity: document.getElementById("quantity").value,
     }
   );
+}
+
+function deleteProduct(clicked_id) {
+  ajaxPOST(
+    "/delete_product",
+    (data) => {
+      if (data) {
+        const jsondata = JSON.parse(data);
+
+        if (jsondata.status === "success") {
+          window.location.replace("/");
+        }
+      }
+    },
+    {
+      productToDelete: clicked_id,
+    }
+  );
+
+  setTimeout("location.reload(true)", 100);
 }
