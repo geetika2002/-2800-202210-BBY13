@@ -395,9 +395,148 @@ body {
         text-decoration: none;
     }
 
+    #paint {
+        text-align: center;
+    }
+
+    img {
+        width: 60%;
+        padding-top: 5%;
+    }
+
+    h2 {
+        text-align: left;
+        margin-left: 8%;
+    }
+
+    h4 {
+        text-align: left;
+        margin-left: 8%;
+    }
+
+    input {
+        text-align: left;
+        margin-right: 74%;
+        margin-top: 3%;
+        width: 10%;
+    }
 
     #footer {
         grid-area: footer;
     }
+
+    #logoutForm>input[type="submit"] {
+        cursor: pointer;
+        background-color: white;
+        box-shadow: 0 5px rgb(113, 113, 113);
+        display: block;
+        position: relative;
+        transition: 0.3s;
+        margin-bottom: 3%;
+        color: black;
+        margin-top: 15%;
+        width: 70%;
+        height: 90%;
+        border-radius: 6px;
+        border-style: solid;
+        border-width: 1px;
+        text-align: center;
+        left: 20px; 
+        bottom: 20px; 
+
+    }
+
+    h1 {
+        text-align: center;
+        background-color: rgb(192, 250, 250);
+        margin-top: 20px;
+    }
+
+    .header2 {
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .mission {
+        text-align: center;
+    }
+
+    .text {
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom:20px; 
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .headerTeam {
+        text-align: center;
+        padding-top: 20px;
+    }
+    #teamIntro {
+        display: grid;
+        grid-template-rows: 30% 30% 30% 30%;
+        grid-template-columns: 100%;
+    }
+
+    .team1 {
+        background-color:rgb(192, 250, 250);;
+    }
+
+    .team1 img {
+        display: grid;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        margin-bottom: 2px;
+    }
+
+    .team1text {
+        text-align: center;
+    }
+
+    .team2 img {
+        display: grid;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        margin-bottom: 2px;
+    }
+
+    .team2text {
+        text-align: center;
+    }
+
+    .team3 {
+        background-color: rgb(192, 250, 250);
+    }
+    .team3 img {
+        display: grid;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        margin-bottom: 2px;
+    }
+
+    .team3text {
+        text-align: center;
+    }
+
+    .team4 img {
+        display: grid;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        margin-bottom: 2px;
+    }
+
+    .team4text {
+        text-align: center;
+    }
+
 
 }
