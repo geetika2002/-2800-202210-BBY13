@@ -754,6 +754,9 @@ button {
 
     #footer {
         grid-area: footer;
+        width: 100vw;
+        margin-top: 5%;
+        margin-left: 8%;
     }
 
 }

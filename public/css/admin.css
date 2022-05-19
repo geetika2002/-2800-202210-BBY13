@@ -289,6 +289,7 @@ body {
     transition: color 0.4s ease;
 }
 
+
 @media screen and (max-width: 2000px) {
     #container {
         display: grid;
@@ -364,6 +365,9 @@ body {
 
     #footer {
         grid-area: footer;
+        padding-left: 8%;
+        width: 100vw;
+        margin-top: 5%;
     }
 }
 
@@ -468,8 +472,5 @@ body {
         text-decoration: none;
     }
 
-    #footer {
-        grid-area: footer;
-    }
-
 }
+
