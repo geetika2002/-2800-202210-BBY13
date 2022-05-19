@@ -938,9 +938,9 @@ app.get("/cart", function (req, res) {
             prodInfo.innerHTML += quantity;
 
             let deleteProduct =
-              "<button class='delete' id=" +
+              "<div class=delete_container><button class=delete id=" +
               productRecord[i].ID_NUMBER +
-              " onclick='deleteProduct(this.id);'> Delete </button>";
+              " onclick='deleteProduct(this.id);'> Delete </button></div>";
             prodInfo.innerHTML += deleteProduct;
           }
         }

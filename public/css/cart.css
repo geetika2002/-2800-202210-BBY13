@@ -71,6 +71,28 @@ img {
 #quantity {
   display: flex;
   justify-content: end;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.delete_container {
+  display: flex;
+  justify-content: right;
+  margin-top: 3%;
+}
+
+.delete {
+  font-size: 1em;
+  border-style: none;
+  color: red;
+  display: flex;
+  background-color: #ffffff;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.delete:hover {
+  cursor: pointer;
 }
 
 #checkout > input {
