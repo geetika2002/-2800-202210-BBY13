@@ -126,12 +126,12 @@ app.post("/login", async function (req, res) {
 
     req.session.save(function (err) {});
 
-    connection.end();
-
     res.send({
       status: "success",
       msg: "Logged in.",
     });
+
+    connection.end();
 
     if (req.session.admin == "y") {
       admin = true;
@@ -192,10 +192,6 @@ app.post("/delete-user", async function (req, res) {
     multipleStatements: true,
   });
   connection.connect();
-
-  const [rows, fields] = await connection.execute(
-    `SELECT * FROM BBY_13_mm_users`
-  );
 
   req.session.to_delete = `${req.body.to_delete}`;
 
@@ -314,7 +310,6 @@ app.get("/edit-by-admin", function (req, res) {
     connection.connect();
 
     connection.query(
-      // `SELECT * FROM BBY_13_mm_users WHERE username ="${req.session.user_edit}"`,
       `SELECT * FROM BBY_13_mm_users WHERE username="${req.session.user_edit}"`,
       function (error, results, fields) {
         if (error) {
@@ -610,13 +605,6 @@ app.get("/new_acc", function (req, res) {
   }
 });
 
-app.get("/cart", function (req, res) {
-  if (req.session) {
-    let doc = fs.readFileSync("./app/cart.html", "utf8");
-    res.send(doc);
-  }
-});
-
 app.get("/ecospec", function (req, res) {
   if (req.session) {
     let profile = fs.readFileSync("./app/ecospec.html", "utf8");
@@ -658,7 +646,7 @@ app.get("/ecospec", function (req, res) {
             ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button>";
+            " onclick='addToCart(this.id);'> Add to cart </button></p>";
           paint1.innerHTML += paint;
         }
 
@@ -714,7 +702,7 @@ app.get("/sherwin", function (req, res) {
             ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
+            " onclick='addToCart(this.id);'> Add to cart </button></p>";
           paint2.innerHTML += paint;
         }
 
@@ -770,7 +758,7 @@ app.get("/bio", function (req, res) {
             ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
+            " onclick='addToCart(this.id);'> Add to cart </button></p>";
           paint3.innerHTML += paint;
         }
 
@@ -826,7 +814,7 @@ app.get("/behr", function (req, res) {
             ">" +
             "<p><button class='addToCart' id=" +
             paintresults[i].ID +
-            " onclick='addToCart(this.id); addToCart();'> Add to cart </button></p>";
+            " onclick='addToCart(this.id);'> Add to cart </button></p>";
           paint4.innerHTML += paint;
         }
 
@@ -839,6 +827,185 @@ app.get("/behr", function (req, res) {
       }
     );
   }
+});
+
+app.post("/add_paint", async function (req, res) {
+  res.setHeader("Content-Type", "application/json");
+  const mysql = require("mysql2/promise");
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+    multipleStatements: true,
+  });
+
+  connection.connect();
+
+  const [rows, fields] = await connection.execute(
+    `SELECT * FROM BBY_13_products WHERE ID = "${req.body.productid}"`
+  );
+
+  if (`${req.body.quantity}` > 0) {
+    if (rows.length > 0) {
+      req.session.productID = rows[0].ID;
+      req.session.productName = rows[0].name;
+      req.session.price = rows[0].price;
+      req.session.image = rows[0].image;
+      req.session.quantity = `${req.body.quantity}`;
+
+      req.session.save(function err() {});
+    }
+
+    if (req.session.idnum) {
+      let sql = `INSERT INTO BBY_13_cart (userid, ID_NUMBER, name, price, image, quantity) VALUES (?,?,?,?,?,?)`;
+      connection.query(sql, [
+        req.session.idnum,
+        req.session.productID,
+        req.session.productName,
+        req.session.price,
+        req.session.image,
+        req.session.quantity,
+      ]);
+    }
+  }
+
+  connection.end();
+
+  res.send({
+    msg: "data in.",
+  });
+});
+
+app.get("/checkout", function (req, res) {
+  if (req.session) {
+    let profile = fs.readFileSync("./app/confirmation.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    const mysql = require("mysql2");
+
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
+    });
+
+    connection.connect();
+
+    const orderconfirm = profileDOM.window.document.getElementById("welcome");
+
+    let confirmpic =
+      "<img id = order_confirm src = imgs/orderconfirm.jpg> <h1 id=first_name>Your order has been placed!</h1> <h3>The world is full of choices. Thank you for choosing Mindful Matter! We hope that you are satisfied with your purchase. </h3> <a href='/home' id='return_home'>Return Home.</a>";
+
+    orderconfirm.innerHTML += confirmpic;
+
+    // console.log(req.session.idnum);
+
+    let sql = `DELETE FROM BBY_13_cart WHERE userid = ${req.session.idnum}`;
+    connection.query(sql, function (err, result) {
+      if (err) throw err;
+    });
+
+    connection.end();
+
+    res.set("Server", "candy");
+    res.set("X-Powered-By", "candy");
+    res.send(profileDOM.serialize());
+  }
+});
+
+app.get("/cart", function (req, res) {
+  if (req.session) {
+    let profile = fs.readFileSync("./app/cart.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    const mysql = require("mysql2");
+
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
+    });
+    connection.connect();
+
+    connection.query(
+      `SELECT userid, ID_NUMBER, name, price, image, SUM(quantity) AS quantity FROM BBY_13_cart WHERE userid = '${req.session.idnum}' GROUP BY ID_NUMBER`,
+      function (error, productRecord, fields) {
+        if (error) {
+          console.log(error);
+        }
+        if (productRecord) {
+          for (let i = 0; i < productRecord.length; i++) {
+            let allProduct =
+              profileDOM.window.document.getElementById("all_products");
+            let container =
+              "<div class=product id=" + productRecord[i].ID_NUMBER + "></div>";
+            allProduct.innerHTML += container;
+
+            let prodInfo = profileDOM.window.document.getElementById(
+              productRecord[i].ID_NUMBER
+            );
+
+            let prodImage =
+              "<div class=img_container><img src = imgs/" +
+              productRecord[i].image +
+              " alt = paint1></div>";
+            prodInfo.innerHTML += prodImage;
+
+            let prodID =
+              "<h3 id=prod_id>" + productRecord[i].ID_NUMBER + "</h3>";
+            prodInfo.innerHTML += prodID;
+
+            let prodName =
+              "<h3 id=prod_name>" + productRecord[i].name + "</h3>";
+            prodInfo.innerHTML += prodName;
+
+            let price = "<h4 id=price>" + productRecord[i].price + "<h4/>";
+            prodInfo.innerHTML += price;
+
+            let quantity =
+              "<h4 id=quantity> QTY " + productRecord[i].quantity + "</h4>";
+            prodInfo.innerHTML += quantity;
+
+            let deleteProduct =
+              "<div class=delete_container><button class=delete id=" +
+              productRecord[i].ID_NUMBER +
+              " onclick='deleteProduct(this.id);'> Delete </button></div>";
+            prodInfo.innerHTML += deleteProduct;
+          }
+        }
+
+        connection.end();
+
+        res.set("Server", "candy");
+        res.set("X-Powered-By", "candy");
+        res.send(profileDOM.serialize());
+      }
+    );
+  }
+});
+
+app.post("/delete_product", async function (req, res) {
+  res.setHeader("Content-type", "application/json");
+  const mysql = require("mysql2/promise");
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
+    multipleStatements: true,
+  });
+
+  connection.connect();
+
+  let sql = `DELETE FROM BBY_13_cart WHERE ID_NUMBER = ? `;
+  connection.query(sql, req.body.productToDelete, function (err, result) {
+    if (err) throw err;
+  });
+
+  connection.end();
 });
 
 app.get("/tile", function (req, res) {
@@ -943,6 +1110,7 @@ app.get("/profile", function (req, res) {
     res.send(profileDOM.serialize());
   }
 });
+
 //ALL PAGE REDIRECTS END HERE
 
 //CHANGE PASSWORD HERE

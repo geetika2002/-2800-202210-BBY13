@@ -221,25 +221,22 @@ function info_change(clicked_id) {
 }
 
 function confirmDelete(clicked_id) {
-  let okToDelete = confirm("Do you really want to DELETE this user?");
-  if (okToDelete) {
-    ajaxPOST(
-      "/delete-user",
-      (data) => {
-        if (data) {
-          const jsondata = JSON.parse(data);
+  ajaxPOST(
+    "/delete-user",
+    (data) => {
+      if (data) {
+        const jsondata = JSON.parse(data);
 
-          if (jsondata.status === "sucess") {
-          }
+        if (jsondata.status === "sucess") {
         }
-      },
-      {
-        to_delete: clicked_id,
       }
-    );
+    },
+    {
+      to_delete: clicked_id,
+    }
+  );
 
-    setTimeout("location.reload(true);", 100);
-  }
+  setTimeout("location.reload(true);", 100);
 }
 
 const docum = document.querySelector("#createNew");
@@ -317,6 +314,7 @@ if (product1) {
   });
 }
 
+//EASTER EGG
 function showEnd() {
   document.getElementById("stopconfetti").style.display = "inline";
 }
@@ -326,33 +324,73 @@ function hideEnd() {
 }
 
 function openGreen() {
-    document.getElementById("gs").style.display = "block";
-  }
-  
-  function closeGreen() {
-    document.getElementById("gs").style.display = "none";
-  }
+  document.getElementById("gs").style.display = "block";
+}
 
-  function openA() {
-    document.getElementById("aa").style.display = "block";
-  }
-  
-  function closeA() {
-    document.getElementById("aa").style.display = "none";
-  }
+function closeGreen() {
+  document.getElementById("gs").style.display = "none";
+}
 
-  function openG() {
-    document.getElementById("greenGuard").style.display = "block";
-  }
-  
-  function closeG() {
-    document.getElementById("greenGuard").style.display = "none";
-  }
+function openA() {
+  document.getElementById("aa").style.display = "block";
+}
 
-  function openLeed() {
-    document.getElementById("leedCert").style.display = "block";
-  }
-  
-  function closeLeed() {
-    document.getElementById("leedCert").style.display = "none";
-  }
+function closeA() {
+  document.getElementById("aa").style.display = "none";
+}
+
+function openG() {
+  document.getElementById("greenGuard").style.display = "block";
+}
+
+function closeG() {
+  document.getElementById("greenGuard").style.display = "none";
+}
+
+function openLeed() {
+  document.getElementById("leedCert").style.display = "block";
+}
+
+function closeLeed() {
+  document.getElementById("leedCert").style.display = "none";
+}
+//Shopping cart
+
+function addToCart(clicked_id) {
+  ajaxPOST(
+    "/add_paint",
+    (data) => {
+      if (data) {
+        const jsondata = JSON.parse(data);
+
+        if (jsondata.status === "success") {
+          window.location.replace("/");
+        }
+      }
+    },
+    {
+      productid: clicked_id,
+      quantity: document.getElementById("quantity").value,
+    }
+  );
+}
+
+function deleteProduct(clicked_id) {
+  ajaxPOST(
+    "/delete_product",
+    (data) => {
+      if (data) {
+        const jsondata = JSON.parse(data);
+
+        if (jsondata.status === "success") {
+          window.location.replace("/");
+        }
+      }
+    },
+    {
+      productToDelete: clicked_id,
+    }
+  );
+
+  setTimeout("location.reload(true)", 100);
+}
