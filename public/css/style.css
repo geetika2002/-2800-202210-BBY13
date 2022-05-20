@@ -3,7 +3,6 @@
 * {
     font-family: "Montserrat", sans-serif;
     font-family: "Nunito Sans", sans-serif;
-    margin-right: 5%;
     margin-top: 1%;
     color: black;
 }
@@ -155,16 +154,62 @@ body {
     all: unset;
     display: none;
 }
+
+/* THIS IS THE BANNER CSS */
+
+#nav {
+    display: grid;
+    height: auto;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 10% 10% 60% 10% 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#comp_name {
+    grid-column: 2 / span 3;
+    grid-row: 3;
+    text-align: center;
+    font-size: x-large;
+}
+
+#profile_container {
+    grid-column: 5;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+}
+
+#cart_container {
+    grid-column: 5;
+    grid-row: 3;
+    display: flex;
+    justify-content: right;
+}
+
+#profile_icon {
+    display: inline-block;
+    transform: translateY(30%);
+}
+
+#shopping {
+    display: inline-block;
+    transform: translateY(30%);
+}
+
 /* MENU STYLES */
 .menu-wrap {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     z-index: 1;
+    grid-row: 3;
+    grid-column: 1;
 }
 
 .menu-wrap .toggler {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     z-index: 2;
@@ -175,18 +220,13 @@ body {
 }
 
 .menu-wrap .hamburger {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     z-index: 1;
     width: 50px;
-    height: 40px;
+    height: 50px;
     padding: 1rem;
     background: rgb(rgb(179, 179, 179));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 300%;
+    display: inline-block;
 }
 
 /* Hamburger Line */
@@ -200,7 +240,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
-    margin-left: 300%;
+    margin-left: -300%;
 }
 
 /* Hamburger Lines - Top & Bottom */
@@ -317,26 +357,11 @@ body {
 
     #nav {
         grid-area: nav;
-        display: flex;
-    }
-
-    #comp_name {
-        margin-left: 45%;
-        padding-top: 2%;
-        padding-bottom: 2%;
     }
 
     #menu {
         display: flex;
         justify-content: left;
-    }
-
-    #profile_icon {
-        margin-left: 3500%;
-    }
-
-    #shopping {
-        margin-left: 3300%;
     }
 
     #options {
@@ -357,6 +382,8 @@ body {
     #home_image {
         grid-area: banner;
         width: 100vw;
+        padding-left: 2%;
+        padding-right: 2%;
     }
 
     #welcome {
@@ -401,6 +428,7 @@ body {
 
     #footer {
         grid-area: footer;
+        padding-left: 2%;
     }
 }
 
@@ -422,25 +450,11 @@ body {
 
     #nav {
         grid-area: nav;
-        display: flex;
-        padding-top: 3%;
-    }
-
-    #comp_name {
-        margin-left: 40%;
     }
 
     #menu {
         display: flex;
         justify-content: left;
-    }
-
-    #profile_icon {
-        margin-left: 800%;
-    }
-
-    #shopping {
-        margin-left: 800%;
     }
 
     #options {
@@ -456,66 +470,6 @@ body {
 
     #banner {
         grid-area: banner;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    #container {
-        display: grid;
-        width: 100vw;
-        height: 100vh;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr;
-        grid-template-areas:
-            "nav nav"
-            "options options"
-            "banner banner"
-            "welcome welcome"
-            "feature1 feature2"
-            "footer footer";
-    }
-
-    #nav {
-        grid-area: nav;
-        display: flex;
-        padding-top: 3%;
-    }
-
-    #comp_name {
-        margin-left: 40%;
-    }
-
-    #menu {
-        display: flex;
-        justify-content: left;
-    }
-
-    #profile_icon {
-        margin-left: 700%;
-    }
-
-    #shopping {
-        margin-left: 700%;
-    }
-
-    #options {
-        grid-area: options;
-        text-align: center;
-        display: flex;
-        justify-content: space-evenly;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    #banner {
-        grid-area: banner;
-    }
-
-    #home_image {
-        grid-area: banner;
-        width: 100vw;
     }
 
     #welcome {
@@ -566,5 +520,15 @@ body {
 
     #first_name {
         font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .menu-wrap .hamburger > div {
+        margin-left: 0%;
+        margin-top: -300%;
+    }
+    #nav {
+        margin-bottom: -5%;
     }
 }

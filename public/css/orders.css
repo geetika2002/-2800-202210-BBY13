@@ -400,4 +400,25 @@ body {
         grid-area: footer;
     }
 
+    #logoutForm>input[type="submit"] {
+        cursor: pointer;
+        background-color: white;
+        box-shadow: 0 5px rgb(113, 113, 113);
+        display: block;
+        position: relative;
+        transition: 0.3s;
+        margin-bottom: 3%;
+        color: black;
+        margin-top: 15%;
+        width: 70%;
+        height: 90%;
+        border-radius: 6px;
+        border-style: solid;
+        border-width: 1px;
+        text-align: center;
+        left: 20px; 
+        bottom: 20px; 
+
+    }
+
 }
