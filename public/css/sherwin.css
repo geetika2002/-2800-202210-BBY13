@@ -574,3 +574,13 @@ body {
     #footer {
         grid-area: footer;
     }
+
+    @media screen and (max-width: 520px) {
+        .menu-wrap .hamburger > div {
+            margin-left: 0%;
+            margin-top: -300%;
+        }
+        #nav {
+            margin-bottom: -5%;
+        }
+    }
