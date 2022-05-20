@@ -1235,8 +1235,8 @@ async function init() {
                                     
                                     use COMP2800;
                                     CREATE TABLE IF NOT EXISTS BBY_13_cart (
-                                        ID int NOT NULL AUTO_INCREMENT,
-                                        userid int NOT NULL,
+                                        ID INT NOT NULL AUTO_INCREMENT,
+                                        userid INT NOT NULL,
                                         ID_NUMBER VARCHAR(50),
                                         name VARCHAR(50),
                                         price VARCHAR(50),
