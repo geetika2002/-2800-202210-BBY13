@@ -41,9 +41,9 @@
     </div>
 
     <div id="options">
-        <a href="/all">Shop All</a>
-        <a href="/best">Best Sellers</a>
-        <a href="/floor">Flooring</a>
+        <a href="/shopall">Shop All</a>
+        <a href="/bestseller">Best Sellers</a>
+        <a href="/flooring">Flooring</a>
         <a href="/paint">Paint</a>
         <a href="/tile">Tile</a>
     </div>
@@ -52,10 +52,58 @@
     <!-- PAGE CONTENT BEGINS HERE -->
 
 
+    <div id="paint"></div>
 
-    <div id="footer">
 
+    <p id="desc">With zero VOCs, zero emissions and low odor this 100% acrylic product, offers quick-drying and fast turnaround that is ideal for both commercial and residential jobs where an environmentally responsible product is required. Our patented zero-VOC Gennex® colorants ensure that Eco Spec remains zero-VOC even after tinting, meeting the most stringent environmental requirements.</p>
+
+    <div id="green">
+        <h4>Certifications:</h4>
+        <img id="greenseal" onclick="openGreen()" src="https://greenseal.org/wp-content/uploads/green-seal-logo.png" alt="green_seal">
+        <img id="AA" onclick="openA()" src="imgs/AA.png" alt="aa">
+        </div>
+
+    <div id="dial">
+        <h4>Mindful Matter Rating:</h4>
+    <img id="dials" src="imgs/dials.png">
     </div>
+
+
+<div class="form-popup" id="gs">
+  <form action="/action_page.php" class="form-container">
+    <h2>Green Seal Certification</h2>
+
+    <p>Our science-based standards define sustainability leadership in the marketplace and reward industry innovations. Only the healthiest, most responsible, and most effective products achieve the Green Seal.
+    <br/><br/>
+        The Green Seal Compass focuses our standards on key impacts that occur throughout the product life cycle, from raw materials extraction and manufacturing to packaging, use and disposal.</p>
+    
+    <p><a href="https://greenseal.org/green-seal-standards/our-standards/">Visit the Green Seal website.</a></p>
+
+    <button type="button" class="btn cancel" onclick="closeGreen()">Close</button>
+  </form>
+</div>
+
+<div class="form-popup" id="aa">
+    <form action="/action_page.php" class="form-container">
+        <h2>Asthma & Allergy Friendly</h2>
+
+        <p>When you see the asthma & allergy friendly® Certification Mark you know that the product has been scientifically tested and proven to be more suitable for people with asthma and related allergic sensitivities.
+            <br/><br/>
+            The asthma & allergy friendly® Certification Program was developed and launched in Canada by Allergy Standards Limited (ASL) in partnership with Asthma Canada (AC).
+            <br/><br/>
+            The Certification Standards are applied to products to ensure that they fulfill suitability criteria for individuals with asthma and allergic sensitivities.</p>
+        
+        <p><a href="https://asthmaandallergyfriendly.ca/">Visit the Asthma & Allergy Friendly website.</a></p>
+      <button type="button" class="btn cancel" onclick="closeA()">Close</button>
+    </form>
+  </div>
+
+  <div id="footer">
+    <br/><br/><br/>
+<p id="foot"> © Mindful Matter 2022</p>
+<br/>
+</div>
+
 
     <script src="js/client.js"></script>
 </body>
