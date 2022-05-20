@@ -448,52 +448,79 @@ body {
 
     h1 {
         text-align: center;
-        background-color: rgb(192, 250, 250);
-        margin-top: 20px;
+        background-color: rgb(150, 255, 140);
+        margin: 8%; 
     }
 
     .header2 {
-        text-align: center;
-        padding-top: 20px;
+        right: 20px; 
+    }
+
+    .header1 {
+        position: relative; 
+        bottom: 100px; 
     }
 
     .mission {
         text-align: center;
+        position: relative; 
+        top: -210px; 
+        margin: 8%; 
+    } 
+
+    .mission i {
+        color: white; 
+        font-size: 20px; 
+        margin: 8%; 
     }
 
     .text {
         text-align: center;
-        padding-top: 20px;
-        padding-bottom:20px; 
         padding-left: 10px;
         padding-right: 10px;
+        margin: 8%; 
+        position: relative;
+        bottom: 100px; 
     }
 
     .headerTeam {
         text-align: center;
-        padding-top: 20px;
+        position: relative; 
+        bottom: 100px; 
     }
     #teamIntro {
         display: grid;
-        grid-template-rows: 30% 30% 30% 30%;
+        grid-template-rows: 20% 20% 20% 20%;
         grid-template-columns: 100%;
+        position: relative; 
+        bottom: 100px; 
     }
 
-    .team1 {
-        background-color:rgb(192, 250, 250);;
-    }
 
     .team1 img {
         display: grid;
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
-        margin-bottom: 2px;
+        width: 80%;
+        height: 60%; 
+        opacity: 0.5;
     }
 
+    .team1header {
+        text-align: center;
+        position: relative; 
+        bottom: 160px; 
+        color: rgb(94, 94, 94); 
+        right: 10px; 
+        font-size: 50px;
+    }
+    
     .team1text {
         text-align: center;
+        margin: 8%; 
+        position: relative; 
+        bottom: 100px; 
     }
 
     .team2 img {
@@ -501,28 +528,50 @@ body {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
-        margin-bottom: 2px;
+        width: 80%;
+        height: 60%; 
+        opacity: 0.5;
     }
 
+    .team2header {
+        text-align: center;
+        position: relative; 
+        bottom: 160px;
+        color: rgb(94, 94, 94);
+        right: 10px; 
+        font-size: 50px;
+    }
     .team2text {
         text-align: center;
+        margin: 8%; 
+        position: relative; 
+        bottom: 100px; 
     }
 
-    .team3 {
-        background-color: rgb(192, 250, 250);
-    }
     .team3 img {
         display: grid;
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
-        margin-bottom: 2px;
+        width: 80%;
+        height: 60%;
+        opacity: 0.5; 
+    }
+
+    .team3header {
+        text-align: center;
+        position: relative; 
+        bottom: 160px; 
+        color: rgb(94, 94, 94);
+        right: 10px; 
+        font-size: 50px;
     }
 
     .team3text {
         text-align: center;
+        margin: 8%; 
+        position: relative; 
+        bottom: 100px; 
     }
 
     .team4 img {
@@ -530,13 +579,36 @@ body {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
-        margin-bottom: 2px;
+        width: 80%;
+        height: 60%; 
+        opacity: 0.5;
+        position: relative; 
+        top: 40px; 
+    }
+
+    .team4header {
+        text-align: center;
+        position: relative; 
+        bottom: 160px; 
+        color: rgb(94, 94, 94);
+        right: 10px; 
+        font-size: 50px;
     }
 
     .team4text {
         text-align: center;
+        margin: 8%; 
+        position: relative; 
+        bottom: 70px; 
     }
 
+    .image img {
+        width: 100%; 
+        height: 100%; 
+    }
+
+    .about {
+        position: relative; 
+    }
 
 }
