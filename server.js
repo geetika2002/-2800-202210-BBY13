@@ -883,6 +883,44 @@ app.post("/add_paint", async function (req, res) {
   });
 });
 
+app.get("/checkout", function (req, res) {
+  if (req.session) {
+    let profile = fs.readFileSync("./app/confirmation.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    const mysql = require("mysql2");
+
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
+    });
+
+    connection.connect();
+
+    const orderconfirm = profileDOM.window.document.getElementById("welcome");
+
+    let confirmpic =
+      "<img id = order_confirm src = imgs/orderconfirm.jpg> <h1 id=first_name>Your order has been placed!</h1> <h3>The world is full of choices. Thank you for choosing Mindful Matter! We hope that you are satisfied with your purchase. </h3> <a href='/home' id='return_home'>Return Home.</a>";
+
+    orderconfirm.innerHTML += confirmpic;
+
+    // console.log(req.session.idnum);
+
+    let sql = `DELETE FROM BBY_13_cart WHERE userid = ${req.session.idnum}`;
+    connection.query(sql, function (err, result) {
+      if (err) throw err;
+    });
+
+    connection.end();
+
+    res.set("Server", "candy");
+    res.set("X-Powered-By", "candy");
+    res.send(profileDOM.serialize());
+  }
+});
+
 app.get("/cart", function (req, res) {
   if (req.session) {
     let profile = fs.readFileSync("./app/cart.html", "utf8");
@@ -944,6 +982,8 @@ app.get("/cart", function (req, res) {
             prodInfo.innerHTML += deleteProduct;
           }
         }
+
+        connection.end();
 
         res.set("Server", "candy");
         res.set("X-Powered-By", "candy");
@@ -1076,6 +1116,7 @@ app.get("/profile", function (req, res) {
     res.send(profileDOM.serialize());
   }
 });
+
 //ALL PAGE REDIRECTS END HERE
 
 //CHANGE PASSWORD HERE

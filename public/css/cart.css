@@ -95,7 +95,7 @@ img {
   cursor: pointer;
 }
 
-#checkout > input {
+#check_out {
   font-size: 0.9em;
   margin: 0 auto;
   margin-top: 1em;
@@ -114,12 +114,12 @@ img {
   color: black;
 }
 
-#checkout > input[type="button"]:hover {
+#check_out:hover {
   outline: none;
   padding: 2% 10% 2% 10%;
 }
 
-#checkout > input[type="button"]:active {
+#check_out:active {
   transform: translateY(3px);
   box-shadow: 0 5px rgb(119, 119, 119);
 }
