@@ -244,13 +244,13 @@ app.get("/user-profiles", function (req, res) {
           "<th>" +
           "Users" +
           "</th>" +
-          "<th>"+
+          "<th>" +
           " " +
           "</th>" +
-          "<th>"+
+          "<th>" +
           " " +
           "</th>" +
-          "<th>"+
+          "<th>" +
           " " +
           "</th>" +
           "<th>" +
