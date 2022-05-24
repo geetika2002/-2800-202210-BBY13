@@ -51,10 +51,10 @@ app.get("/home", async (req, res) => {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect;
 
@@ -104,10 +104,10 @@ app.post("/login", async function (req, res) {
 
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
   });
   connection.connect();
   const [rows, fields] = await connection.execute(
@@ -185,10 +185,10 @@ app.post("/delete-user", async function (req, res) {
 
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
     multipleStatements: true,
   });
   connection.connect();
@@ -217,10 +217,10 @@ app.get("/user-profiles", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      user: "z596t5v95ron6fzg",
-      password: "lh6fsygbhuhgi3i7",
-      database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -302,10 +302,10 @@ app.get("/edit-by-admin", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -365,10 +365,10 @@ app.get("/profile", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -461,10 +461,10 @@ app.get("/profile-admin", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      user: "z596t5v95ron6fzg",
-      password: "lh6fsygbhuhgi3i7",
-      database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -613,10 +613,10 @@ app.get("/ecospec", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -669,10 +669,10 @@ app.get("/sherwin", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      user: "z596t5v95ron6fzg",
-      password: "lh6fsygbhuhgi3i7",
-      database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -725,10 +725,10 @@ app.get("/bio", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -781,10 +781,10 @@ app.get("/behr", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -833,10 +833,10 @@ app.post("/add_paint", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
     multipleStatements: true,
   });
 
@@ -885,10 +885,10 @@ app.get("/checkout", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
 
     connection.connect();
@@ -923,10 +923,10 @@ app.get("/cart", function (req, res) {
     const mysql = require("mysql2");
 
     const connection = mysql.createConnection({
-      host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800",
     });
     connection.connect();
 
@@ -991,10 +991,10 @@ app.post("/delete_product", async function (req, res) {
   res.setHeader("Content-type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
     multipleStatements: true,
   });
 
@@ -1033,10 +1033,10 @@ app.post("/add-new-user", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
   const connection = mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
   });
 
   connection.connect();
@@ -1079,10 +1079,10 @@ app.post("/add-new-admin", function (req, res) {
   res.setHeader("Content-Type", "application/json");
 
   const connection = mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "z596t5v95ron6fzg",
-    password: "lh6fsygbhuhgi3i7",
-    database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
   });
 
   connection.connect();
@@ -1130,10 +1130,10 @@ app.post("/new_info", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "z596t5v95ron6fzg",
-    password: "lh6fsygbhuhgi3i7",
-    database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
     multipleStatements: true,
   });
   connection.connect();
@@ -1171,10 +1171,10 @@ app.post("/new_info_admin", async function (req, res) {
   res.setHeader("Content-Type", "application/json");
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
     multipleStatements: true,
   });
   connection.connect();
@@ -1205,15 +1205,14 @@ app.post("/new_info_admin", async function (req, res) {
 async function init() {
   const mysql = require("mysql2/promise");
   const connection = await mysql.createConnection({
-    host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "z596t5v95ron6fzg",
-  password: "lh6fsygbhuhgi3i7",
-  database: "rz2y3uh9vljkf5dz",
+    host: "localhost",
+    user: "root",
+    password: "",
     multipleStatements: true,
   });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS rz2y3uh9vljkf5dz;
-                            use rz2y3uh9vljkf5dz;
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
+                            use COMP2800;
                             CREATE TABLE IF NOT EXISTS BBY_13_mm_users (
                                 ID_NUMBER int NOT NULL AUTO_INCREMENT,
                                 username VARCHAR(50),
@@ -1225,7 +1224,7 @@ async function init() {
                                 password VARCHAR(50),
                                 PRIMARY KEY (ID_NUMBER));
 
-                                  use rz2y3uh9vljkf5dz;
+                                  use COMP2800;
                                   CREATE TABLE IF NOT EXISTS BBY_13_products (
                                     ID int NOT NULL AUTO_INCREMENT,
                                     name VARCHAR(50),
@@ -1234,7 +1233,7 @@ async function init() {
                                     quantity INT(100) NOT NULL DEFAULT 0,
                                     PRIMARY KEY (ID));  
                                     
-                                    use rz2y3uh9vljkf5dz;
+                                    use COMP2800;
                                     CREATE TABLE IF NOT EXISTS BBY_13_cart (
                                         ID INT NOT NULL AUTO_INCREMENT,
                                         userid INT NOT NULL,
@@ -1283,8 +1282,6 @@ async function init() {
   }
 }
 
-// app.listen(port, init);
 let port = 8000;
-app.listen(process.env.PORT || 8000, init);
-
+app.listen(port, init);
 console.log("listening on port " + port + "!");
