@@ -9,6 +9,12 @@
 
 body {
     overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 
 #logoutForm > input[type="submit"] {
@@ -484,8 +490,8 @@ body {
         border-radius: 15px;
         padding-left: 8%;
         margin-top: 15%;
-        margin-left: 10%;
-        margin-right: 1%;
+        margin-left: 3%;
+        margin-right: 2%;
     }
 
     #feature2 {
@@ -495,8 +501,8 @@ body {
         border-radius: 15px;
         padding-left: 8%;
         margin-top: 15%;
-        margin-left: 1%;
-        margin-right: 10%;
+        margin-left: 2%;
+        margin-right: 3%;
     }
 
     #saferchoice {
