@@ -688,7 +688,7 @@ app.get("/ecospec", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-                        "<input type=number id=quantity value =" +
+                        "<input type=number id=quantity min=0 max=5000 value =" +
                         paintresults[i].quantity +
                         ">" +
                         "<p><button class='addToCart' id=" +
@@ -746,7 +746,7 @@ app.get("/sherwin", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-                        "<input type=number id=quantity value =" +
+                        "<input type=number id=quantity min=0 max=5000 value =" +
                         paintresults[i].quantity +
                         ">" +
                         "<p><button class='addToCart' id=" +
@@ -804,7 +804,7 @@ app.get("/bio", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-                        "<input type=number id=quantity value =" +
+                        "<input type=number id=quantity min=0 max=5000 value =" +
                         paintresults[i].quantity +
                         ">" +
                         "<p><button class='addToCart' id=" +
@@ -862,7 +862,7 @@ app.get("/behr", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-                        "<input id=minus type=button value=><input type=number id=quantity value =" +
+                        "<input type=number id=quantity min=0 max=5000 value =" +
                         paintresults[i].quantity +
                         ">" +
                         "<p><button class='addToCart' id=" +
@@ -1298,7 +1298,7 @@ async function init() {
                                     name VARCHAR(50),
                                     price VARCHAR(50),
                                     image VARCHAR(50),
-                                    quantity INT(100) NOT NULL DEFAULT 0,
+                                    quantity INT(100) NOT NULL DEFAULT 1,
                                     PRIMARY KEY (ID));  
                                     
                                     use COMP2800;
