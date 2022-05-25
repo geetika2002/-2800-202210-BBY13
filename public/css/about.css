@@ -287,30 +287,25 @@ body {
 }
 
 
-@media screen and (max-width: 2000px) {
+@media (max-width: 2000px) {
+
     #container {
         display: grid;
         width: 100vw;
         height: 100vh;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr;
-        grid-template-areas:
-            "nav nav nav nav"
-            "options options options options"
-            "p1 p2 p3 p4"
-            "p5 p6 p7 p8"
-            "p9 p10 p11 p12"
-            "footer footer footer footer";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
     }
 
     #nav {
         grid-area: nav;
         display: flex;
+        padding-top: 3%;
     }
 
+
     #comp_name {
-        margin-left: 45%;
-        padding-top: 2%;
+        margin-left: 40%;
     }
 
     #menu {
@@ -319,11 +314,11 @@ body {
     }
 
     #profile_icon {
-        margin-left: 3500%;
+        margin-left: 700%;
     }
 
     #shopping {
-        margin-left: 3300%;
+        margin-left: 700%;
     }
 
     #options {
@@ -337,9 +332,259 @@ body {
         text-decoration: none;
     }
 
+    #paint {
+        text-align: center;
+    }
+
+    img {
+        width: 60%;
+        padding-top: 5%;
+    }
+
+    h2 {
+        text-align: left;
+        margin-left: 8%;
+    }
+
+    h4 {
+        text-align: left;
+        margin-left: 8%;
+    }
+
+    input {
+        text-align: left;
+        margin-right: 74%;
+        margin-top: 3%;
+        width: 10%;
+    }
+
     #footer {
         grid-area: footer;
+        padding-left: 8%;
+        width: 100vw;
+        margin-top: 5%;
     }
+
+    #logoutForm>input[type="submit"] {
+        cursor: pointer;
+        background-color: white;
+        box-shadow: 0 5px rgb(113, 113, 113);
+        display: block;
+        position: relative;
+        transition: 0.3s;
+        margin-bottom: 3%;
+        color: black;
+        margin-top: 15%;
+        width: 70%;
+        height: 90%;
+        border-radius: 6px;
+        border-style: solid;
+        border-width: 1px;
+        text-align: center;
+        left: 20px; 
+        bottom: 20px; 
+
+    }
+
+    h1 {
+        text-align: center;
+        background-color: rgb(150, 255, 140);
+        margin: 8%; 
+    }
+
+    .header2 {
+        right: 20px; 
+    }
+
+    .header1 {
+        position: relative; 
+        bottom: 100px; 
+    }
+
+    .mission {
+        text-align: center;
+        position: relative; 
+        top: -210px; 
+        margin: 8%; 
+    } 
+
+    .mission i {
+        color: white; 
+        font-size: 20px; 
+        margin: 8%; 
+    }
+
+    .text {
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 8%; 
+        position: relative;
+        bottom: 100px; 
+    }
+
+    .headerTeam {
+        text-align: center;
+        position: relative; 
+        bottom: 100px; 
+    }
+    #teamIntro {
+        display: grid;
+        grid-template-rows: 20% 20% 20% 20%;
+        grid-template-columns: 100%;
+        position: relative; 
+        bottom: 100px; 
+    }
+
+
+    .team1 img {
+        display: grid;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        height: 60%; 
+        opacity: 0.5;
+    }
+
+    .team1header {
+        text-align: center;
+        position: relative; 
+        bottom: 160px; 
+        color: rgb(94, 94, 94); 
+        right: 10px; 
+        font-size: 50px;
+    }
+    
+    .team1text {
+        text-align: center;
+        margin: 8%; 
+        position: relative; 
+        bottom: 100px; 
+    }
+
+    .team2 img {
+        display: grid;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        height: 60%; 
+        opacity: 0.5;
+    }
+
+    .team2header {
+        text-align: center;
+        position: relative; 
+        bottom: 160px;
+        color: rgb(94, 94, 94);
+        right: 10px; 
+        font-size: 50px;
+    }
+    .team2text {
+        text-align: center;
+        margin: 8%; 
+        position: relative; 
+        bottom: 100px; 
+    }
+
+    .team3 img {
+        display: grid;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        height: 60%;
+        opacity: 0.5; 
+    }
+
+    .team3header {
+        text-align: center;
+        position: relative; 
+        bottom: 160px; 
+        color: rgb(94, 94, 94);
+        right: 10px; 
+        font-size: 50px;
+    }
+
+    .team3text {
+        text-align: center;
+        margin: 8%; 
+        position: relative; 
+        bottom: 100px; 
+    }
+
+    .team4 img {
+        display: grid;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        height: 60%; 
+        opacity: 0.5;
+        position: relative; 
+        top: 40px; 
+    }
+
+    .team4header {
+        text-align: center;
+        position: relative; 
+        bottom: 160px; 
+        color: rgb(94, 94, 94);
+        right: 10px; 
+        font-size: 50px;
+    }
+
+    .team4text {
+        text-align: center;
+        margin: 8%; 
+        position: relative; 
+        bottom: 70px; 
+    }
+
+    .image img {
+        width: 100%; 
+        height: 100%; 
+    }
+
+    .about {
+        position: relative; 
+    }
+
+    .image2 img {
+        width: 80%; 
+        height: 60%; 
+        margin: 8%; 
+        position: relative;
+        left: 15px; 
+    }
+
+    .image2 h3 {
+        text-align: center;
+        position: relative;
+        bottom: 350px; 
+        right: 15px; 
+        margin: 8%; 
+    }
+
+    .image2 i {
+        color: white;
+        margin: 8%; 
+    }
+
+    .image2 h2 {
+        text-align: center;
+        position: relative;
+        right: 5px; 
+        bottom: 100px; 
+        margin: 8%; 
+    }
+
+    footer {
+        margin-bottom: 40px;
+    }
+
+
 }
 
 @media screen and (max-width: 700px) {
@@ -616,25 +861,39 @@ body {
     }
 
     .image2 img {
-        width: 100%; 
-        height: 80%; 
+        width: 80%; 
+        height: 60%; 
+        margin: 8%; 
+        position: relative;
+        left: 15px; 
     }
 
     .image2 h3 {
         text-align: center;
         position: relative;
-        bottom: 300px; 
+        bottom: 350px; 
+        right: 15px; 
+        margin: 8%; 
     }
 
     .image2 i {
         color: white;
+        margin: 8%; 
     }
 
     .image2 h2 {
         text-align: center;
         position: relative;
-        right: 20px; 
+        right: 5px; 
+        bottom: 100px; 
+        margin: 8%; 
     }
+
+    footer {
+        margin-bottom: 40px;
+    }
+
+
 
 }
 
@@ -645,5 +904,304 @@ body {
     }
     #nav {
         margin-bottom: 5%;
+    } 
+        #container {
+            display: grid;
+            width: 100vw;
+            height: 100vh;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+            grid-template-areas:
+                "nav nav"
+                "options options"
+                "p1 p2"
+                "p3 p4"
+                "p5 p6"
+                "p7 p8"
+                "p9 p10"
+                "p11 p12"
+                "footer footer";
+        }
+
+    
+        #comp_name {
+            margin-left: 40%;
+        }
+    
+        #menu {
+            display: flex;
+            justify-content: left;
+        }
+    
+        #profile_icon {
+            margin-left: 700%;
+        }
+    
+        #shopping {
+            margin-left: 700%;
+        }
+    
+        #options {
+            grid-area: options;
+            text-align: center;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    
+        a {
+            text-decoration: none;
+        }
+    
+        #paint {
+            text-align: center;
+        }
+    
+        img {
+            width: 60%;
+            padding-top: 5%;
+        }
+    
+        h2 {
+            text-align: left;
+            margin-left: 8%;
+        }
+    
+        h4 {
+            text-align: left;
+            margin-left: 8%;
+        }
+    
+        input {
+            text-align: left;
+            margin-right: 74%;
+            margin-top: 3%;
+            width: 10%;
+        }
+    
+        #footer {
+            grid-area: footer;
+            padding-left: 8%;
+            width: 100vw;
+            margin-top: 5%;
+        }
+    
+        #logoutForm>input[type="submit"] {
+            cursor: pointer;
+            background-color: white;
+            box-shadow: 0 5px rgb(113, 113, 113);
+            display: block;
+            position: relative;
+            transition: 0.3s;
+            margin-bottom: 3%;
+            color: black;
+            margin-top: 15%;
+            width: 70%;
+            height: 90%;
+            border-radius: 6px;
+            border-style: solid;
+            border-width: 1px;
+            text-align: center;
+            left: 20px; 
+            bottom: 20px; 
+    
+        }
+    
+        h1 {
+            text-align: center;
+            background-color: rgb(150, 255, 140);
+            margin: 8%; 
+        }
+    
+        .header2 {
+            right: 20px; 
+        }
+    
+        .header1 {
+            position: relative; 
+            bottom: 100px; 
+        }
+    
+        .mission {
+            text-align: center;
+            position: relative; 
+            top: -210px; 
+            margin: 8%; 
+        } 
+    
+        .mission i {
+            color: white; 
+            font-size: 20px; 
+            margin: 8%; 
+        }
+    
+        .text {
+            text-align: center;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin: 8%; 
+            position: relative;
+            bottom: 100px; 
+        }
+    
+        .headerTeam {
+            text-align: center;
+            position: relative; 
+            bottom: 100px; 
+        }
+        #teamIntro {
+            display: grid;
+            grid-template-rows: 20% 20% 20% 20%;
+            grid-template-columns: 100%;
+            position: relative; 
+            bottom: 100px; 
+        }
+    
+    
+        .team1 img {
+            display: grid;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            height: 60%; 
+            opacity: 0.5;
+        }
+    
+        .team1header {
+            text-align: center;
+            position: relative; 
+            bottom: 160px; 
+            color: rgb(94, 94, 94); 
+            right: 10px; 
+            font-size: 50px;
+        }
+        
+        .team1text {
+            text-align: center;
+            margin: 8%; 
+            position: relative; 
+            bottom: 100px; 
+        }
+    
+        .team2 img {
+            display: grid;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            height: 60%; 
+            opacity: 0.5;
+        }
+    
+        .team2header {
+            text-align: center;
+            position: relative; 
+            bottom: 160px;
+            color: rgb(94, 94, 94);
+            right: 10px; 
+            font-size: 50px;
+        }
+        .team2text {
+            text-align: center;
+            margin: 8%; 
+            position: relative; 
+            bottom: 100px; 
+        }
+    
+        .team3 img {
+            display: grid;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            height: 60%;
+            opacity: 0.5; 
+        }
+    
+        .team3header {
+            text-align: center;
+            position: relative; 
+            bottom: 160px; 
+            color: rgb(94, 94, 94);
+            right: 10px; 
+            font-size: 50px;
+        }
+    
+        .team3text {
+            text-align: center;
+            margin: 8%; 
+            position: relative; 
+            bottom: 100px; 
+        }
+    
+        .team4 img {
+            display: grid;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            height: 60%; 
+            opacity: 0.5;
+            position: relative; 
+            top: 40px; 
+        }
+    
+        .team4header {
+            text-align: center;
+            position: relative; 
+            bottom: 160px; 
+            color: rgb(94, 94, 94);
+            right: 10px; 
+            font-size: 50px;
+        }
+    
+        .team4text {
+            text-align: center;
+            margin: 8%; 
+            position: relative; 
+            bottom: 70px; 
+        }
+    
+        .image img {
+            width: 100%; 
+            height: 100%; 
+        }
+    
+        .about {
+            position: relative; 
+        }
+    
+        .image2 img {
+            width: 80%; 
+            height: 60%; 
+            margin: 8%; 
+            position: relative;
+            left: 15px; 
+        }
+    
+        .image2 h3 {
+            text-align: center;
+            position: relative;
+            bottom: 350px; 
+            right: 15px; 
+            margin: 8%; 
+        }
+    
+        .image2 i {
+            color: white;
+            margin: 8%; 
+        }
+    
+        .image2 h2 {
+            text-align: center;
+            position: relative;
+            right: 5px; 
+            bottom: 100px; 
+            margin: 8%; 
+        }
+    
+        footer {
+            margin-bottom: 40px;
+        }
+    
     }
-}
