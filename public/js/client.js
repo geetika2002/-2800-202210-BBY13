@@ -264,13 +264,9 @@ if (docum) {
     ajaxPOST(
       "/add-new-user",
       function (data) {
-        if (
-          first == null ||
-          last == null ||
-          username == null ||
-          password == null ||
-          email == null
-        ) {
+        if (document.getElementById("username").value == null|| document.getElementById("first").value == null|| document.getElementById("last").value == null
+        || document.getElementById("email").value == null|| document.getElementById("password").value == null)
+        {
           document.getElementById("errorMsg").innerHTML = jsondata.msg;
         }
 
