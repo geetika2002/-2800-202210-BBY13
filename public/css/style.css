@@ -60,13 +60,13 @@ body::-webkit-scrollbar {
     box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
 }
 
-#welcome > button:hover {
+#welcome > a > button:hover {
     outline: none;
     padding: 2% 10% 2% 10%;
     box-shadow: 0 4px 20px 0 rgb(129, 170, 115);
 }
 
-#welcome > button:active {
+#welcome > a > button:active {
     transform: translateY(3px);
     box-shadow: 0 5px rgb(255, 255, 255);
 }
