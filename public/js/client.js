@@ -5,10 +5,10 @@ function ajaxPOST(url, callback, data) {
     typeof data == "string"
       ? data
       : Object.keys(data)
-          .map(function (k) {
-            return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
-          })
-          .join("&");
+        .map(function (k) {
+          return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+        })
+        .join("&");
 
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -264,9 +264,8 @@ if (docum) {
     ajaxPOST(
       "/add-new-user",
       function (data) {
-        if (document.getElementById("username").value == null|| document.getElementById("first").value == null|| document.getElementById("last").value == null
-        || document.getElementById("email").value == null|| document.getElementById("password").value == null)
-        {
+        if (document.getElementById("username").value == null || document.getElementById("first").value == null || document.getElementById("last").value == null
+          || document.getElementById("email").value == null || document.getElementById("password").value == null) {
           document.getElementById("errorMsg").innerHTML = jsondata.msg;
         }
 
