@@ -606,6 +606,7 @@ body {
 #new_user #createNew {
     grid-row: 7;
     width: 30%;
+    height: 60%;
     display: block;
     cursor: pointer;
     margin: 0 auto;
