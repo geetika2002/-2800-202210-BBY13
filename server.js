@@ -317,7 +317,7 @@ app.get("/edit-by-admin", function (req, res) {
                     console.log(error);
                 }
 
-                for (let i = 1; i < results.length; i++) {
+                for (let i = 0; i < results.length; i++) {
                     if (req.session.user_edit == results[i].username) {
                         let firstname =
                             profDOM.window.document.getElementById(
