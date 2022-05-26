@@ -10,12 +10,18 @@
 
 body {
     overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 
 #logoutForm > input[type="submit"] {
     cursor: pointer;
     background-color: white;
-    box-shadow: 0 5px rgb(113, 113, 113);
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
     display: inline-block;
     position: relative;
     transition: 0.3s;
@@ -25,8 +31,7 @@ body {
     width: 70%;
     height: 90%;
     border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
+    border-style: none;
 }
 
 #logoutForm > input[type="submit"]:active {
@@ -42,28 +47,26 @@ body {
     outline: none;
     border: none;
     text-align: center;
-    color: rgb(0, 0, 0);
     padding: 2% 5% 2% 5%;
     background-color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 6px rgb(149, 149, 149);
     display: inline-block;
     position: relative;
     transition: 0.3s;
     color: black;
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
 }
 
 #welcome > button:hover {
     outline: none;
     padding: 2% 10% 2% 10%;
+    box-shadow: 0 4px 20px 0 rgb(129, 170, 115);
 }
 
 #welcome > button:active {
     transform: translateY(3px);
-    box-shadow: 0 5px rgb(119, 119, 119);
+    box-shadow: 0 5px rgb(255, 255, 255);
 }
 
 /* CORE STYLES */
@@ -144,14 +147,16 @@ body {
 
 /* MENU STYLES */
 .menu-wrap {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     z-index: 1;
+    grid-row: 3;
+    grid-column: 1;
 }
 
 .menu-wrap .toggler {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     z-index: 2;
@@ -162,18 +167,13 @@ body {
 }
 
 .menu-wrap .hamburger {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     z-index: 1;
     width: 50px;
-    height: 40px;
+    height: 50px;
     padding: 1rem;
     background: rgb(rgb(179, 179, 179));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 300%;
+    display: inline-block;
 }
 
 /* Hamburger Line */
@@ -187,7 +187,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
-    margin-left: 300%;
+    margin-left: -300%;
 }
 
 /* Hamburger Lines - Top & Bottom */
@@ -286,6 +286,50 @@ body {
     transition: color 0.4s ease;
 }
 
+#nav {
+    display: grid;
+    height: auto;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 10% 10% 60% 10% 10%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#comp_container {
+    grid-column: 2 / span 3;
+    grid-row: 3;
+    text-align: center;
+}
+#comp_name {
+    font-size: x-large;
+}
+
+#profile_container {
+    grid-column: 5;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+}
+
+#cart_container {
+    grid-column: 5;
+    grid-row: 3;
+    display: flex;
+    justify-content: right;
+}
+
+#profile_icon {
+    display: inline-block;
+    transform: translateY(30%);
+}
+
+#shopping {
+    display: inline-block;
+    transform: translateY(30%);
+}
+
 @media screen and (max-width: 2000px) {
     #container {
         display: grid;
@@ -304,25 +348,11 @@ body {
 
     #nav {
         grid-area: nav;
-        display: flex;
-    }
-
-    #comp_name {
-        margin-left: 45%;
-        padding-top: 2%;
     }
 
     #menu {
         display: flex;
         justify-content: left;
-    }
-
-    #profile_icon {
-        margin-left: 3500%;
-    }
-
-    #shopping {
-        margin-left: 3300%;
     }
 
     #options {
@@ -361,6 +391,10 @@ body {
     #footer {
         grid-area: footer;
     }
+    #profile_container {
+        justify-content: right;
+        margin-right: 20%;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -384,25 +418,11 @@ body {
 
     #nav {
         grid-area: nav;
-        display: flex;
-        padding-top: 3%;
-    }
-
-    #comp_name {
-        margin-left: 40%;
     }
 
     #menu {
         display: flex;
         justify-content: left;
-    }
-
-    #profile_icon {
-        margin-left: 700%;
-    }
-
-    #shopping {
-        margin-left: 700%;
     }
 
     #options {
@@ -441,38 +461,41 @@ body {
     #footer {
         grid-area: footer;
     }
+
+    #profile_container {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 button {
-    font-size: 0.9em;
+    font-size: 0.8em;
     display: block;
     margin: 0 auto;
-    margin-top: 1em;
     outline: none;
     border: none;
     text-align: center;
     color: rgb(0, 0, 0);
     padding: 2% 5% 2% 5%;
     background-color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 6px rgb(149, 149, 149);
     display: inline-block;
     position: relative;
     transition: 0.3s;
     color: black;
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
 }
 
 button:hover {
     outline: none;
     padding: 2% 10% 2% 10%;
+    box-shadow: 0 4px 20px 0 rgb(129, 170, 115);
 }
 
 button:active {
     transform: translateY(3px);
-    box-shadow: 0 5px rgb(119, 119, 119);
+    box-shadow: 0 5px rgb(240, 240, 240);
 }
 
 P {
@@ -567,9 +590,9 @@ P {
 @media screen and (max-width: 520px) {
     .menu-wrap .hamburger > div {
         margin-left: 0%;
-        margin-top: 100%;
+        margin-top: -300%;
     }
     #nav {
-        margin-bottom: 5%;
+        margin-bottom: -5%;
     }
 }

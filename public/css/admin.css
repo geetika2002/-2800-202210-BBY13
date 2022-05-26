@@ -329,38 +329,46 @@ body {
     #users {
       display: grid;
       grid-area: users;
-      background-color: bisque;
+      background-color: rgb(224, 240, 224);
+      box-shadow: 0 0 10px 5px rgb(189, 189, 189);
       text-align: center;
+      width: 50%;
       padding-top: 10%;
       padding-bottom: 10%;
       margin-bottom: 5%;
+      margin-left: 25%;
       margin-top: 5%;
       border-radius: 20px;
     }
 
     #orders {
       grid-area: orders;
-      background-color: rgb(218, 192, 160);
-      text-align: center;
-      padding-top: 10%;
-      padding-bottom: 10%;
-      margin-bottom: 5%;
-      margin-top: 10%;
-      border-radius: 20px;
-    }
-
-    #stats {
-      grid-area: stats;
-      background-color: rgb(255, 204, 145);
+      background-color: rgb(191, 216, 191);
+      box-shadow: 0 0 10px 5px rgb(189, 189, 189);
       text-align: center;
       padding-top: 10%;
       padding-bottom: 10%;
       margin-bottom: 5%;
       margin-top: 5%;
       border-radius: 20px;
+      width: 50%;
+      margin-left: 25%;
+
     }
 
-
+    #stats {
+      grid-area: stats;
+      background-color: rgb(150, 174, 150);
+      box-shadow: 0 0 10px 5px rgb(189, 189, 189);
+      text-align: center;
+      padding-top: 10%;
+      padding-bottom: 10%;
+      margin-bottom: 5%;
+      margin-top: 5%;
+      border-radius: 20px;
+      width: 50%;
+      margin-left: 25%;
+    }
 
 
     #footer {
@@ -402,28 +410,6 @@ body {
         justify-content: left;
     }
 
-    /* #line {
-        grid-area: line;
-
-    }
-
-    #line img {
-        grid-area: line;
-        max-width: 100vw;
-        margin-right: 10%;
-        margin-left: 5%;
-    }
-
-    #donut {
-        grid-area: donut;
-    }
-
-    #donut img {
-        grid-area: donut;
-        max-width: 100vw;
-        margin-right: 15%;
-    } */
-
     #users {
       display: grid;
       grid-area: users;
@@ -437,6 +423,7 @@ body {
       border-radius: 20px;
       margin-left: 3%;
       margin-right: 3%;
+      width: 94%;
     }
 
     #orders {
@@ -451,6 +438,7 @@ body {
       border-radius: 20px;
       margin-left: 3%;
       margin-right: 3%;
+      width: 94%;
     }
 
     #stats {
@@ -465,6 +453,7 @@ body {
       border-radius: 20px;
       margin-left: 3%;
       margin-right: 3%;
+      width: 94%;
     }
 
 
