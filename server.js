@@ -7,7 +7,6 @@ const { JSDOM } = require("jsdom");
 const mysql = require("mysql");
 const { response } = require("express");
 const req = require("express/lib/request");
-const { ReadableStreamBYOBRequest } = require("stream/web");
 const { type } = require("express/lib/response");
 
 app.use("/js", express.static("./public/js"));
