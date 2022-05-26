@@ -1,15 +1,8 @@
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="\imgs\MindfulMatterLogo.png">
-    <img src="\imgs\MindfulMatterLogo.png" alt="Logo" width="80" height="80">
-  </a>
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project - Mindful Matter 
+## About The Project - Mindful Matter (BBY13)
 
-[![Product Name Screen Shot][product-screenshot]]
 
 Our team at Mindful Matter is developing a web/mobile marketplace for certified 
 sustainable and safe building materials, to help homeowners and our planet with efficiency and convenience.
