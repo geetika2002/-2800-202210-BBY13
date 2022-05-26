@@ -190,6 +190,7 @@ body {
 .menu-wrap .hamburger {
     position: relative;
     z-index: 1;
+    right: 20%;
     width: 50px;
     height: 50px;
     padding: 1rem;
@@ -208,7 +209,6 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
-    margin-left: -300%;
 }
 
 /* Hamburger Lines - Top & Bottom */
@@ -467,10 +467,11 @@ body {
     display: inline-block;
 }
 
-.hamburger{
-  position: absolute;
-  right: 70%;
+.hamburger {
+    position: absolute;
+    left: 20%;
 }
+
 
 #admin_change {
     font-size: 0.9em;
@@ -846,9 +847,6 @@ img {
 
     .hamburger {
       position: absolute;
-      margin-left: 90%;
-      bottom: 80%;
-      
     }
 
     .toggler {
@@ -926,7 +924,7 @@ img {
   padding: 1rem;
   background: rgb(rgb(179, 179, 179));
   display: inline-block;
-  margin-top: 3%;
+  margin-top: 10%;
 }
 
 /* Hamburger Line */
