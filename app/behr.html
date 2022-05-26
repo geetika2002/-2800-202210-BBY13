@@ -5,39 +5,39 @@
     <title>Behr</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="/imgs/mindfulmatterlogo.png" rel="icon" type="image/x-icon" />
     <link href="/css/behr.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/730ad0d560.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="nav">
-        <a id="comp_name" href="/home">Mindful Matter</a>
-        <a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a>
-        <a href="/cart"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a>
-    </div>
 
-    <div class="menu-wrap">
-        <input type="checkbox" class="toggler">
-        <div class="hamburger">
-            <div></div>
-        </div>
-        <div class="menu">
-            <div>
+        <div class="menu-wrap">
+            <input type="checkbox" class="toggler">
+            <div class="hamburger">
+                <div></div>
+            </div>
+            <div class="menu">
                 <div>
-                    <ul>
-                        <li><a href="/home">Home</a></li>
-                        <li><a href="/profile">My Profile</a></li>
-                        <li><a href="/orders">My Orders</a></li>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/faq">FAQ</a></li>
-                    </ul>
-                    <form id="logoutForm" action="/logout" method="get">
-                        <input type="submit" value="Logout" />
-                    </form>
+                    <div>
+                        <ul>
+                            <li><a href="/home">Home</a></li>
+                            <li><a href="/profile">My Profile</a></li>
+                            <li><a href="/orders">My Orders</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                            <form id="logoutForm" action="/logout" method="get">
+                                <input type="submit" value="Logout" />
+                            </form>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        <div id="comp_container"><a id="comp_name" href="/home">Mindful Matter</a></div>
+        <div id="profile_container"><a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a></div>
+        <div id="cart_container"><a href="/cart"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a></div>
     </div>
 
     <div id="options">
@@ -53,51 +53,66 @@
 
     <div id="paint"></div>
 
-    <p id="desc">BEHR PREMIUM PLUS® offers exceptional durability and hide with a finish that resists mildew and stains. In addition, you'll enjoy the benefits of a low odor paint. PREMIUM PLUS is highly ranked by independent 3rd party labs and meets LEED and GREENGUARD® GOLD requirements.</p>
+    <p id="desc">BEHR PREMIUM PLUS® offers exceptional durability and hide with a finish that resists mildew and stains.
+        In addition, you'll enjoy the benefits of a low odor paint. PREMIUM PLUS is highly ranked by independent 3rd
+        party labs and meets LEED and GREENGUARD® GOLD requirements.</p>
 
     <div id="green">
         <h4>Certifications:</h4>
         <img id="gg" onclick="openG()" src="imgs/ggg.jpg" alt="ggg">
         <img id="leed" onclick="openLeed()" src="imgs/leed.jpg" alt="leed">
-        </div>
+    </div>
 
     <div id="dial">
-    <h4>Mindful Matter Rating:</h4>
-    <img id="dials" src="imgs/dials.png">
+        <h4>Mindful Matter Rating:</h4>
+        <img id="dials" src="imgs/dials.png">
     </div>
 
     <div class="form-popup" id="greenGuard">
         <form action="/action_page.php" class="form-container">
-          <h2>Green Guard Gold Certification</h2>
-      
-          <p>If a product has been GREENGUARD Certified, it has been tested and scientifically proven to have low chemical emissions, says Scott Steady, product manager for indoor air quality at UL. In other words, it’s guaranteed to give off only low levels of volatile organic compounds, or VOCs.
-          <br/><br/>
-          VOCs are carbon-based chemicals (such as formaldehyde) that easily become vapors or gases. Mattresses, flooring and even wall paints give off VOCs. They’re responsible for that new building smell and new car smell, Steady says. Inside your house you may be breathing anywhere from 50 to hundreds of different VOCs at any time.</p>
-          
-          <p><a href="https://www.ul.com/insights/what-does-greenguard-certified-mean">Visit the Green Guard website.</a></p>
-      
-          <button type="button" class="btn cancel" onclick="closeG()">Close</button>
-        </form>
-      </div>
+            <h2>Green Guard Gold Certification</h2>
 
-      <div class="form-popup" id="leedCert">
+            <p>If a product has been GREENGUARD Certified, it has been tested and scientifically proven to have low
+                chemical emissions, says Scott Steady, product manager for indoor air quality at UL. In other words,
+                it’s guaranteed to give off only low levels of volatile organic compounds, or VOCs.
+                <br /><br />
+                VOCs are carbon-based chemicals (such as formaldehyde) that easily become vapors or gases. Mattresses,
+                flooring and even wall paints give off VOCs. They’re responsible for that new building smell and new car
+                smell, Steady says. Inside your house you may be breathing anywhere from 50 to hundreds of different
+                VOCs at any time.
+            </p>
+
+            <p><a href="https://www.ul.com/insights/what-does-greenguard-certified-mean">Visit the Green Guard
+                    website.</a></p>
+
+            <button type="button" class="btn cancel" onclick="closeG()">Close</button>
+        </form>
+    </div>
+
+    <div class="form-popup" id="leedCert">
         <form action="/action_page.php" class="form-container">
-          <h2>LEED Gold Certification</h2>
-      
-          <p>LEED provides a framework for healthy, efficient, carbon and cost-saving green buildings. LEED certification is a globally recognized symbol of sustainability achievement and leadership.
-          <br/><br/>
-          To achieve LEED certification, a project earns points by adhering to prerequisites and credits that address carbon, energy, water, waste, transportation, materials, health and indoor environmental quality. Projects go through a verification and review process by GBCI and are awarded points that correspond to a level of LEED certification: Certified (40-49 points), Silver (50-59 points), Gold (60-79 points) and Platinum (80+ points).</p>
-          
-          <p><a href="https://www.usgbc.org/leed">Visit the LEED website.</a></p>
-      
-          <button type="button" class="btn cancel" onclick="closeLeed()">Close</button>
-        </form>
-      </div>
+            <h2>LEED Gold Certification</h2>
 
-      <div id="footer">
-        <br/><br/><br/>
-    <p id="foot"> © Mindful Matter 2022</p>
-    <br/>
+            <p>LEED provides a framework for healthy, efficient, carbon and cost-saving green buildings. LEED
+                certification is a globally recognized symbol of sustainability achievement and leadership.
+                <br /><br />
+                To achieve LEED certification, a project earns points by adhering to prerequisites and credits that
+                address carbon, energy, water, waste, transportation, materials, health and indoor environmental
+                quality. Projects go through a verification and review process by GBCI and are awarded points that
+                correspond to a level of LEED certification: Certified (40-49 points), Silver (50-59 points), Gold
+                (60-79 points) and Platinum (80+ points).
+            </p>
+
+            <p><a href="https://www.usgbc.org/leed">Visit the LEED website.</a></p>
+
+            <button type="button" class="btn cancel" onclick="closeLeed()">Close</button>
+        </form>
+    </div>
+
+    <div id="footer">
+        <br /><br /><br />
+        <p id="foot"> © Mindful Matter 2022</p>
+        <br />
     </div>
 
 
