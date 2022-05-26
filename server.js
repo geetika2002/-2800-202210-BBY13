@@ -856,11 +856,7 @@ app.get("/behr", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-<<<<<<< HEAD
                         "<input type=number id=quantity min=0 max=5000 value =1>" +
-=======
-                        "<input type=number id=quantity value = 1>" +
->>>>>>> SB_CSS_f
                         "<p><button class='addToCart' id=" +
                         paintresults[i].ID +
                         " onclick='addToCart(this.id);'> Add to cart </button></p>";
