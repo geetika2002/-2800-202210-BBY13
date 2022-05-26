@@ -288,6 +288,11 @@ body {
     transition: color 0.4s ease;
 }
 
+main img {
+    width: 80%;
+    height: 80%;
+}
+
 @media screen and (max-width: 2000px) {
     #container {
         display: grid;
@@ -342,6 +347,8 @@ body {
         grid-area: footer;
     }
 }
+
+
 
 @media screen and (max-width: 700px) {
     #container {
