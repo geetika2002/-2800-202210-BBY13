@@ -444,8 +444,8 @@ body {
 }
 
 .formcontainer {
-    width: 60%;
-    height: 75vh;
+    width: 80%;
+    height: 80vh;
     margin-top: 3%;
     margin-bottom: 3%;
     border-radius: 20px;
@@ -466,6 +466,42 @@ body {
     padding: 5%;
     display: inline-block;
 }
+
+.formcontainerA {
+  padding-top: 5%;
+  width: 80%;
+  height: 80vh;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 4px 80px 0 rgba(0, 0, 0, 0.2);
+}
+
+.formcontainerA > div {
+  padding: 5%;
+}
+
+.formcontainerA > div > input {
+  padding: 2%;
+  max-width: 100%;
+}
+
+.formcontainerA label {
+  padding: 5%;
+  display: inline-block;
+}
+
+.formcontainerA input {
+    float: right;
+    height: 70px;
+    padding: 1%;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 30%);
+}
+
 
 .hamburger{
   position: absolute;
@@ -567,57 +603,6 @@ body {
     grid-row: 6;
 }
 
-#create {
-    font-size: 0.9em;
-    display: block;
-    outline: none;
-    border: none;
-    text-align: center;
-    padding: 0.5% 2% 0.5% 2%;
-    background-color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
-    cursor: pointer;
-    box-shadow: 0 6px rgb(149, 149, 149);
-    display: inline-block;
-    position: relative;
-    transition: 0.3s;
-    margin-bottom: 3%;
-    margin-top: 1%;
-}
-
-#create {
-    font-size: 0.9em;
-    display: block;
-    outline: none;
-    border: none;
-    text-align: center;
-    color: rgb(0, 0, 0);
-    padding: 1% 5% 1% 5%;
-    background-color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
-    cursor: pointer;
-    box-shadow: 0 6px rgb(149, 149, 149);
-    display: inline-block;
-    position: relative;
-    transition: 0.3s;
-    margin-bottom: 3%;
-    margin-top: 1%;
-}
-
-#create:hover {
-    outline: none;
-    padding: 1% 9% 1% 9%;
-}
-
-#create:active {
-    transform: translateY(3px);
-    box-shadow: 0 5px rgb(119, 119, 119);
-}
-
 #new_user {
     text-align: center;
     border-radius: 20px;
@@ -629,7 +614,7 @@ body {
 }
 
 #new_user h2 {
-    margin-top: 3%;
+    margin-top: 10%;
 }
 
 #new_user input {
@@ -649,7 +634,7 @@ body {
 
 #new_user #createNew {
     grid-row: 7;
-    width: 30%;
+    width: 70px;
     display: block;
     cursor: pointer;
     margin: 0 auto;
@@ -661,6 +646,13 @@ body {
     border-radius: 6px;
     transition: 0.3s;
     box-shadow: 0 4px 15px 0 rgb(0 0 0 / 30%);
+    margin-bottom: 10%;
+}
+
+#create {
+  position: absolute;
+  height: 70px;
+  bottom: 50%;
 }
 
 #new_user #createNew:hover {
@@ -672,6 +664,50 @@ body {
 #new_user #createNew:active {
     transform: translateY(3px);
     box-shadow: 0 5px rgb(255, 255, 255);
+}
+
+#new_adminA #createNew:hover {
+  outline: none;
+  width: 40%;
+  box-shadow: 0 4px 20px 0 rgb(129, 170, 115);
+}
+
+#new_adminA #createNew:active {
+  transform: translateY(3px);
+  box-shadow: 0 5px rgb(255, 255, 255);
+}
+
+#new_adminA input {
+  font-size: 1em;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px 0 rgb(0 0 0 / 30%);
+  width: 70%;
+  margin-right: 15%;
+}
+
+#new_adminA input:focus {
+  box-shadow: 0 4px 20px 0 rgb(129, 170, 115);
+}
+
+#new_adminA #createNew {
+  grid-row: 7;
+  width: 30%;
+  display: block;
+  cursor: pointer;
+  margin: 0 auto;
+  outline: none;
+  border: none;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px 0 rgb(0 0 0 / 30%);
+  margin-bottom: 10%;
 }
 
 #file {
@@ -1098,25 +1134,6 @@ button:active {
     margin-left: 90%;
 }
 
-#create {
-    font-size: 0.9em;
-    display: block;
-    outline: none;
-    border: none;
-    text-align: center;
-    padding: 0.5% 2% 0.5% 2%;
-    background-color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
-    cursor: pointer;
-    box-shadow: 0 6px rgb(149, 149, 149);
-    display: inline-block;
-    position: relative;
-    transition: 0.3s;
-    margin-bottom: 3%;
-    margin-top: 1%;
-}
 
 #comp_name {
   position: absolute;
@@ -1155,4 +1172,24 @@ button:active {
 #createNew:active {
     transform: translateY(3px);
     box-shadow: 0 5px rgb(119, 119, 119);
+}
+
+#create {
+  font-size: 0.9em;
+  display: block;
+  outline: none;
+  border: none;
+  text-align: center;
+  padding: 0.5% 2% 0.5% 2%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  box-shadow: 0 6px rgb(149, 149, 149);
+  display: inline-block;
+  position: relative;
+  transition: 0.3s;
+  margin-bottom: 3%;
+  margin-top: 1%;
 }
