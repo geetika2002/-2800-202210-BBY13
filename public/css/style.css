@@ -363,12 +363,6 @@ body {
         grid-area: nav;
     }
 
-    #comp_name {
-        position: absolute;
-        bottom: 93%;
-        left: 45%
-    }
-
     #menu {
         display: flex;
         justify-content: left;
@@ -542,13 +536,6 @@ body {
         display: flex;
         justify-content: center;
     }
-
-#comp_name {
-    position: absolute;
-    bottom: 93%;
-    left: 30%
-}
-
 }
 
 @media screen and (max-width: 520px) {
