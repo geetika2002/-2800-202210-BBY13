@@ -5,6 +5,9 @@
     font-family: "Nunito Sans", sans-serif;
     margin-top: 1%;
     color: black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -20,7 +23,7 @@ body::-webkit-scrollbar {
 #logoutForm > input[type="submit"] {
     cursor: pointer;
     background-color: white;
-    box-shadow: 0 5px rgb(113, 113, 113);
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
     display: inline-block;
     position: relative;
     transition: 0.3s;
@@ -30,8 +33,7 @@ body::-webkit-scrollbar {
     width: 70%;
     height: 90%;
     border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
+    border-style: none;
 }
 
 #logoutForm > input[type="submit"]:active {
@@ -47,28 +49,26 @@ body::-webkit-scrollbar {
     outline: none;
     border: none;
     text-align: center;
-    color: rgb(0, 0, 0);
     padding: 2% 5% 2% 5%;
     background-color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 6px rgb(149, 149, 149);
     display: inline-block;
     position: relative;
     transition: 0.3s;
     color: black;
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
 }
 
 #welcome > button:hover {
     outline: none;
     padding: 2% 10% 2% 10%;
+    box-shadow: 0 4px 20px 0 rgb(129, 170, 115);
 }
 
 #welcome > button:active {
     transform: translateY(3px);
-    box-shadow: 0 5px rgb(119, 119, 119);
+    box-shadow: 0 5px rgb(255, 255, 255);
 }
 
 /* CORE STYLES */
@@ -76,12 +76,6 @@ body::-webkit-scrollbar {
     --primary-color: rgba(13, 110, 139, 0.75);
     --overlay-color: rgba(173, 173, 173, 0.85);
     --menu-speed: 0.75s;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 body {
@@ -173,10 +167,14 @@ body {
     margin-left: 2%;
     margin-right: 2%;
 }
-#comp_name {
+
+#comp_container {
     grid-column: 2 / span 3;
     grid-row: 3;
     text-align: center;
+}
+
+#comp_name {
     font-size: x-large;
 }
 
@@ -375,6 +373,7 @@ body {
         text-align: center;
         display: flex;
         justify-content: space-evenly;
+        margin-bottom: 2%;
     }
 
     a {
@@ -435,6 +434,11 @@ body {
     #footer {
         grid-area: footer;
         padding-left: 2%;
+    }
+
+    #profile_container {
+        justify-content: right;
+        margin-right: 20%;
     }
 }
 
@@ -526,6 +530,11 @@ body {
 
     #first_name {
         font-size: 1.5rem;
+    }
+
+    #profile_container {
+        display: flex;
+        justify-content: center;
     }
 }
 

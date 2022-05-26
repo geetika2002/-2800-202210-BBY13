@@ -10,17 +10,22 @@
 
 body {
     overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 h3 {
-  margin-top: 5%;
-  text-align: center;
+    margin-top: 5%;
+    text-align: center;
 }
 
-#logoutForm>input[type="submit"] {
+#logoutForm > input[type="submit"] {
     cursor: pointer;
     background-color: white;
-    box-shadow: 0 5px rgb(113, 113, 113);
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
     display: inline-block;
     position: relative;
     transition: 0.3s;
@@ -30,16 +35,15 @@ h3 {
     width: 70%;
     height: 90%;
     border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
+    border-style: none;
 }
 
-#logoutForm>input[type="submit"]:active {
+#logoutForm > input[type="submit"]:active {
     transform: translateY(3px);
     box-shadow: 0 2px rgb(119, 119, 119);
 }
 
-#welcome>button {
+#welcome > button {
     font-size: 0.9em;
     display: block;
     margin: 0 auto;
@@ -47,28 +51,26 @@ h3 {
     outline: none;
     border: none;
     text-align: center;
-    color: rgb(0, 0, 0);
     padding: 2% 5% 2% 5%;
     background-color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 6px rgb(149, 149, 149);
     display: inline-block;
     position: relative;
     transition: 0.3s;
     color: black;
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
 }
 
-#welcome>button:hover {
+#welcome > button:hover {
     outline: none;
     padding: 2% 10% 2% 10%;
+    box-shadow: 0 4px 20px 0 rgb(129, 170, 115);
 }
 
-#welcome>button:active {
+#welcome > button:active {
     transform: translateY(3px);
-    box-shadow: 0 5px rgb(119, 119, 119);
+    box-shadow: 0 5px rgb(255, 255, 255);
 }
 
 /* CORE STYLES */
@@ -105,7 +107,8 @@ body {
 
 .showcase:before {
     content: "";
-    background: url("https://images.pexels.com/photos/533923/pexels-photo-533923.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat center center/cover;
+    background: url("https://images.pexels.com/photos/533923/pexels-photo-533923.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+        no-repeat center center/cover;
     position: absolute;
     top: 0;
     left: 0;
@@ -141,7 +144,6 @@ body {
     transition: opacity 1s ease-in-out;
     text-decoration: none;
 }
-
 
 .btn:hover {
     opacity: 0.7;
@@ -181,7 +183,7 @@ body {
 }
 
 /* Hamburger Line */
-.menu-wrap .hamburger>div {
+.menu-wrap .hamburger > div {
     position: relative;
     flex: none;
     width: 100%;
@@ -194,8 +196,8 @@ body {
 }
 
 /* Hamburger Lines - Top & Bottom */
-.menu-wrap .hamburger>div::before,
-.menu-wrap .hamburger>div::after {
+.menu-wrap .hamburger > div::before,
+.menu-wrap .hamburger > div::after {
     content: "";
     position: absolute;
     z-index: 1;
@@ -206,38 +208,38 @@ body {
 }
 
 /* Moves Line Down */
-.menu-wrap .hamburger>div::after {
+.menu-wrap .hamburger > div::after {
     top: 10px;
 }
 
 /* Toggler Animation */
-.menu-wrap .toggler:checked+.hamburger>div {
+.menu-wrap .toggler:checked + .hamburger > div {
     transform: rotate(135deg);
 }
 
 /* Turns Lines Into X */
-.menu-wrap .toggler:checked+.hamburger>div:before,
-.menu-wrap .toggler:checked+.hamburger>div:after {
+.menu-wrap .toggler:checked + .hamburger > div:before,
+.menu-wrap .toggler:checked + .hamburger > div:after {
     top: 0;
     transform: rotate(90deg);
 }
 
 /* Rotate On Hover When Checked */
-.menu-wrap .toggler:checked:hover+.hamburger>div {
+.menu-wrap .toggler:checked:hover + .hamburger > div {
     transform: rotate(225deg);
 }
 
 /* Show Menu */
-.menu-wrap .toggler:checked~.menu {
+.menu-wrap .toggler:checked ~ .menu {
     visibility: visible;
 }
 
-.menu-wrap .toggler:checked~.menu>div {
+.menu-wrap .toggler:checked ~ .menu > div {
     transform: scale(1);
     transition-duration: var(--menu-speed);
 }
 
-.menu-wrap .toggler:checked~.menu>div>div {
+.menu-wrap .toggler:checked ~ .menu > div > div {
     opacity: 1;
     transition: opacity 0.4s ease 0.4s;
 }
@@ -255,7 +257,7 @@ body {
     justify-content: center;
 }
 
-.menu-wrap .menu>div {
+.menu-wrap .menu > div {
     background: var(--overlay-color);
     border-radius: 50%;
     width: 200vw;
@@ -268,7 +270,7 @@ body {
     transition: all 0.4s ease;
 }
 
-.menu-wrap .menu>div>div {
+.menu-wrap .menu > div > div {
     text-align: center;
     max-width: 90vw;
     max-height: 100vh;
@@ -276,19 +278,18 @@ body {
     transition: opacity 0.4s ease;
 }
 
-.menu-wrap .menu>div>div>ul>li {
+.menu-wrap .menu > div > div > ul > li {
     list-style: none;
     color: rgb(0, 0, 0);
     font-size: 1.5rem;
     padding: 1rem;
 }
 
-.menu-wrap .menu>div>div>ul>li>a {
+.menu-wrap .menu > div > div > ul > li > a {
     color: inherit;
     text-decoration: none;
     transition: color 0.4s ease;
 }
-
 
 @media screen and (max-width: 2000px) {
     #container {
@@ -321,47 +322,43 @@ body {
         justify-content: left;
     }
 
-
     a {
         text-decoration: none;
     }
 
     #users {
-      display: grid;
-      grid-area: users;
-      background-color: bisque;
-      text-align: center;
-      padding-top: 10%;
-      padding-bottom: 10%;
-      margin-bottom: 5%;
-      margin-top: 5%;
-      border-radius: 20px;
+        display: grid;
+        grid-area: users;
+        background-color: bisque;
+        text-align: center;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+        border-radius: 20px;
     }
 
     #orders {
-      grid-area: orders;
-      background-color: rgb(218, 192, 160);
-      text-align: center;
-      padding-top: 10%;
-      padding-bottom: 10%;
-      margin-bottom: 5%;
-      margin-top: 10%;
-      border-radius: 20px;
+        grid-area: orders;
+        background-color: rgb(218, 192, 160);
+        text-align: center;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        margin-bottom: 5%;
+        margin-top: 10%;
+        border-radius: 20px;
     }
 
     #stats {
-      grid-area: stats;
-      background-color: rgb(255, 204, 145);
-      text-align: center;
-      padding-top: 10%;
-      padding-bottom: 10%;
-      margin-bottom: 5%;
-      margin-top: 5%;
-      border-radius: 20px;
+        grid-area: stats;
+        background-color: rgb(255, 204, 145);
+        text-align: center;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+        border-radius: 20px;
     }
-
-
-
 
     #footer {
         grid-area: footer;
@@ -391,7 +388,6 @@ body {
         display: flex;
         padding-top: 3%;
     }
-
 
     #comp_name {
         margin-left: 40%;
@@ -425,52 +421,49 @@ body {
     } */
 
     #users {
-      display: grid;
-      grid-area: users;
-      background-color: rgb(224, 240, 224);
-      box-shadow: 0 0 10px 5px rgb(189, 189, 189);
-      text-align: center;
-      padding-top: 10%;
-      padding-bottom: 10%;
-      margin-bottom: 5%;
-      margin-top: 10%;
-      border-radius: 20px;
-      margin-left: 3%;
-      margin-right: 3%;
+        display: grid;
+        grid-area: users;
+        background-color: rgb(224, 240, 224);
+        box-shadow: 0 0 10px 5px rgb(189, 189, 189);
+        text-align: center;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        margin-bottom: 5%;
+        margin-top: 10%;
+        border-radius: 20px;
+        margin-left: 3%;
+        margin-right: 3%;
     }
 
     #orders {
-      grid-area: orders;
-      background-color: rgb(191, 216, 191);
-      box-shadow: 0 0 10px 5px rgb(189, 189, 189);
-      text-align: center;
-      padding-top: 10%;
-      padding-bottom: 10%;
-      margin-bottom: 5%;
-      margin-top: 5%;
-      border-radius: 20px;
-      margin-left: 3%;
-      margin-right: 3%;
+        grid-area: orders;
+        background-color: rgb(191, 216, 191);
+        box-shadow: 0 0 10px 5px rgb(189, 189, 189);
+        text-align: center;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+        border-radius: 20px;
+        margin-left: 3%;
+        margin-right: 3%;
     }
 
     #stats {
-      grid-area: stats;
-      background-color: rgb(150, 174, 150);
-      box-shadow: 0 0 10px 5px rgb(189, 189, 189);
-      text-align: center;
-      padding-top: 10%;
-      padding-bottom: 10%;
-      margin-bottom: 5%;
-      margin-top: 5%;
-      border-radius: 20px;
-      margin-left: 3%;
-      margin-right: 3%;
+        grid-area: stats;
+        background-color: rgb(150, 174, 150);
+        box-shadow: 0 0 10px 5px rgb(189, 189, 189);
+        text-align: center;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+        border-radius: 20px;
+        margin-left: 3%;
+        margin-right: 3%;
     }
-
 
     a {
         text-decoration: none;
     }
-
 }
-
