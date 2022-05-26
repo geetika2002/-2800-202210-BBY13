@@ -157,10 +157,10 @@ https://docs.google.com/spreadsheets/d/1OM_JeKmUl7Se_pdS94zhWJ451JCDp7_dR41f13a9
 <!-- TEAM MEMBERS -->
 ## Team Members
 
-Geetika Varma - gvarma@my.bcit.ca
-Amarra Hong - ahong27@my.bcit.ca
-Sam Bae - sbae35@my.bcit.ca
-Jason Oh - joh67@my.bcit.ca
+* Geetika Varma - gvarma@my.bcit.ca
+* Amarra Hong - ahong27@my.bcit.ca
+* Sam Bae - sbae35@my.bcit.ca
+* Jason Oh - joh67@my.bcit.ca
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -172,7 +172,7 @@ Jason Oh - joh67@my.bcit.ca
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Hamburger layour from Brad Traversy](https://codepen.io/bradtraversy/pen/vMGBjQ)
+* [Hamburger layout from Brad Traversy](https://codepen.io/bradtraversy/pen/vMGBjQ)
 * [Font Awesome](https://fontawesome.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
