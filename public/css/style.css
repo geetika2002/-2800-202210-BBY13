@@ -41,7 +41,7 @@ body::-webkit-scrollbar {
     box-shadow: 0 2px rgb(119, 119, 119);
 }
 
-#welcome > button {
+#welcome > a > button {
     font-size: 0.9em;
     display: block;
     margin: 0 auto;
