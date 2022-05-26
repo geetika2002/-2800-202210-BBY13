@@ -1,3 +1,325 @@
+geetika
+#0996
+
+Amarra — 01/08/2022
+but if you want we could definitely start a team
+geetika — 01/08/2022
+Ooo for sure
+Amarra — 01/08/2022
+i think we already have 2 classes we need to team up in so far
+geetika — 01/08/2022
+I’d just be more comfortable is all 😅
+Ya and I think there’s more
+The business one as well
+Amarra — 01/08/2022
+yaaaa
+geetika — 01/08/2022
+Also, I may occasionally bombard you with cst course questions here and there lol 😂. I’m like struggling half the time
+So don’t mind me, just a heads up 😅
+Amarra — 01/08/2022
+yes totally! me too
+geetika — 01/08/2022
+Absolutely 🙃
+I wish I could’ve met you on campus lol 😂
+But hey maybe things will open up in a week, so hope for the best
+Amarra — 01/08/2022
+for the team i’ll let you know when i join a group in the hub
+yes!
+geetika — 01/08/2022
+Okiee sounds good!
+We could even ask around ourselves
+But idk we’ll figure that out later I guess
+Amarra — 01/08/2022
+ya for sure
+are you on instagram or fb
+geetika — 01/08/2022
+Fb!
+I don’t have any pics on their though lol 😂. I only made the fb account cause of sfu, I never invested in social media even in hs 😂😂
+Amarra — 01/08/2022
+ok i’ll add you!! i don’t post on fb but i’m on messenger
+what’s your username
+geetika — 01/08/2022
+Nice! If you have iMessage or something we can even do that
+geetika — 01/08/2022
+One sec let me check it out
+Try searching up my name : Geetika Varma
+Amarra — 01/08/2022
+ok!
+geetika — 01/08/2022
+Lmk if you can’t find me lol 😂 I can try searching for you then
+Amarra — 01/08/2022
+Image
+any of these ones hahaha
+geetika — 01/08/2022
+I’m the one without a pic
+I’m pretty sure
+Amarra — Today at 9:38 AM
+"use strict";
+const express = require("express");
+const session = require("express-session");
+const app = express();
+const fs = require("fs");
+const { JSDOM } = require("jsdom");
+const mysql = require("mysql");
+const { response } = require("express");
+const req = require("express/lib/request");
+const { ReadableStreamBYOBRequest } = require("stream/web");
+const { type } = require("express/lib/response");
+
+app.use("/js", express.static("./public/js"));
+app.use("/css", express.static("./public/css"));
+app.use("/imgs", express.static("./public/imgs"));
+app.use("/fonts", express.static("./public/fonts"));
+app.use("/html", express.static("./app/html"));
+app.use("/media", express.static("./public/media"));
+
+var admin = false;
+
+app.use(
+    session({
+        secret: "secrets",
+        name: "candysession",
+        resave: false,
+        // create a unique identifier
+        saveUninitialized: true,
+    })
+);
+
+app.get("/", function (req, res) {
+    if (req.session.loggedIn) {
+        if (admin === false) {
+            res.redirect("/home");
+        } else {
+            admin === true;
+            res.redirect("/admin-dash");
+        }
+    } else {
+        let doc = fs.readFileSync("./app/index.html", "utf8");
+        res.send(doc);
+    }
+});
+
+app.get("/home", async (req, res) => {
+    if (req.session.loggedIn && admin === false) {
+        let profile = fs.readFileSync("./app/home.html", "utf-8");
+        let profileDOM = new JSDOM(profile);
+
+        const mysql = require("mysql2");
+
+        const connection = mysql.createConnection({
+            host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  user: "z596t5v95ron6fzg",
+  password: "lh6fsygbhuhgi3i7",
+  database: "rz2y3uh9vljkf5dz",
+        });
+        connection.connect;
+
+        profileDOM.window.document.getElementById("first_name").innerHTML =
+            "Pleased to see you, " +
+            req.session.fname +
+            "<input id='confetti' type='button' onclick='startConfetti(); showEnd();' value='&#127793'>" +
+            "<input type='button' id='stopconfetti' onclick='stopConfetti(); hideEnd()', value='&#10060'>";
+
+        connection.end();
+
+        res.set("Server", "candy");
+        res.set("X-Powered-By", "candy");
+        res.send(profileDOM.serialize());
+    } else {
+        res.redirect("/");
+    }
+});
+app.use(express.json());
+app.use(
+    express.urlencoded({
+        extended: true,
+    })
+);
+
+app.get("/admin", async (req, res) => {
+    if (req.session.loggedIn && admin === true) {
+        let profile = fs.readFileSync("./app/admin.html", "utf-8");
+        let profileDOM = new JSDOM(profile);
+
+        res.set("Server", "candy");
+        res.set("X-Powered-By", "candy");
+        res.send(profileDOM.serialize());
+    } else {
+        res.redirect("/");
+    }
+});
+app.use(express.json());
+app.use(
+    express.urlencoded({
+        extended: true,
+    })
+);
+... (1,253 lines left)
+Collapse
+server.js
+48 KB
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Account</title>
+    <link href="/css/user-profile.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="nav">
+        <a id="comp_name" href="/home">Mindful Matter</a>
+</div>
+
+<div class="menu-wrap">
+    <input type="checkbox" class="toggler">
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                        <li><a href="/profile">My Profile</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                    </ul>
+                    <form id="logoutForm" action="/logout" method="get">
+                        <input type="submit" value="Logout" />
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="formcontainer">
+    <form id="new_user">
+        <h3>Create new user</h3>
+        <input type="text" id="username" required="required" placeholder="Username *"/>
+        <input type="text" id="first" required="required" placeholder="First Name *"/>
+        <input type="text" id="last" required="required" placeholder="Last Name *"/>
+        <input type="text" id="email" required="required" placeholder="Email *"/>
+        <input id="password" required="required" type="password" placeholder="Password *"/>
+        <br/>
+        <input type="button" id="create" value="Create">
+        
+        <p><span id="serverMsg"></span></p>
+        <p id="errorMsg">&nbsp;</p>
+    </form>
+    </div>
+
+    <script src="js/client.js"></script>
+
+</body>
+</html>
+Collapse
+new_acc.html
+2 KB
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+Expand
+new_admin.html
+3 KB
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+Expand
+new_user.html
+2 KB
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Administrator Dashboard</title>
+    <meta charset="utf-8">
+Expand
+user-profiles.html
+2 KB
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Nunito+Sans:wght@300&display=swap");
+
+* {
+    font-family: "Montserrat", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    margin-right: 5%;
+Expand
+user-profile.css
+23 KB
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Nunito+Sans:wght@300&display=swap");
+
+* {
+    font-family: "Montserrat", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    margin-right: 5%;
+Expand
+user-new.css
+10 KB
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Nunito+Sans:wght@300&display=swap");
+
+* {
+    font-family: "Montserrat", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    margin-right: 5%;
+Expand
+user-prof.css
+23 KB
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Nunito+Sans:wght@300&display=swap");
+
+* {
+    font-family: "Montserrat", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
+    margin-top: 1%;
+Expand
+style.css
+12 KB
+geetika — Today at 9:50 AM
+dd8c66baf2013065c38be1e713fbac6a9b834804
+1fe82274ccceb40746381aeee864cd750abffcd2
+geetika — Today at 10:01 AM
+"use strict";
+const express = require("express");
+const session = require("express-session");
+const app = express();
+const fs = require("fs");
+const { JSDOM } = require("jsdom");
+Expand
+server.js
+39 KB
+Amarra — Today at 10:12 AM
+Attachment file type: unknown
+favicon.ico
+318 bytes
+Amarra — Today at 10:41 AM
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+Expand
+message.txt
+9 KB
+Image
+Amarra — Today at 10:54 AM
+https://codepen.io/bradtraversy/pen/vMGBjQ
+CodePen
+Brad Traversy
+Pure CSS Hamburger Menu & Overlay
+...
+Pure CSS Hamburger Menu & Overlay
+Hamburger menu layout from Brad Traversy
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
