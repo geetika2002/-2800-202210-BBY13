@@ -9,6 +9,16 @@
     color: black;
 }
 
+body {
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
 #comp_name {
     text-align: center;
     padding-left: 25%;
@@ -104,11 +114,9 @@ img {
     text-align: center;
     padding: 2% 5% 2% 5%;
     background-color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 6px rgb(149, 149, 149);
+    box-shadow: 0 4px 15px 0 rgb(0 0 0 / 50%);
     display: flex;
     transition: 0.3s;
     color: black;
@@ -117,9 +125,10 @@ img {
 #check_out:hover {
     outline: none;
     padding: 2% 10% 2% 10%;
+    box-shadow: 0 4px 20px 0 rgb(129, 170, 115);
 }
 
 #check_out:active {
     transform: translateY(3px);
-    box-shadow: 0 5px rgb(119, 119, 119);
+    box-shadow: 0 5px rgb(240, 240, 240);
 }

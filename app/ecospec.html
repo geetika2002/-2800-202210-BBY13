@@ -12,33 +12,34 @@
 
 <body>
     <div id="nav">
-        <a id="comp_name" href="/home">Mindful Matter</a>
-        <a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a>
-        <a href="/cart"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a>
-    </div>
+        <div id="comp_container"><a id="comp_name" href="/home">Mindful Matter</a></div>
+        <div id="profile_container"><a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a></div>
+        <div id="cart_container"><a href="/cart"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a></div>
 
-    <div class="menu-wrap">
-        <input type="checkbox" class="toggler">
-        <div class="hamburger">
-            <div></div>
-        </div>
-        <div class="menu">
-            <div>
+        <div class="menu-wrap">
+            <input type="checkbox" class="toggler">
+            <div class="hamburger">
+                <div></div>
+            </div>
+            <div class="menu">
                 <div>
-                    <ul>
-                        <li><a href="/home">Home</a></li>
-                        <li><a href="/profile">My Profile</a></li>
-                        <li><a href="/orders">My Orders</a></li>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/faq">FAQ</a></li>
-                    </ul>
-                    <form id="logoutForm" action="/logout" method="get">
-                        <input type="submit" value="Logout" />
-                    </form>
+                    <div>
+                        <ul>
+                            <li><a href="/home">Home</a></li>
+                            <li><a href="/profile">My Profile</a></li>
+                            <li><a href="/orders">My Orders</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                        </ul>
+                        <form id="logoutForm" action="/logout" method="get">
+                            <input type="submit" value="Logout" />
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div id="options">
         <a href="/shopall">Shop All</a>
@@ -55,54 +56,66 @@
     <div id="paint"></div>
 
 
-    <p id="desc">With zero VOCs, zero emissions and low odor this 100% acrylic product, offers quick-drying and fast turnaround that is ideal for both commercial and residential jobs where an environmentally responsible product is required. Our patented zero-VOC Gennex® colorants ensure that Eco Spec remains zero-VOC even after tinting, meeting the most stringent environmental requirements.</p>
+    <p id="desc">With zero VOCs, zero emissions and low odor this 100% acrylic product, offers quick-drying and fast
+        turnaround that is ideal for both commercial and residential jobs where an environmentally responsible product
+        is required. Our patented zero-VOC Gennex® colorants ensure that Eco Spec remains zero-VOC even after tinting,
+        meeting the most stringent environmental requirements.</p>
 
     <div id="green">
         <h4>Certifications:</h4>
-        <img id="greenseal" onclick="openGreen()" src="https://greenseal.org/wp-content/uploads/green-seal-logo.png" alt="green_seal">
+        <img id="greenseal" onclick="openGreen()" src="https://greenseal.org/wp-content/uploads/green-seal-logo.png"
+            alt="green_seal">
         <img id="AA" onclick="openA()" src="imgs/AA.png" alt="aa">
-        </div>
+    </div>
 
     <div id="dial">
         <h4>Mindful Matter Rating:</h4>
-    <img id="dials" src="imgs/dials.png">
+        <img id="dials" src="imgs/dials.png">
     </div>
 
 
-<div class="form-popup" id="gs">
-  <form action="/action_page.php" class="form-container">
-    <h2>Green Seal Certification</h2>
+    <div class="form-popup" id="gs">
+        <form action="/action_page.php" class="form-container">
+            <h2>Green Seal Certification</h2>
 
-    <p>Our science-based standards define sustainability leadership in the marketplace and reward industry innovations. Only the healthiest, most responsible, and most effective products achieve the Green Seal.
-    <br/><br/>
-        The Green Seal Compass focuses our standards on key impacts that occur throughout the product life cycle, from raw materials extraction and manufacturing to packaging, use and disposal.</p>
-    
-    <p><a href="https://greenseal.org/green-seal-standards/our-standards/">Visit the Green Seal website.</a></p>
+            <p>Our science-based standards define sustainability leadership in the marketplace and reward industry
+                innovations. Only the healthiest, most responsible, and most effective products achieve the Green Seal.
+                <br /><br />
+                The Green Seal Compass focuses our standards on key impacts that occur throughout the product life
+                cycle, from raw materials extraction and manufacturing to packaging, use and disposal.
+            </p>
 
-    <button type="button" class="btn cancel" onclick="closeGreen()">Close</button>
-  </form>
-</div>
+            <p><a href="https://greenseal.org/green-seal-standards/our-standards/">Visit the Green Seal website.</a></p>
 
-<div class="form-popup" id="aa">
-    <form action="/action_page.php" class="form-container">
-        <h2>Asthma & Allergy Friendly</h2>
+            <button type="button" class="btn cancel" onclick="closeGreen()">Close</button>
+        </form>
+    </div>
 
-        <p>When you see the asthma & allergy friendly® Certification Mark you know that the product has been scientifically tested and proven to be more suitable for people with asthma and related allergic sensitivities.
-            <br/><br/>
-            The asthma & allergy friendly® Certification Program was developed and launched in Canada by Allergy Standards Limited (ASL) in partnership with Asthma Canada (AC).
-            <br/><br/>
-            The Certification Standards are applied to products to ensure that they fulfill suitability criteria for individuals with asthma and allergic sensitivities.</p>
-        
-        <p><a href="https://asthmaandallergyfriendly.ca/">Visit the Asthma & Allergy Friendly website.</a></p>
-      <button type="button" class="btn cancel" onclick="closeA()">Close</button>
-    </form>
-  </div>
+    <div class="form-popup" id="aa">
+        <form action="/action_page.php" class="form-container">
+            <h2>Asthma & Allergy Friendly</h2>
 
-  <div id="footer">
-    <br/><br/><br/>
-<p id="foot"> © Mindful Matter 2022</p>
-<br/>
-</div>
+            <p>When you see the asthma & allergy friendly® Certification Mark you know that the product has been
+                scientifically tested and proven to be more suitable for people with asthma and related allergic
+                sensitivities.
+                <br /><br />
+                The asthma & allergy friendly® Certification Program was developed and launched in Canada by Allergy
+                Standards Limited (ASL) in partnership with Asthma Canada (AC).
+                <br /><br />
+                The Certification Standards are applied to products to ensure that they fulfill suitability criteria for
+                individuals with asthma and allergic sensitivities.
+            </p>
+
+            <p><a href="https://asthmaandallergyfriendly.ca/">Visit the Asthma & Allergy Friendly website.</a></p>
+            <button type="button" class="btn cancel" onclick="closeA()">Close</button>
+        </form>
+    </div>
+
+    <div id="footer">
+        <br /><br /><br />
+        <p id="foot"> © Mindful Matter 2022</p>
+        <br />
+    </div>
 
 
     <script src="js/client.js"></script>

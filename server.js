@@ -400,7 +400,7 @@ app.get("/profile", function (req, res) {
                 const thisUserName =
                     profDOM.window.document.getElementById("user_name");
                 let uName =
-                    "<input type=text id=username disabled value=" +
+                    "<input type=text id=user disabled value=" +
                     req.session.username +
                     ">";
                 thisUserName.innerHTML += uName;
@@ -445,13 +445,13 @@ app.get("/profile", function (req, res) {
                 let mail;
                 if (typeof req.session.new_email == "undefined") {
                     mail =
-                        "<input type=email id=email value=" +
+                        "<input type=email id=e-mail value=" +
                         req.session.email +
                         ">";
                     thisMail.innerHTML += mail;
                 } else {
                     mail =
-                        "<input type=email id=email value=" +
+                        "<input type=email id=e-mail value=" +
                         req.session.new_email +
                         ">";
                     thisMail.innerHTML += mail;
@@ -461,13 +461,13 @@ app.get("/profile", function (req, res) {
                 let pwd;
                 if (typeof req.session.new_password) {
                     pwd =
-                        "<input type=password id=password value=" +
+                        "<input type=password id=pass-word value=" +
                         req.session.password +
                         ">";
                     thisPWD.innerHTML += pwd;
                 } else {
                     pwd =
-                        "<input type=password id=password value=" +
+                        "<input type=password id=pass-word value=" +
                         req.session.new_password +
                         ">";
                     thisPWD.innerHTML += pwd;
@@ -688,9 +688,7 @@ app.get("/ecospec", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-                        "<input type=number id=quantity min=0 max=5000 value =" +
-                        paintresults[i].quantity +
-                        ">" +
+                        "<input type=number id=quantity min=0 max=5000 value =1>" +
                         "<p><button class='addToCart' id=" +
                         paintresults[i].ID +
                         " onclick='addToCart(this.id);'> Add to cart </button></p>";
@@ -746,9 +744,7 @@ app.get("/sherwin", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-                        "<input type=number id=quantity min=0 max=5000 value =" +
-                        paintresults[i].quantity +
-                        ">" +
+                        "<input type=number id=quantity min=0 max=5000 value=1>" +
                         "<p><button class='addToCart' id=" +
                         paintresults[i].ID +
                         " onclick='addToCart(this.id);'> Add to cart </button></p>";
@@ -804,9 +800,7 @@ app.get("/bio", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-                        "<input type=number id=quantity min=0 max=5000 value =" +
-                        paintresults[i].quantity +
-                        ">" +
+                        "<input type=number id=quantity min=0 max=5000 value =1>" +
                         "<p><button class='addToCart' id=" +
                         paintresults[i].ID +
                         " onclick='addToCart(this.id);'> Add to cart </button></p>";
@@ -862,9 +856,11 @@ app.get("/behr", function (req, res) {
                         "<h4>" +
                         paintresults[i].price +
                         "</h4>" +
-                        "<input type=number id=quantity min=0 max=5000 value =" +
-                        paintresults[i].quantity +
-                        ">" +
+<<<<<<< HEAD
+                        "<input type=number id=quantity min=0 max=5000 value =1>" +
+=======
+                        "<input type=number id=quantity value = 1>" +
+>>>>>>> SB_CSS_f
                         "<p><button class='addToCart' id=" +
                         paintresults[i].ID +
                         " onclick='addToCart(this.id);'> Add to cart </button></p>";
