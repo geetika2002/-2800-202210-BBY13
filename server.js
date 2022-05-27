@@ -1308,7 +1308,7 @@ async function init() {
             ["user1", "tester1", "tester1", "test@bcit.ca", "n", "n", "12345"],
             ["user2", "tester2", "tester2", "test@bcit.ca", "n", "n", "12345"],
             ["admin1", "tester3", "tester3", "test@bcit.ca", "y", "n", "12345"],
-            ["admin2", "tester4", "tester4", "test@bcit.ca", "y", "n", "12345"]
+            ["admin2", "tester4", "tester4", "test@bcit.ca", "y", "n", "12345"],
         ];
         await connection.query(userRecord, [userValue]);
     }

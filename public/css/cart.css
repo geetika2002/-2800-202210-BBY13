@@ -18,10 +18,25 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
+#nav {
+    display: grid;
+    height: auto;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 10% 10% 60% 10% 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#comp_container {
+    grid-column: 2 / span 3;
+    grid-row: 3;
+    text-align: center;
+}
 
 #comp_name {
-    text-align: center;
-    padding-left: 25%;
+    font-size: x-large;
 }
 
 #header {

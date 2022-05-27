@@ -7,35 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Admin</title>
     <link href="/css/user-profile.css" rel="stylesheet" />
+    <link href="/imgs/mindfulmatterlogo.png" rel="icon" type="image/x-icon" />
 </head>
 
 <body>
 
     <div id="nav">
-        <a id="comp_name" href="/admin">Mindful Matter</a>
-    </div>
 
-    <div class="menu-wrap">
-        <input type="checkbox" class="toggler">
-        <div class="hamburger">
-            <div></div>
-        </div>
-        <div class="menu">
-            <div>
+        <div class="menu-wrap">
+            <input type="checkbox" class="toggler">
+            <div class="hamburger">
+                <div></div>
+            </div>
+            <div class="menu">
                 <div>
-                    <ul>
-                        <li><a href="/home">Home</a></li>
-                        <li><a href="/profile">My Profile</a></li>
-                        <li><a href="/orders">My Orders</a></li>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/faq">FAQ</a></li>
-                    </ul>
-                    <form id="logoutForm" action="/logout" method="get">
-                        <input type="submit" value="Logout" />
-                    </form>
+                    <div>
+                        <ul>
+                            <li><a href="/home">Home</a></li>
+                            <li><a href="/profile">My Profile</a></li>
+                            <li><a href="/orders">My Orders</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                            <form id="logoutForm" action="/logout" method="get">
+                                <input type="submit" value="Logout" />
+                            </form>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        <div id="comp_container"><a id="comp_name" href="/home">Mindful Matter</a></div>
+
     </div>
 
     <div class="formcontainerA">
