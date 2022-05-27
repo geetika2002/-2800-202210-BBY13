@@ -646,9 +646,9 @@ app.get("/ecospec", function (req, res) {
 
         const connection = mysql.createConnection({
             host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-            user: "z596t5v95ron6fzg",
-            password: "lh6fsygbhuhgi3i7",
-            database: "rz2y3uh9vljkf5dz",
+        user: "z596t5v95ron6fzg",
+        password: "lh6fsygbhuhgi3i7",
+        database: "rz2y3uh9vljkf5dz",
         });
         connection.connect();
 
