@@ -123,7 +123,7 @@ app.post("/login", async function (req, res) {
         req.session.email = rows[0].email;
         req.session.admin = rows[0].administrator;
 
-        req.session.save(function (err) { });
+        req.session.save(function (err) {});
 
         res.send({
             status: "success",
@@ -172,7 +172,7 @@ app.post("/user-info", async function (req, res) {
 
     req.session.user_edit = `${req.body.user_edit}`;
 
-    req.session.save(function (err) { });
+    req.session.save(function (err) {});
 
     res.send({
         msg: "data in.",
@@ -194,7 +194,7 @@ app.post("/delete-user", async function (req, res) {
 
     req.session.to_delete = `${req.body.to_delete}`;
 
-    req.session.save(function (err) { });
+    req.session.save(function (err) {});
 
     let sql = `DELETE FROM BBY_13_mm_users WHERE username=?`;
     connection.query(sql, req.session.to_delete, function (err, result) {
@@ -370,10 +370,10 @@ app.get("/profile", function (req, res) {
         const mysql = require("mysql2");
 
         const connection = mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "",
-            database: "COMP2800",
+            host: "acw2033ndw0at1t7.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+            user: "z596t5v95ron6fzg",
+            password: "lh6fsygbhuhgi3i7",
+            database: "rz2y3uh9vljkf5dz",
         });
         connection.connect();
 
@@ -384,6 +384,10 @@ app.get("/profile", function (req, res) {
                     console.log(error);
                 }
 
+                // const thisAD = profDOM.window.document.getElementById("Id_num");
+                // let id =
+                //   "<input type=text id=ID disabled value=" + req.session.idnum + ">";
+                // thisAD.innerHTML += id;
 
                 const thisUserName =
                     profDOM.window.document.getElementById("user_name");
@@ -393,7 +397,7 @@ app.get("/profile", function (req, res) {
                     ">";
                 thisUserName.innerHTML += uName;
 
-
+                // console.log(req.session.new_fname);
 
                 const thisFName =
                     profDOM.window.document.getElementById("first_name");
@@ -493,7 +497,10 @@ app.get("/profile-admin", function (req, res) {
                     console.log(error);
                 }
 
-
+                // const thisAD = profDOM.window.document.getElementById("Id_num");
+                // let id =
+                //   "<input type=text id=ID disabled value=" + req.session.idnum + ">";
+                // thisAD.innerHTML += id;
 
                 const thisUserName =
                     profDOM.window.document.getElementById("user_name");
@@ -503,7 +510,7 @@ app.get("/profile-admin", function (req, res) {
                     ">";
                 thisUserName.innerHTML += uName;
 
-
+                // console.log(req.session.new_fname);
 
                 const thisFName =
                     profDOM.window.document.getElementById("first_name");
@@ -866,9 +873,9 @@ app.post("/add_paint", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
         multipleStatements: true,
     });
 
@@ -886,7 +893,7 @@ app.post("/add_paint", async function (req, res) {
             req.session.image = rows[0].image;
             req.session.quantity = `${req.body.quantity}`;
 
-            req.session.save(function err() { });
+            req.session.save(function err() {});
         }
 
         if (req.session.idnum) {
@@ -1079,9 +1086,9 @@ app.post("/add-new-user", function (req, res) {
 
     const connection = mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
     });
 
     connection.connect();
@@ -1125,9 +1132,9 @@ app.post("/add-new-admin", function (req, res) {
 
     const connection = mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
     });
 
     connection.connect();
@@ -1197,7 +1204,7 @@ app.post("/new_info", async function (req, res) {
         req.session.new_email = `${req.body.new_email}`;
         req.session.new_password = `${req.body.new_password}`;
 
-        req.session.save(function err() { });
+        req.session.save(function err() {});
     }
 
     let sql = `UPDATE BBY_13_mm_users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE username = '${req.session.username}'`;
@@ -1217,9 +1224,9 @@ app.post("/new_info_admin", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
         multipleStatements: true,
     });
     connection.connect();
@@ -1269,7 +1276,8 @@ async function init() {
                                 delete_user VARCHAR(1),
                                 password VARCHAR(50),
                                 PRIMARY KEY (ID_NUMBER));
-                                  use rz2y3uh9vljkf5dz;
+
+                                  use COMP2800;
                                   CREATE TABLE IF NOT EXISTS BBY_13_products (
                                     ID int NOT NULL AUTO_INCREMENT,
                                     name VARCHAR(50),
@@ -1278,7 +1286,7 @@ async function init() {
                                     quantity INT(100) NOT NULL DEFAULT 1,
                                     PRIMARY KEY (ID));  
                                     
-                                    use rz2y3uh9vljkf5dz;
+                                    use COMP2800;
                                     CREATE TABLE IF NOT EXISTS BBY_13_cart (
                                         ID INT NOT NULL AUTO_INCREMENT,
                                         userid INT NOT NULL,
@@ -1327,9 +1335,10 @@ async function init() {
         ];
         await connection.query(productRecord, [productValue]);
 
-        let port = 8000;
-        app.listen(port, init);
-        console.log("listening on port " + port + "!");
-
+        console.log("Listening on port " + port + "!");
     }
 }
+
+let port = 8000;
+app.listen(process.env.PORT || 8000, init);
+console.log("listening on port " + port + "!");
