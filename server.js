@@ -104,9 +104,9 @@ app.post("/login", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-            user: "root",
-            password: "",
-            database: "COMP2800",
+        user: "root",
+        password: "",
+        database: "COMP2800",
     });
     connection.connect();
     const [rows, fields] = await connection.execute(
@@ -185,9 +185,9 @@ app.post("/delete-user", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-            user: "root",
-            password: "",
-            database: "COMP2800",
+        user: "root",
+        password: "",
+        database: "COMP2800",
         multipleStatements: true,
     });
     connection.connect();
@@ -866,9 +866,9 @@ app.post("/add_paint", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-            user: "root",
-            password: "",
-            database: "COMP2800",
+        user: "root",
+        password: "",
+        database: "COMP2800",
         multipleStatements: true,
     });
 
@@ -1079,9 +1079,9 @@ app.post("/add-new-user", function (req, res) {
 
     const connection = mysql.createConnection({
         host: "localhost",
-            user: "root",
-            password: "",
-            database: "COMP2800",
+        user: "root",
+        password: "",
+        database: "COMP2800",
     });
 
     connection.connect();
@@ -1125,9 +1125,9 @@ app.post("/add-new-admin", function (req, res) {
 
     const connection = mysql.createConnection({
         host: "localhost",
-            user: "root",
-            password: "",
-            database: "COMP2800",
+        user: "root",
+        password: "",
+        database: "COMP2800",
     });
 
     connection.connect();
@@ -1176,9 +1176,9 @@ app.post("/new_info", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-            user: "root",
-            password: "",
-            database: "COMP2800",
+        user: "root",
+        password: "",
+        database: "COMP2800",
         multipleStatements: true,
     });
     connection.connect();
@@ -1217,9 +1217,9 @@ app.post("/new_info_admin", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-            user: "root",
-            password: "",
-            database: "COMP2800",
+        user: "root",
+        password: "",
+        database: "COMP2800",
         multipleStatements: true,
     });
     connection.connect();
@@ -1327,6 +1327,9 @@ async function init() {
         ];
         await connection.query(productRecord, [productValue]);
 
-        console.log("Listening on port " + port + "!");
+        let port = 8000;
+        app.listen(port, init);
+        console.log("listening on port " + port + "!");
+
     }
 }
