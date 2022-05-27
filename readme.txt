@@ -7,4 +7,3 @@ Team members:
 
 This assignment is [100]% complete.
 
-Avatar is unable to edit
