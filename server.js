@@ -104,9 +104,9 @@ app.post("/login", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
     });
     connection.connect();
     const [rows, fields] = await connection.execute(
@@ -185,9 +185,9 @@ app.post("/delete-user", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
         multipleStatements: true,
     });
     connection.connect();
@@ -362,13 +362,6 @@ app.get("/edit-by-admin", function (req, res) {
     }
 });
 
-// app.get("/home", function (req, res) {
-//   if (req.session) {
-//     let doc = fs.readFileSync("./app/home.html", "utf8");
-//     res.send(doc);
-//   }
-// });
-
 app.get("/profile", function (req, res) {
     if (req.session) {
         let prof = fs.readFileSync("./app/profile.html", "utf8");
@@ -391,10 +384,6 @@ app.get("/profile", function (req, res) {
                     console.log(error);
                 }
 
-                // const thisAD = profDOM.window.document.getElementById("Id_num");
-                // let id =
-                //   "<input type=text id=ID disabled value=" + req.session.idnum + ">";
-                // thisAD.innerHTML += id;
 
                 const thisUserName =
                     profDOM.window.document.getElementById("user_name");
@@ -404,7 +393,7 @@ app.get("/profile", function (req, res) {
                     ">";
                 thisUserName.innerHTML += uName;
 
-                // console.log(req.session.new_fname);
+
 
                 const thisFName =
                     profDOM.window.document.getElementById("first_name");
@@ -504,10 +493,7 @@ app.get("/profile-admin", function (req, res) {
                     console.log(error);
                 }
 
-                // const thisAD = profDOM.window.document.getElementById("Id_num");
-                // let id =
-                //   "<input type=text id=ID disabled value=" + req.session.idnum + ">";
-                // thisAD.innerHTML += id;
+
 
                 const thisUserName =
                     profDOM.window.document.getElementById("user_name");
@@ -517,7 +503,7 @@ app.get("/profile-admin", function (req, res) {
                     ">";
                 thisUserName.innerHTML += uName;
 
-                // console.log(req.session.new_fname);
+
 
                 const thisFName =
                     profDOM.window.document.getElementById("first_name");
@@ -880,9 +866,9 @@ app.post("/add_paint", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
         multipleStatements: true,
     });
 
@@ -1093,9 +1079,9 @@ app.post("/add-new-user", function (req, res) {
 
     const connection = mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
     });
 
     connection.connect();
@@ -1139,9 +1125,9 @@ app.post("/add-new-admin", function (req, res) {
 
     const connection = mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
     });
 
     connection.connect();
@@ -1190,9 +1176,9 @@ app.post("/new_info", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
         multipleStatements: true,
     });
     connection.connect();
@@ -1231,9 +1217,9 @@ app.post("/new_info_admin", async function (req, res) {
     const mysql = require("mysql2/promise");
     const connection = await mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "",
-        database: "COMP2800",
+            user: "root",
+            password: "",
+            database: "COMP2800",
         multipleStatements: true,
     });
     connection.connect();
@@ -1267,6 +1253,7 @@ async function init() {
         host: "localhost",
         user: "root",
         password: "",
+        database: "COMP2800",
         multipleStatements: true,
     });
 
@@ -1282,8 +1269,7 @@ async function init() {
                                 delete_user VARCHAR(1),
                                 password VARCHAR(50),
                                 PRIMARY KEY (ID_NUMBER));
-
-                                  use COMP2800;
+                                  use rz2y3uh9vljkf5dz;
                                   CREATE TABLE IF NOT EXISTS BBY_13_products (
                                     ID int NOT NULL AUTO_INCREMENT,
                                     name VARCHAR(50),
@@ -1292,7 +1278,7 @@ async function init() {
                                     quantity INT(100) NOT NULL DEFAULT 1,
                                     PRIMARY KEY (ID));  
                                     
-                                    use COMP2800;
+                                    use rz2y3uh9vljkf5dz;
                                     CREATE TABLE IF NOT EXISTS BBY_13_cart (
                                         ID INT NOT NULL AUTO_INCREMENT,
                                         userid INT NOT NULL,
@@ -1318,6 +1304,10 @@ async function init() {
             ["gvarma", "Geetika", "Varma", "gvarma@bcit.ca", "n", "n", "12345"],
             ["sbae", "Sam", "Bae", "sbae@bcit.ca", "y", "n", "12345"],
             ["joh", "Jason", "Oh", "joh@bcit.ca", "y", "n", "12345"],
+            ["user1", "tester1", "tester1", "test@bcit.ca", "n", "n", "12345"],
+            ["user2", "tester2", "tester2", "test@bcit.ca", "n", "n", "12345"],
+            ["admin1", "tester3", "tester3", "test@bcit.ca", "y", "n", "12345"],
+            ["admin2", "tester4", "tester4", "test@bcit.ca", "y", "n", "12345"],
         ];
         await connection.query(userRecord, [userValue]);
     }
@@ -1340,7 +1330,3 @@ async function init() {
         console.log("Listening on port " + port + "!");
     }
 }
-
-let port = 8000;
-app.listen(port, init);
-console.log("listening on port " + port + "!");
