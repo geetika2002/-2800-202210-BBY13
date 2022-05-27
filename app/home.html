@@ -13,7 +13,6 @@
 <body>
 
     <div id="container">
-
         <!-- ALL NAV -->
         <div id="nav">
 
@@ -31,12 +30,13 @@
                                 <li><a href="/orders">My Orders</a></li>
                                 <li><a href="/about">About Us</a></li>
                                 <li><a href="/faq">FAQ</a></li>
+                                <form id="logoutForm" action="/logout" method="get">
+                                    <input type="submit" value="Logout" />
+                                </form>
 
                             </ul>
                         </div>
-                        <form id="logoutForm" action="/logout" method="get">
-                            <input type="submit" value="Logout" />
-                        </form>
+
                     </div>
                 </div>
             </div>
@@ -44,7 +44,6 @@
             <div id="profile_container"><a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a></div>
             <div id="cart_container"><a href="/cart"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a></div>
         </div>
-
 
 
 
