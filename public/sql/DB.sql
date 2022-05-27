@@ -41,7 +41,7 @@ CREATE TABLE `BBY_13_products` (
     `price` varchar(100) NOT NULL,
     `quantity` int(100) NOT NULL DEFAULT 0,
     `image` varchar(100) NOT NULL,
-    PRIMARY KEY (`ID`),
+    PRIMARY KEY (`ID`)
     
 );
 
