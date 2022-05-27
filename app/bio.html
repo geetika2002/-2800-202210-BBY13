@@ -11,36 +11,37 @@
 </head>
 
 <body>
-    <div id="nav">
+   <!-- ALL NAV -->
+   <div id="nav">
 
-        <div class="menu-wrap">
-            <input type="checkbox" class="toggler">
-            <div class="hamburger">
-                <div></div>
-            </div>
-            <div class="menu">
+    <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger">
+            <div></div>
+        </div>
+        <div class="menu">
+            <div>
                 <div>
-                    <div>
-                        <ul>
-                            <li><a href="/home">Home</a></li>
-                            <li><a href="/profile">My Profile</a></li>
-                            <li><a href="/orders">My Orders</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/faq">FAQ</a></li>
+                    <ul>
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/profile">My Profile</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <form id="logoutForm" action="/logout" method="get">
+                            <input type="submit" value="Logout" />
+                        </form>
 
-                        </ul>
-                    </div>
-                    <form id="logoutForm" action="/logout" method="get">
-                        <input type="submit" value="Logout" />
-                    </form>
+                    </ul>
                 </div>
+
             </div>
         </div>
-        <div id="comp_container"><a id="comp_name" href="/home">Mindful Matter</a></div>
-        <div id="profile_container"><a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a></div>
-        <div id="cart_container"><a href="/cart"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a></div>
     </div>
-
+    <div id="comp_container"><a id="comp_name" href="/home">Mindful Matter</a></div>
+    <div id="profile_container"><a href="/profile"><i id="profile_icon" class="fas fa-user-alt"></i></a></div>
+    <div id="cart_container"><a href="/cart"><i id="shopping" class="fa-solid fa-cart-shopping"></i></a></div>
+</div>
     <div id="options">
         <a href="/shopall">Shop All</a>
         <a href="/bestseller">Best Sellers</a>
